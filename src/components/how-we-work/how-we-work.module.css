@@ -1,0 +1,339 @@
+.section {
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+}
+
+.desktopExperience {
+  height: 520vh;
+}
+
+.stickyViewport {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.shell {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  flex-direction: column;
+  padding: clamp(5.5rem, 9vh, 7rem) clamp(1.25rem, 6vw, 4.5rem)
+    clamp(2rem, 6vh, 4rem);
+}
+
+.label {
+  margin: 0;
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.desktopDeck {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  margin-top: clamp(2.25rem, 5vh, 3.5rem);
+}
+
+.deckHeaders {
+  flex: 0 0 auto;
+}
+
+.deckSheetStage {
+  position: relative;
+  flex: 1;
+  min-height: clamp(30rem, 58vh, 42rem);
+  overflow: hidden;
+}
+
+.deckHeader,
+.deckSheet,
+.staticStep,
+.mobileStep {
+  border-top: 1px solid
+    color-mix(in srgb, var(--color-charcoal) 22%, transparent);
+  transition:
+    border-color 360ms ease,
+    color 360ms ease,
+    max-height 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 360ms ease,
+    padding 560ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.deckSheet,
+.staticStep:last-child,
+.mobileStep:last-child {
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-charcoal) 22%, transparent);
+}
+
+.deckHeader:hover,
+.deckSheet:hover,
+.deckSheet:focus-within,
+.staticStep:hover,
+.staticStep:focus-within,
+.mobileStep:focus-within {
+  border-color: color-mix(in srgb, var(--color-cobalt) 42%, transparent);
+}
+
+.deckHeader:hover,
+.deckSheet:hover .sheetHeader,
+.deckSheet:focus-within .sheetHeader,
+.staticStep:hover .stepHeader,
+.staticStep:focus-within .stepHeader {
+  color: var(--color-cobalt);
+}
+
+.deckHeader,
+.sheetHeader,
+.stepHeader,
+.mobileTrigger {
+  display: grid;
+  width: 100%;
+  grid-template-columns: minmax(2.75rem, 0.12fr) minmax(0, 1fr) auto;
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: center;
+  padding: clamp(0.85rem, 1.9vh, 1.35rem) 0;
+}
+
+.deckHeader {
+  max-height: 0;
+  overflow: hidden;
+  padding-block: 0;
+  border-color: transparent;
+  opacity: 0;
+}
+
+.deckHeader[data-visible="true"] {
+  max-height: clamp(3.25rem, 6.5vh, 4.85rem);
+  padding-block: clamp(0.65rem, 1.35vh, 1rem);
+  border-color: color-mix(in srgb, var(--color-charcoal) 22%, transparent);
+  opacity: 1;
+}
+
+.stepHeader {
+  min-height: clamp(3.35rem, 6vh, 4.35rem);
+}
+
+.stepNumber {
+  font-size: clamp(1rem, 2.1vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.deckHeaderTitle,
+.stepTitle,
+.mobileTitle {
+  margin: 0;
+  font-size: clamp(2.35rem, 4.8vw, 4.7rem);
+  font-weight: 680;
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.deckHeaderTitle {
+  font-size: clamp(1.55rem, 2.8vw, 2.65rem);
+  line-height: 1;
+}
+
+.deckSheet {
+  position: absolute;
+  inset: 0 0 auto;
+  min-height: 0;
+  background: var(--color-ivory);
+  will-change: transform;
+}
+
+.sheetHeader {
+  min-height: clamp(4rem, 8vh, 5.75rem);
+}
+
+.sheetTitle {
+  margin: 0;
+  font-size: clamp(4rem, 8vw, 7.25rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: 0;
+}
+
+.stepIcon {
+  font-size: clamp(1.75rem, 3vw, 3rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.mobilePanel {
+  overflow: hidden;
+}
+
+.sheetBody {
+  padding: 0 0 clamp(1.25rem, 3vh, 2.25rem) calc(12% + clamp(1rem, 3vw, 3rem));
+}
+
+.contentGrid {
+  display: grid;
+  max-width: min(76rem, 100%);
+  grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+}
+
+.copy {
+  max-width: 43rem;
+  font-size: clamp(1.05rem, 1.55vw, 1.45rem);
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.copy p,
+.coverageTitle,
+.coverageList {
+  margin: 0;
+}
+
+.copy p + p {
+  margin-top: 1em;
+}
+
+.coverage {
+  align-self: start;
+  padding-top: 0.25rem;
+}
+
+.coverageTitle {
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.coverageList {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+  padding: 0;
+  list-style: none;
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  line-height: 1.18;
+}
+
+.coverageList li {
+  padding-top: 0.55rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.staticExperience,
+.mobileExperience {
+  display: none;
+}
+
+.listLayout {
+  padding: clamp(5.5rem, 12vh, 8rem) clamp(1.25rem, 6vw, 4.5rem);
+}
+
+.staticRows,
+.mobileRows {
+  margin-top: clamp(2.25rem, 6vh, 4rem);
+}
+
+.staticBody {
+  padding: 0 0 clamp(3rem, 8vh, 5rem) calc(12% + clamp(1rem, 3vw, 3rem));
+}
+
+.mobileTrigger {
+  min-height: 5.25rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: color 300ms ease;
+}
+
+.mobileTrigger:hover,
+.mobileTrigger:focus-visible,
+.mobileTrigger:active {
+  color: var(--color-cobalt);
+}
+
+.mobilePanelInner {
+  padding: 0 0 2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktopExperience {
+    display: none;
+  }
+
+  .staticExperience {
+    display: block;
+  }
+}
+
+@media (max-width: 1024px) {
+  .stepTitle,
+  .mobileTitle {
+    font-size: clamp(2rem, 5.5vw, 4.75rem);
+  }
+
+  .copy {
+    font-size: clamp(1.05rem, 1.7vw, 1.45rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .desktopExperience,
+  .staticExperience {
+    display: none;
+  }
+
+  .mobileExperience {
+    display: block;
+  }
+
+  .listLayout {
+    padding-block: clamp(4.5rem, 10vh, 6rem);
+  }
+
+  .mobileRows {
+    margin-top: 2.25rem;
+  }
+
+  .mobileTrigger {
+    grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+    gap: 0.9rem;
+    min-height: 5rem;
+  }
+
+  .stepNumber {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .mobileTitle {
+    font-size: clamp(2.2rem, 11vw, 3.85rem);
+  }
+
+  .stepIcon {
+    font-size: clamp(1.75rem, 7vw, 2.35rem);
+  }
+
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .copy {
+    font-size: clamp(1.05rem, 4.5vw, 1.35rem);
+    line-height: 1.32;
+  }
+
+  .coverageList {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+  }
+}

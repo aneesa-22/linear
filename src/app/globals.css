@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-satoshi);
+  --color-ivory: #f5f3f0;
+  --color-charcoal: #202020;
+  --color-cobalt: #0c1d8c;
+}
+
+@layer base {
+  @font-face {
+    font-family: "Satoshi";
+    src: url("../styles/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2")
+      format("woff2");
+    font-display: swap;
+    font-style: normal;
+    font-weight: 300 900;
+  }
+
+  :root {
+    --color-ivory: #f5f3f0;
+    --color-charcoal: #202020;
+    --color-cobalt: #0c1d8c;
+    --font-satoshi: "Satoshi", system-ui, sans-serif;
+  }
+
+  html {
+    text-size-adjust: 100%;
+    background: var(--color-ivory);
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--color-ivory);
+    color: var(--color-charcoal);
+    font-family: var(--font-satoshi);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cobalt);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes hero-arrow-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(0.45rem);
+  }
+}

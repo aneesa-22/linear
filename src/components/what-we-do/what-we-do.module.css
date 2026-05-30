@@ -1,0 +1,186 @@
+.section {
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+}
+
+.desktopExperience {
+  height: 300vh;
+}
+
+.stickyViewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.label {
+  margin: 0;
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.stickyViewport > .label {
+  position: absolute;
+  top: clamp(5.5rem, 9vh, 7rem);
+  left: clamp(1.25rem, 6vw, 4.5rem);
+  z-index: 1;
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  width: 300vw;
+  will-change: transform;
+}
+
+.panel {
+  display: flex;
+  flex: 0 0 100vw;
+  align-items: center;
+  padding: clamp(8rem, 16vh, 11rem) clamp(1.25rem, 6vw, 4.5rem)
+    clamp(4rem, 10vh, 7rem);
+}
+
+.panelContent {
+  display: grid;
+  width: min(82rem, 100%);
+  grid-template-columns: minmax(3.5rem, 0.14fr) minmax(0, 1fr) auto;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+  transition: color 420ms ease;
+}
+
+.panel:hover .panelContent,
+.panel:focus-within .panelContent {
+  color: var(--color-cobalt);
+}
+
+.number {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.title {
+  margin: 0;
+  max-width: 15ch;
+  font-size: clamp(4rem, 8vw, 7.25rem);
+  font-weight: 720;
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+
+.copy {
+  margin: clamp(1.75rem, 4vh, 3rem) 0 0;
+  max-width: 34rem;
+  font-size: clamp(1.15rem, 1.8vw, 1.65rem);
+  line-height: 1.22;
+  letter-spacing: 0;
+}
+
+.arrow {
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  line-height: 0.9;
+}
+
+.staticExperience,
+.mobileExperience {
+  display: none;
+}
+
+.list {
+  padding: clamp(5.5rem, 12vh, 8rem) clamp(1.25rem, 6vw, 4.5rem);
+}
+
+.rows {
+  margin-top: clamp(2rem, 6vh, 4rem);
+}
+
+.row {
+  display: grid;
+  min-height: 5.5rem;
+  width: 100%;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: clamp(1rem, 4vw, 2rem);
+  align-items: center;
+  border: 0;
+  border-top: 1px solid
+    color-mix(in srgb, var(--color-charcoal) 22%, transparent);
+  background: transparent;
+  color: var(--color-charcoal);
+  cursor: pointer;
+  font: inherit;
+  padding: 1.5rem 0;
+  text-align: left;
+  transition: color 300ms ease;
+}
+
+.row:last-child {
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-charcoal) 22%, transparent);
+}
+
+.row:hover,
+.row:focus-visible,
+.row:active {
+  color: var(--color-cobalt);
+}
+
+.rowNumber {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  line-height: 1;
+}
+
+.rowTitle {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 650;
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.rowArrow {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktopExperience {
+    display: none;
+  }
+
+  .staticExperience {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .desktopExperience,
+  .staticExperience {
+    display: none;
+  }
+
+  .mobileExperience {
+    display: block;
+  }
+
+  .list {
+    padding-block: clamp(4.5rem, 10vh, 6rem);
+  }
+
+  .rows {
+    margin-top: 2.25rem;
+  }
+
+  .row {
+    min-height: 5rem;
+  }
+
+  .rowTitle {
+    font-size: clamp(2.1rem, 10vw, 3.5rem);
+  }
+}

@@ -1,0 +1,180 @@
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+}
+
+.lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.wordmarkInteraction {
+  transition: color 420ms ease;
+}
+
+.wordmarkPosition {
+  position: absolute;
+  top: clamp(9.5rem, 24svh, 15.5rem);
+  left: clamp(1.25rem, 6vw, 4.5rem);
+}
+
+.wordmarkInteraction:active,
+.wordmarkInteraction[data-flashing="true"] {
+  color: var(--color-cobalt);
+}
+
+.line {
+  display: block;
+  align-self: flex-start;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: left;
+  transform: none;
+}
+
+.lineInner {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-align: left;
+  transform: none;
+}
+
+.wordmark {
+  font-size: clamp(11rem, 46svh, 27rem);
+  font-weight: 720;
+  line-height: 0.72;
+  letter-spacing: 0;
+  margin-block: -0.08em;
+  margin-inline-start: -0.06em;
+  padding-block: 0.08em;
+  padding-inline-start: 0.06em;
+}
+
+.wordmarkInner {
+  /* Trim Satoshi's lowercase-l side bearing so both lines share a visual left edge. */
+  text-indent: -0.052em;
+}
+
+.wordmarkFullStop {
+  color: var(--color-cobalt);
+}
+
+.studio {
+  font-size: clamp(3.25rem, 13svh, 7rem);
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.supportCopy {
+  position: absolute;
+  bottom: clamp(2rem, 6vh, 4rem);
+  max-width: 17rem;
+  font-size: clamp(1.15rem, 3svh, 1.45rem);
+  line-height: 1.28;
+  letter-spacing: 0;
+  text-align: left;
+  transition: color 420ms ease;
+}
+
+.supportCopy:hover,
+.supportCopy:active {
+  color: var(--color-cobalt);
+}
+
+.supportCopyPrimary {
+  left: clamp(1.25rem, 6vw, 4.5rem);
+}
+
+.supportCopySecondary {
+  right: clamp(1.25rem, 6vw, 4.5rem);
+  max-width: 14rem;
+}
+
+.scrollArrow {
+  position: absolute;
+  bottom: clamp(1.75rem, 5vh, 3.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  transition: color 420ms ease;
+}
+
+.scrollArrow:hover,
+.scrollArrow:active {
+  color: var(--color-cobalt);
+}
+
+.mobileCta {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .wordmarkInteraction:hover {
+    color: var(--color-cobalt);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmarkInteraction {
+    transition: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    display: flex;
+    min-height: 100svh;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .wordmarkPosition {
+    position: static;
+    margin-top: clamp(8.5rem, 24svh, 12.5rem);
+  }
+
+  .wordmark {
+    max-width: 100%;
+    font-size: clamp(6.5rem, 32vw, 8.75rem);
+  }
+
+  .studio {
+    font-size: clamp(3rem, 15vw, 4.35rem);
+  }
+
+  .supportCopy {
+    position: static;
+    max-width: 24rem;
+    font-size: clamp(1.55rem, 6.5vw, 2rem);
+    line-height: 1.28;
+  }
+
+  .supportCopyPrimary {
+    margin-top: clamp(5.25rem, 14svh, 8rem);
+  }
+
+  .supportCopySecondary,
+  .scrollArrow {
+    display: none;
+  }
+
+  .mobileCta {
+    display: block;
+    margin-top: clamp(1.75rem, 5svh, 2.75rem);
+  }
+}
+
+@media (max-width: 380px) {
+  .wordmark {
+    font-size: clamp(6rem, 31vw, 7.75rem);
+  }
+}
