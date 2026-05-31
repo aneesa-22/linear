@@ -169,18 +169,28 @@
   }
 
   .list {
-    padding-block: clamp(4.5rem, 10vh, 6rem);
+    padding-block: clamp(3.25rem, 7vh, 4.25rem)
+      max(clamp(4.5rem, 10vh, 6rem), calc(env(safe-area-inset-bottom) + 3rem));
   }
 
   .rows {
-    margin-top: 2.25rem;
+    margin-top: 2rem;
   }
 
   .row {
-    min-height: 5rem;
+    min-height: 5.75rem;
+    grid-template-columns: 2.25rem minmax(0, 1fr) 2rem;
+    gap: 1rem;
+    padding: 1.35rem 0;
   }
 
   .rowTitle {
-    font-size: clamp(2.1rem, 10vw, 3.5rem);
+    font-size: clamp(1.85rem, 9vw, 3rem);
+    line-height: 0.98;
+  }
+
+  .rowArrow {
+    justify-self: end;
+    font-size: clamp(1.6rem, 7vw, 2.35rem);
   }
 }

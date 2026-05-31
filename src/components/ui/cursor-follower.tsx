@@ -65,7 +65,7 @@ export function CursorFollower() {
   return (
     <div
       ref={dotRef}
-      className="bg-cobalt pointer-events-none fixed top-0 left-0 z-50 h-3 w-3 rounded-full opacity-0 transition-opacity duration-300 ease-out data-[visible=true]:opacity-100"
+      className="bg-cobalt pointer-events-none fixed top-0 left-0 z-50 hidden h-3 w-3 rounded-full opacity-0 transition-opacity duration-300 ease-out data-[visible=true]:opacity-100 md:block"
       data-visible={hasMoved ? "true" : undefined}
       aria-hidden="true"
     />
