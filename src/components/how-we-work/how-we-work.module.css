@@ -1,4 +1,7 @@
 .section {
+  --process-column-gap: clamp(1rem, 3vw, 3rem);
+  --process-number-column: clamp(5.25rem, 12vw, 10.25rem);
+
   background: var(--color-ivory);
   color: var(--color-charcoal);
 }
@@ -97,8 +100,8 @@
 .mobileTrigger {
   display: grid;
   width: 100%;
-  grid-template-columns: minmax(2.75rem, 0.12fr) minmax(0, 1fr) auto;
-  gap: clamp(1rem, 3vw, 3rem);
+  grid-template-columns: var(--process-number-column) minmax(0, 1fr);
+  gap: var(--process-column-gap);
   align-items: center;
   padding: clamp(0.85rem, 1.9vh, 1.35rem) 0;
 }
@@ -109,13 +112,6 @@
   padding-block: 0;
   border-color: transparent;
   opacity: 0;
-}
-
-.deckHeader[data-visible="true"] {
-  max-height: clamp(3.25rem, 6.5vh, 4.85rem);
-  padding-block: clamp(0.65rem, 1.35vh, 1rem);
-  border-color: color-mix(in srgb, var(--color-charcoal) 22%, transparent);
-  opacity: 1;
 }
 
 .stepHeader {
@@ -163,18 +159,13 @@
   letter-spacing: 0;
 }
 
-.stepIcon {
-  font-size: clamp(1.75rem, 3vw, 3rem);
-  font-weight: 400;
-  line-height: 1;
-}
-
 .mobilePanel {
   overflow: hidden;
 }
 
 .sheetBody {
-  padding: 0 0 clamp(1.25rem, 3vh, 2.25rem) calc(12% + clamp(1rem, 3vw, 3rem));
+  padding: clamp(1.3rem, 3.4vh, 2.8rem) 0 clamp(1.25rem, 3vh, 2.25rem)
+    calc(var(--process-number-column) + var(--process-column-gap));
 }
 
 .contentGrid {
@@ -242,7 +233,8 @@
 }
 
 .staticBody {
-  padding: 0 0 clamp(3rem, 8vh, 5rem) calc(12% + clamp(1rem, 3vw, 3rem));
+  padding: clamp(1.3rem, 3.4vh, 2.8rem) 0 clamp(3rem, 8vh, 5rem)
+    calc(var(--process-number-column) + var(--process-column-gap));
 }
 
 .mobileTrigger {
@@ -306,7 +298,7 @@
   }
 
   .mobileTrigger {
-    grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
     gap: 0.9rem;
     min-height: 5rem;
   }
@@ -319,13 +311,13 @@
     font-size: clamp(2.2rem, 11vw, 3.85rem);
   }
 
-  .stepIcon {
-    font-size: clamp(1.75rem, 7vw, 2.35rem);
-  }
-
   .contentGrid {
     grid-template-columns: 1fr;
     gap: 1.75rem;
+  }
+
+  .mobilePanelInner {
+    padding-left: calc(2.25rem + 0.9rem);
   }
 
   .copy {

@@ -132,15 +132,13 @@ export function HowWeWork() {
             <div className={styles.desktopDeck}>
               <div className={styles.deckHeaders} aria-hidden="true">
                 {steps.map((step, index) => (
-                  <div
-                    className={styles.deckHeader}
-                    data-visible={index < activeStep ? "true" : undefined}
+                  <DesktopDeckHeader
+                    index={index}
                     key={step.number}
-                  >
-                    <span className={styles.stepNumber}>{step.number}</span>
-                    <span className={styles.deckHeaderTitle}>{step.title}</span>
-                    <span className={styles.stepIcon}>+</span>
-                  </div>
+                    progress={scrollYProgress}
+                    shouldReduceMotion={shouldReduceMotion}
+                    step={step}
+                  />
                 ))}
               </div>
 
@@ -174,6 +172,58 @@ export function HowWeWork() {
 
 type Step = (typeof steps)[number];
 
+type DesktopDeckHeaderProps = Readonly<{
+  index: number;
+  progress: MotionValue<number>;
+  shouldReduceMotion: boolean | null;
+  step: Step;
+}>;
+
+function DesktopDeckHeader({
+  index,
+  progress,
+  shouldReduceMotion,
+  step,
+}: DesktopDeckHeaderProps) {
+  const isFinalStep = index === steps.length - 1;
+  const revealStart = isFinalStep
+    ? 0
+    : Math.min(1, Math.max(0, (index + 0.55) / steps.length));
+  const revealEnd = isFinalStep
+    ? 1
+    : Math.min(1, Math.max(0, (index + 1) / steps.length));
+  const maxHeight = useTransform(
+    progress,
+    [revealStart, revealEnd],
+    isFinalStep ? ["0rem", "0rem"] : ["0rem", "4.85rem"],
+  );
+  const paddingY = useTransform(
+    progress,
+    [revealStart, revealEnd],
+    isFinalStep ? ["0rem", "0rem"] : ["0rem", "0.9rem"],
+  );
+  const opacity = useTransform(
+    progress,
+    [revealStart, revealEnd],
+    isFinalStep ? [0, 0] : [0, 1],
+  );
+
+  return (
+    <m.div
+      className={styles.deckHeader}
+      style={{
+        maxHeight: shouldReduceMotion ? "0rem" : maxHeight,
+        opacity: shouldReduceMotion ? 0 : opacity,
+        paddingBottom: shouldReduceMotion ? "0rem" : paddingY,
+        paddingTop: shouldReduceMotion ? "0rem" : paddingY,
+      }}
+    >
+      <span className={styles.stepNumber}>{step.number}</span>
+      <span className={styles.deckHeaderTitle}>{step.title}</span>
+    </m.div>
+  );
+}
+
 type DesktopDeckSheetProps = Readonly<{
   activeStep: number;
   index: number;
@@ -191,10 +241,27 @@ function DesktopDeckSheet({
 }: DesktopDeckSheetProps) {
   const segmentStart = Math.max(0, (index - 0.45) / steps.length);
   const segmentEnd = Math.max(0, index / steps.length);
+  const isFinalStep = index === steps.length - 1;
+  const collapseStart = isFinalStep
+    ? 0
+    : Math.min(1, Math.max(0, (index + 0.55) / steps.length));
+  const collapseEnd = isFinalStep
+    ? 1
+    : Math.min(1, Math.max(0, (index + 1) / steps.length));
   const y = useTransform(
     progress,
     [segmentStart, segmentEnd],
     index === 0 ? ["0vh", "0vh"] : ["100vh", "0vh"],
+  );
+  const contentOpacity = useTransform(
+    progress,
+    [collapseStart, collapseEnd],
+    isFinalStep ? [1, 1] : [1, 0],
+  );
+  const contentY = useTransform(
+    progress,
+    [collapseStart, collapseEnd],
+    isFinalStep ? ["0rem", "0rem"] : ["0rem", "-1rem"],
   );
 
   return (
@@ -206,17 +273,26 @@ function DesktopDeckSheet({
         zIndex: index + 1,
       }}
     >
-      <header className={styles.sheetHeader}>
+      <m.header
+        className={styles.sheetHeader}
+        style={{
+          opacity: shouldReduceMotion ? 1 : contentOpacity,
+          y: shouldReduceMotion ? "0rem" : contentY,
+        }}
+      >
         <span className={styles.stepNumber}>{step.number}</span>
         <h2 className={styles.sheetTitle}>{step.title}</h2>
-        <span className={styles.stepIcon} aria-hidden="true">
-          +
-        </span>
-      </header>
+      </m.header>
 
-      <div className={styles.sheetBody}>
+      <m.div
+        className={styles.sheetBody}
+        style={{
+          opacity: shouldReduceMotion ? 1 : contentOpacity,
+          y: shouldReduceMotion ? "0rem" : contentY,
+        }}
+      >
         <StepContent step={step} />
-      </div>
+      </m.div>
     </m.article>
   );
 }
@@ -255,9 +331,6 @@ function StaticSteps({ labelledBy }: Readonly<{ labelledBy: string }>) {
             <header className={styles.stepHeader}>
               <span className={styles.stepNumber}>{step.number}</span>
               <h2 className={styles.stepTitle}>{step.title}</h2>
-              <span className={styles.stepIcon} aria-hidden="true">
-                +
-              </span>
             </header>
             <div className={styles.staticBody}>
               <StepContent step={step} />
@@ -296,9 +369,6 @@ function MobileSteps() {
               >
                 <span className={styles.stepNumber}>{step.number}</span>
                 <span className={styles.mobileTitle}>{step.title}</span>
-                <span className={styles.stepIcon} aria-hidden="true">
-                  +
-                </span>
               </button>
 
               <m.div
