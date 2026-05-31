@@ -8,17 +8,21 @@ const services = [
   {
     number: "01",
     title: "Website Launch",
-    copy: "Launch a new website from scratch. Built around your business, audience and future growth.",
+    copy: "For businesses launching from scratch, replacing a DIY site, or building their first proper online presence.",
+    summary: "Launch a clear, credible website from the ground up.",
   },
   {
     number: "02",
     title: "Website Evolution",
-    copy: "Refine, expand and improve an existing website so it keeps pace with the business behind it.",
+    copy: "For businesses that have outgrown their current website and need something stronger, clearer and easier to maintain.",
+    summary: "Refine and rebuild what is already there into something sharper.",
   },
   {
     number: "03",
     title: "Brand & Identity",
-    copy: "Shape the visual and verbal foundation that makes the website feel distinct and memorable.",
+    copy: "For businesses that need a stronger visual foundation before the website is built.",
+    summary:
+      "Shape the visual foundation that makes the website feel distinct.",
   },
 ] as const;
 
@@ -49,16 +53,7 @@ export function WhatWeDo() {
           >
             {services.map((service) => (
               <article className={styles.panel} key={service.number}>
-                <div className={styles.panelContent}>
-                  <span className={styles.number}>{service.number}</span>
-                  <div>
-                    <h2 className={styles.title}>{service.title}</h2>
-                    <p className={styles.copy}>{service.copy}</p>
-                  </div>
-                  <span className={styles.arrow} aria-hidden="true">
-                    ↗
-                  </span>
-                </div>
+                <ServiceCard service={service} />
               </article>
             ))}
           </m.div>
@@ -87,17 +82,36 @@ function ServiceList({ labelledBy }: ServiceListProps) {
         WHAT WE DO
       </p>
 
-      <div className={styles.rows}>
+      <div className={styles.cards}>
         {services.map((service) => (
-          <button className={styles.row} type="button" key={service.number}>
-            <span className={styles.rowNumber}>{service.number}</span>
-            <span className={styles.rowTitle}>{service.title}</span>
-            <span className={styles.rowArrow} aria-hidden="true">
-              ↗
-            </span>
-          </button>
+          <ServiceCard service={service} key={service.number} />
         ))}
       </div>
     </div>
+  );
+}
+
+type Service = (typeof services)[number];
+
+function ServiceCard({ service }: Readonly<{ service: Service }>) {
+  return (
+    <article className={styles.card} tabIndex={0}>
+      <div className={styles.cardTop}>
+        <span className={styles.number}>{service.number}</span>
+        <span className={styles.arrow} aria-hidden="true">
+          ↗
+        </span>
+      </div>
+
+      <div className={styles.cardMain}>
+        <h2 className={styles.title}>{service.title}</h2>
+        <p className={styles.copy}>{service.copy}</p>
+      </div>
+
+      <div className={styles.cardBottom}>
+        <p className={styles.summary}>{service.summary}</p>
+        <span className={styles.action}>View service</span>
+      </div>
+    </article>
   );
 }

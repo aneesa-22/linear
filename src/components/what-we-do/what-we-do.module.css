@@ -42,50 +42,89 @@
   display: flex;
   flex: 0 0 100vw;
   align-items: center;
-  padding: clamp(8rem, 16vh, 11rem) clamp(1.25rem, 6vw, 4.5rem)
-    clamp(4rem, 10vh, 7rem);
+  padding: clamp(8rem, 15vh, 10.5rem) clamp(1.25rem, 6vw, 4.5rem)
+    clamp(3rem, 8vh, 5rem);
 }
 
-.panelContent {
-  display: grid;
-  width: min(82rem, 100%);
-  grid-template-columns: minmax(3.5rem, 0.14fr) minmax(0, 1fr) auto;
-  gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: start;
-  transition: color 420ms ease;
+.card {
+  display: flex;
+  min-height: clamp(34rem, 74vh, 48rem);
+  width: min(86vw, 82rem);
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid color-mix(in srgb, var(--color-charcoal) 42%, transparent);
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+  padding: clamp(1.4rem, 4vw, 4rem);
+  transition:
+    border-color 360ms ease,
+    color 360ms ease;
 }
 
-.panel:hover .panelContent,
-.panel:focus-within .panelContent {
+.card:hover,
+.card:focus-visible,
+.card:active {
+  border-color: var(--color-cobalt);
   color: var(--color-cobalt);
+  outline: none;
+}
+
+.cardTop,
+.cardBottom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 4rem);
 }
 
 .number {
-  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-size: clamp(1.3rem, 2.4vw, 2.6rem);
   font-weight: 500;
-  line-height: 0.95;
+  line-height: 1;
+}
+
+.arrow {
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 0.9;
+}
+
+.cardMain {
+  display: grid;
+  gap: clamp(1.75rem, 4vh, 3rem);
+  margin-block: clamp(3rem, 8vh, 6rem);
 }
 
 .title {
   margin: 0;
-  max-width: 15ch;
-  font-size: clamp(4rem, 8vw, 7.25rem);
+  max-width: 12ch;
+  font-size: clamp(4.4rem, 9vw, 8.5rem);
   font-weight: 720;
-  line-height: 0.94;
+  line-height: 0.92;
   letter-spacing: 0;
 }
 
 .copy {
-  margin: clamp(1.75rem, 4vh, 3rem) 0 0;
-  max-width: 34rem;
-  font-size: clamp(1.15rem, 1.8vw, 1.65rem);
-  line-height: 1.22;
+  margin: 0;
+  max-width: 46rem;
+  font-size: clamp(1.35rem, 2.2vw, 2.15rem);
+  line-height: 1.14;
   letter-spacing: 0;
 }
 
-.arrow {
-  font-size: clamp(2.25rem, 4.5vw, 4rem);
-  line-height: 0.9;
+.summary,
+.action {
+  margin: 0;
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.18;
+}
+
+.summary {
+  max-width: 28rem;
+}
+
+.action {
+  white-space: nowrap;
 }
 
 .staticExperience,
@@ -97,55 +136,10 @@
   padding: clamp(5.5rem, 12vh, 8rem) clamp(1.25rem, 6vw, 4.5rem);
 }
 
-.rows {
-  margin-top: clamp(2rem, 6vh, 4rem);
-}
-
-.row {
+.cards {
   display: grid;
-  min-height: 5.5rem;
-  width: 100%;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: clamp(1rem, 4vw, 2rem);
-  align-items: center;
-  border: 0;
-  border-top: 1px solid
-    color-mix(in srgb, var(--color-charcoal) 22%, transparent);
-  background: transparent;
-  color: var(--color-charcoal);
-  cursor: pointer;
-  font: inherit;
-  padding: 1.5rem 0;
-  text-align: left;
-  transition: color 300ms ease;
-}
-
-.row:last-child {
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--color-charcoal) 22%, transparent);
-}
-
-.row:hover,
-.row:focus-visible,
-.row:active {
-  color: var(--color-cobalt);
-}
-
-.rowNumber {
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  line-height: 1;
-}
-
-.rowTitle {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 650;
-  line-height: 0.95;
-  letter-spacing: 0;
-}
-
-.rowArrow {
-  font-size: clamp(1.75rem, 5vw, 3rem);
-  line-height: 1;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  margin-top: clamp(2rem, 6vh, 4rem);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -169,28 +163,50 @@
   }
 
   .list {
-    padding-block: clamp(3.25rem, 7vh, 4.25rem)
-      max(clamp(4.5rem, 10vh, 6rem), calc(env(safe-area-inset-bottom) + 3rem));
+    padding-block: clamp(3.75rem, 8vh, 5rem)
+      max(clamp(3.75rem, 8vh, 5rem), calc(env(safe-area-inset-bottom) + 3rem));
   }
 
-  .rows {
-    margin-top: 2rem;
+  .cards {
+    gap: 0.85rem;
+    margin-top: 1.75rem;
   }
 
-  .row {
-    min-height: 5.75rem;
-    grid-template-columns: 2.25rem minmax(0, 1fr) 2rem;
-    gap: 1rem;
-    padding: 1.35rem 0;
+  .card {
+    min-height: clamp(23rem, 60svh, 30rem);
+    width: 100%;
+    padding: clamp(1.1rem, 5vw, 1.45rem);
   }
 
-  .rowTitle {
-    font-size: clamp(1.85rem, 9vw, 3rem);
-    line-height: 0.98;
+  .number {
+    font-size: clamp(0.95rem, 3.5vw, 1.15rem);
   }
 
-  .rowArrow {
-    justify-self: end;
-    font-size: clamp(1.6rem, 7vw, 2.35rem);
+  .arrow {
+    font-size: clamp(1.45rem, 6.5vw, 2rem);
+  }
+
+  .cardMain {
+    gap: 1.15rem;
+    margin-block: clamp(2rem, 7vh, 3.25rem);
+  }
+
+  .title {
+    font-size: clamp(2.35rem, 11.5vw, 3.45rem);
+  }
+
+  .copy {
+    font-size: clamp(1.02rem, 4.6vw, 1.25rem);
+    line-height: 1.24;
+  }
+
+  .cardBottom {
+    display: grid;
+    gap: 0.95rem;
+  }
+
+  .summary,
+  .action {
+    font-size: clamp(0.92rem, 3.7vw, 1rem);
   }
 }

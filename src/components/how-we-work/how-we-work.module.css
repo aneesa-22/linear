@@ -227,86 +227,6 @@
   padding: clamp(5.5rem, 12vh, 8rem) clamp(1.25rem, 6vw, 4.5rem);
 }
 
-.mobileProcess {
-  display: none;
-}
-
-.mobileStepNav {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.mobileStepButton,
-.mobileControl {
-  min-height: 2.75rem;
-  border: 1px solid color-mix(in srgb, var(--color-charcoal) 26%, transparent);
-  background: transparent;
-  color: var(--color-charcoal);
-  cursor: pointer;
-  font: inherit;
-  transition:
-    border-color 300ms ease,
-    color 300ms ease;
-}
-
-.mobileStepButton {
-  flex: 1 1 0;
-  padding: 0.35rem 0.5rem;
-  font-size: 0.95rem;
-  font-weight: 650;
-  line-height: 1;
-}
-
-.mobileStepButton:hover,
-.mobileStepButton:focus-visible,
-.mobileStepButton:active,
-.mobileStepButton[aria-current="step"],
-.mobileControl:hover,
-.mobileControl:focus-visible,
-.mobileControl:active {
-  border-color: var(--color-cobalt);
-  color: var(--color-cobalt);
-}
-
-.mobileActiveStep {
-  border-top: 1px solid
-    color-mix(in srgb, var(--color-charcoal) 22%, transparent);
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--color-charcoal) 22%, transparent);
-}
-
-.mobileStepMeta {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1;
-}
-
-.mobileStepHeading {
-  margin: 0;
-  font-size: clamp(2.35rem, 12vw, 3.25rem);
-  font-weight: 680;
-  line-height: 0.95;
-  letter-spacing: 0;
-}
-
-.mobileControls {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-}
-
-.mobileControl {
-  padding: 0.65rem 1rem;
-  font-size: 1rem;
-  font-weight: 650;
-}
-
-.mobileControl:disabled {
-  cursor: default;
-  opacity: 0.32;
-}
-
 .staticRows,
 .mobileRows {
   margin-top: clamp(2.25rem, 6vh, 4rem);
@@ -369,58 +289,31 @@
     display: block;
   }
 
-  .mobileProcess {
-    display: block;
-    padding: clamp(4.5rem, 10vh, 6rem) clamp(1.25rem, 6vw, 4.5rem)
-      max(clamp(2.5rem, 6vh, 3.5rem), calc(env(safe-area-inset-bottom) + 2rem));
-  }
-
-  .mobileStepNav {
-    margin-top: 2rem;
-  }
-
-  .mobileActiveStep {
-    margin-top: 1.5rem;
-    padding: 1.75rem 0 2.2rem;
-  }
-
-  .mobileStepHeading {
-    margin-top: 0.7rem;
-  }
-
-  .mobileActiveStep .contentGrid {
-    margin-top: 1.65rem;
-  }
-
-  .mobileControls {
-    margin-top: 1.5rem;
-  }
-
   .listLayout {
-    padding-block: clamp(4.5rem, 10vh, 6rem);
+    padding-block: clamp(3.75rem, 8vh, 5rem);
   }
 
   .mobileRows {
-    margin-top: 2.25rem;
+    margin-top: 1.75rem;
   }
 
   .mobileTrigger {
     grid-template-columns: 2.25rem minmax(0, 1fr);
     gap: 0.9rem;
-    min-height: 5rem;
+    min-height: 4.35rem;
   }
 
   .stepNumber {
-    font-size: clamp(1rem, 4vw, 1.25rem);
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
   }
 
   .mobileTitle {
-    font-size: clamp(2.2rem, 11vw, 3.85rem);
+    font-size: clamp(1.65rem, 8.5vw, 2.85rem);
   }
 
   .contentGrid {
     grid-template-columns: 1fr;
-    gap: 1.75rem;
+    gap: 1.35rem;
   }
 
   .mobilePanelInner {
@@ -428,21 +321,11 @@
   }
 
   .copy {
-    font-size: clamp(1.05rem, 4.5vw, 1.35rem);
+    font-size: clamp(1rem, 4vw, 1.18rem);
     line-height: 1.32;
   }
 
   .coverageList {
-    font-size: clamp(1rem, 4vw, 1.2rem);
-  }
-
-  .mobileActiveStep .coverageList li {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.65rem;
-  }
-
-  .mobileActiveStep .coverageList li::before {
-    content: "→";
+    font-size: clamp(0.95rem, 3.8vw, 1.08rem);
   }
 }

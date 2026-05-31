@@ -344,72 +344,55 @@ function StaticSteps({ labelledBy }: Readonly<{ labelledBy: string }>) {
 
 function MobileSteps() {
   const headingId = useId();
-  const [activeMobileStep, setActiveMobileStep] = useState(0);
+  const [openStep, setOpenStep] = useState(0);
   const shouldReduceMotion = useReducedMotion();
-  const activeStep = steps[activeMobileStep] ?? steps[0];
-  const canGoPrevious = activeMobileStep > 0;
-  const canGoNext = activeMobileStep < steps.length - 1;
 
   return (
-    <div className={styles.mobileProcess} aria-labelledby={headingId}>
+    <div className={styles.listLayout} aria-labelledby={headingId}>
       <p id={headingId} className={styles.label}>
         HOW WE WORK
       </p>
 
-      <div className={styles.mobileStepNav} aria-label="Process steps">
-        {steps.map((step, index) => (
-          <button
-            type="button"
-            className={styles.mobileStepButton}
-            aria-current={index === activeMobileStep ? "step" : undefined}
-            aria-label={`Show ${step.number} ${step.title}`}
-            key={step.number}
-            onClick={() => setActiveMobileStep(index)}
-          >
-            {step.number}
-          </button>
-        ))}
-      </div>
+      <div className={styles.mobileRows}>
+        {steps.map((step, index) => {
+          const isOpen = index === openStep;
+          const panelId = `${headingId}-${step.number}`;
 
-      <m.article
-        className={styles.mobileActiveStep}
-        key={activeStep.number}
-        initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={
-          shouldReduceMotion
-            ? { duration: 0 }
-            : { duration: 0.36, ease: easing }
-        }
-      >
-        <p className={styles.mobileStepMeta}>{activeStep.number}</p>
-        <h2 className={styles.mobileStepHeading}>{activeStep.title}</h2>
-        <StepContent step={activeStep} />
-      </m.article>
+          return (
+            <article className={styles.mobileStep} key={step.number}>
+              <button
+                type="button"
+                className={styles.mobileTrigger}
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                onClick={() => setOpenStep(index)}
+              >
+                <span className={styles.stepNumber}>{step.number}</span>
+                <span className={styles.mobileTitle}>{step.title}</span>
+              </button>
 
-      <div className={styles.mobileControls} aria-label="Process navigation">
-        <button
-          type="button"
-          className={styles.mobileControl}
-          disabled={!canGoPrevious}
-          onClick={() =>
-            setActiveMobileStep((currentStep) => Math.max(0, currentStep - 1))
-          }
-        >
-          Previous
-        </button>
-        <button
-          type="button"
-          className={styles.mobileControl}
-          disabled={!canGoNext}
-          onClick={() =>
-            setActiveMobileStep((currentStep) =>
-              Math.min(steps.length - 1, currentStep + 1),
-            )
-          }
-        >
-          Next
-        </button>
+              <m.div
+                id={panelId}
+                className={styles.mobilePanel}
+                initial={false}
+                animate={{
+                  height: isOpen ? "auto" : 0,
+                  opacity: isOpen ? 1 : 0,
+                }}
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : { duration: 0.42, ease: easing }
+                }
+                aria-hidden={!isOpen}
+              >
+                <div className={styles.mobilePanelInner}>
+                  <StepContent step={step} />
+                </div>
+              </m.div>
+            </article>
+          );
+        })}
       </div>
     </div>
   );
