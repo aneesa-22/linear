@@ -4,243 +4,99 @@
   min-height: calc(100dvh - clamp(4.75rem, 8vh, 5.5rem));
 }
 
-.lockup {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-family: var(--font-satoshi);
+.intro {
+  position: relative;
+  z-index: 1;
+  max-width: 34rem;
   margin: 0;
-  padding: 0;
-  text-align: left;
-}
-
-.wordmarkInteraction {
-  letter-spacing: 0;
-  transition:
-    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
-    letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.wordmarkPosition {
-  position: absolute;
-  top: clamp(4.75rem, 12svh, 8rem);
-  left: clamp(1.25rem, 6vw, 4.5rem);
-}
-
-.wordmarkInteraction:active,
-.wordmarkInteraction[data-flashing="true"] {
-  color: var(--color-cobalt);
-}
-
-.wordmarkInteraction:active {
-  letter-spacing: 0.02em;
-  transform: translateY(-2px);
-}
-
-.line {
-  display: block;
-  align-self: flex-start;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  text-align: left;
-  transform: none;
-}
-
-.lineInner {
-  display: block;
-  margin: 0;
-  padding: 0;
-  font: inherit;
-  letter-spacing: inherit;
-  line-height: inherit;
-  text-align: left;
-  transform: none;
-}
-
-.wordmark {
-  font-family: var(--font-satoshi);
-  font-size: clamp(11rem, 46svh, 27rem);
-  font-weight: 700;
-  font-kerning: normal;
-  line-height: 0.72;
-  letter-spacing: 0;
-  margin-block: -0.08em;
-  margin-inline-start: -0.06em;
-  padding-block: 0.08em;
-  padding-inline-start: 0.06em;
-}
-
-.wordmarkInner {
-  /* Trim the lowercase-l side bearing so both lines share a visual left edge. */
-  text-indent: -0.052em;
-}
-
-.wordmarkFullStop {
-  color: var(--color-cobalt);
-}
-
-.studio {
-  font-family: var(--font-satoshi);
-  font-size: clamp(3.25rem, 13svh, 7rem);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: 0;
-}
-
-.supportCopy {
-  position: absolute;
-  bottom: clamp(3rem, 7vh, 5.5rem);
-  max-width: 17rem;
-  font-size: clamp(1.15rem, 3svh, 1.45rem);
-  line-height: 1.28;
-  letter-spacing: 0;
-  text-align: left;
-  transition:
-    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
-    letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.supportCopy:hover,
-.supportCopy:active {
-  color: var(--color-cobalt);
-  letter-spacing: 0.02em;
-  transform: translateY(-2px);
-}
-
-.supportCopyPrimary {
-  left: clamp(1.25rem, 6vw, 4.5rem);
-}
-
-.supportCopySecondary {
-  right: clamp(1.25rem, 6vw, 4.5rem);
-  max-width: 14rem;
-}
-
-.mobileCta {
-  display: none;
-}
-
-.mobileCtaLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  border-bottom: 1px solid currentcolor;
+  padding-top: clamp(5rem, 14vh, 8rem);
   color: var(--color-charcoal);
   font-family: var(--font-satoshi);
-  font-size: clamp(1.25rem, 5.6vw, 1.6rem);
-  font-weight: 700;
-  line-height: 1;
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.28;
   letter-spacing: 0;
-  padding-bottom: 0.3rem;
-  text-decoration: none;
-  transition:
-    border-color 250ms cubic-bezier(0.22, 1, 0.36, 1),
-    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
-    letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.mobileCtaLink:hover,
-.mobileCtaLink:focus-visible,
-.mobileCtaLink:active {
+.marquee {
+  position: absolute;
+  right: 0;
+  bottom: -0.12em;
+  left: 0;
+  overflow: hidden;
+  padding-top: 0.16em;
   color: var(--color-cobalt);
-  letter-spacing: 0.02em;
-  transform: translateY(-2px);
+  pointer-events: none;
+  user-select: none;
 }
 
-.mobileCtaArrow {
-  display: inline-block;
-  transition: transform 300ms ease;
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: hero-marquee 96s linear infinite;
 }
 
-.mobileCtaLink:hover .mobileCtaArrow,
-.mobileCtaLink:focus-visible .mobileCtaArrow,
-.mobileCtaLink:active .mobileCtaArrow {
-  transform: translateX(0.22em);
+.marqueeGroup {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-end;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .wordmarkInteraction:hover {
-    color: var(--color-cobalt);
-    letter-spacing: 0.02em;
-    transform: translateY(-2px);
+.marqueeText {
+  display: block;
+  flex: 0 0 auto;
+  padding-inline: 0.075em;
+  font-family: var(--font-theatre-condensed);
+  font-size: clamp(10rem, 26vw, 28rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes hero-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wordmarkInteraction,
-  .supportCopy,
-  .mobileCtaLink {
-    transition: color 250ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .wordmarkInteraction:hover,
-  .wordmarkInteraction:active,
-  .supportCopy:hover,
-  .supportCopy:active,
-  .mobileCtaLink:hover,
-  .mobileCtaLink:focus-visible,
-  .mobileCtaLink:active {
-    letter-spacing: 0;
-    transform: none;
+  .marqueeTrack {
+    animation: none;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @media (max-width: 767px) {
   .hero {
-    display: flex;
     min-height: calc(100svh - clamp(5rem, 12svh, 6rem));
     min-height: calc(100dvh - clamp(5rem, 12dvh, 6rem));
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-    padding-top: clamp(1.25rem, 4svh, 2.5rem);
-    padding-bottom: max(
-      clamp(4.75rem, 10svh, 6.5rem),
-      calc(env(safe-area-inset-bottom) + 4.75rem)
-    );
   }
 
-  .wordmarkPosition {
-    position: static;
-    margin-top: 0;
+  .intro {
+    max-width: 19rem;
+    padding-top: clamp(3rem, 10svh, 5rem);
+    font-size: clamp(1rem, 4.4vw, 1.18rem);
+    line-height: 1.3;
   }
 
-  .wordmark {
-    max-width: 100%;
-    font-size: clamp(6.5rem, 32vw, 8.75rem);
+  .marquee {
+    bottom: -0.1em;
+    padding-top: 0.14em;
   }
 
-  .studio {
-    font-size: clamp(3rem, 15vw, 4.35rem);
+  .marqueeTrack {
+    animation-duration: 78s;
   }
 
-  .supportCopy {
-    position: static;
-    max-width: 24rem;
-    font-size: clamp(1.55rem, 6.5vw, 2rem);
-    line-height: 1.28;
-  }
-
-  .supportCopyPrimary {
-    margin-top: clamp(3rem, 7svh, 4.75rem);
-  }
-
-  .supportCopySecondary {
-    display: none;
-  }
-
-  .mobileCta {
-    display: block;
-    margin-top: clamp(1.25rem, 3svh, 2rem);
-  }
-}
-
-@media (max-width: 380px) {
-  .wordmark {
-    font-size: clamp(6rem, 31vw, 7.75rem);
+  .marqueeText {
+    font-size: clamp(7rem, 36vw, 13rem);
+    line-height: 0.92;
   }
 }

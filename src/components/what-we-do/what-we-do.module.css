@@ -102,11 +102,12 @@
 .title {
   margin: 0;
   max-width: 12ch;
-  font-family: var(--font-satoshi);
-  font-size: clamp(3.4rem, 6.9vw, 6.4rem);
-  font-weight: 720;
-  line-height: 0.92;
-  letter-spacing: 0;
+  color: var(--color-cobalt);
+  font-family: var(--font-theatre-condensed);
+  font-size: clamp(4rem, 8vw, 7.3rem);
+  font-weight: 500;
+  line-height: 0.86;
+  letter-spacing: -0.025em;
 }
 
 .copy {
@@ -162,6 +163,68 @@
 
 .action {
   white-space: nowrap;
+}
+
+.progress {
+  position: absolute;
+  right: clamp(1.25rem, 6vw, 4.5rem);
+  bottom: clamp(1.65rem, 4vh, 2.75rem);
+  left: clamp(1.25rem, 6vw, 4.5rem);
+  z-index: 2;
+  display: flex;
+  width: min(26rem, calc(100vw - clamp(2.5rem, 12vw, 9rem)));
+  align-items: center;
+  justify-content: space-between;
+  justify-self: center;
+  margin-inline: auto;
+  pointer-events: none;
+}
+
+.progressLine {
+  position: absolute;
+  top: 50%;
+  right: 0.34rem;
+  left: 0.34rem;
+  height: 1px;
+  background: color-mix(in srgb, var(--color-charcoal) 46%, transparent);
+  transform: translateY(-50%);
+}
+
+.progressMarker {
+  position: relative;
+  z-index: 1;
+  display: inline-grid;
+  width: 1.15rem;
+  height: 1.15rem;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+  transition:
+    border-color 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progressDot {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: currentcolor;
+  transition:
+    width 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progressMarker[data-active="true"] {
+  border-color: var(--color-cobalt);
+  color: var(--color-cobalt);
+}
+
+.progressMarker[data-active="true"] .progressDot {
+  width: 0.42rem;
+  height: 0.42rem;
 }
 
 .staticExperience,
@@ -257,7 +320,7 @@
   }
 
   .title {
-    font-size: clamp(2rem, 9.8vw, 2.95rem);
+    font-size: clamp(2.8rem, 14vw, 4.15rem);
   }
 
   .copy {

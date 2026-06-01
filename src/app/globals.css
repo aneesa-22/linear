@@ -5,7 +5,7 @@
   --font-heading: var(--font-satoshi);
   --color-ivory: #ffffff;
   --color-charcoal: #202020;
-  --color-cobalt: #0c1d8c;
+  --color-cobalt: #050d4a;
 }
 
 @layer base {
@@ -23,6 +23,8 @@
     --color-charcoal: #202020;
     --color-cobalt: #0c1d8c;
     --font-satoshi: "Satoshi", system-ui, sans-serif;
+    --font-theatre-condensed:
+      "Theatre Bold Condensed", "Arial Narrow", sans-serif;
   }
 
   html {

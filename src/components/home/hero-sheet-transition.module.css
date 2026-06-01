@@ -1,0 +1,29 @@
+.transition {
+  position: relative;
+  isolation: isolate;
+  background: var(--color-ivory);
+}
+
+.heroLayer {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+}
+
+.sheetLayer {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  background: var(--color-ivory);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroLayer {
+    position: static;
+  }
+
+  .sheetLayer {
+    transform: none;
+  }
+}

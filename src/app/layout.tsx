@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import { AppShell } from "@/components/layout/app-shell";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
+
+const theatreBoldCondensed = localFont({
+  src: "../styles/theater.bold-condensed.otf",
+  variable: "--font-theatre-condensed",
+  display: "swap",
+  weight: "700",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -21,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={theatreBoldCondensed.variable}>
         <MotionProvider>
           <AppShell>{children}</AppShell>
         </MotionProvider>

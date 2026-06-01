@@ -1,7 +1,11 @@
-import Link from "next/link";
 import { Reveal } from "@/components/motion/reveal";
-import { HeroWordmark } from "./hero-wordmark";
 import styles from "./hero.module.css";
+
+const marqueeItems = Array.from({ length: 8 }, (_, index) => (
+  <span className={styles.marqueeText} key={index}>
+    LINEAR STUDIO
+  </span>
+));
 
 export function Hero() {
   return (
@@ -9,36 +13,21 @@ export function Hero() {
       aria-labelledby="hero-title"
       className={`${styles.hero} bg-ivory text-charcoal relative overflow-hidden px-[clamp(1.25rem,6vw,4.5rem)]`}
     >
-      <HeroWordmark />
-
-      <p className={`${styles.supportCopy} ${styles.supportCopyPrimary}`}>
-        <Reveal delay={0.42}>
-          Brand-led websites.
+      <p id="hero-title" className={styles.intro}>
+        <Reveal delay={0.18}>
+          Hi, we’re Linear Studio.
           <br />
-          Built to be remembered.
+          We design websites, brands and digital experiences for businesses that
+          have outgrown where they started.
         </Reveal>
       </p>
 
-      <div className={styles.mobileCta}>
-        <Reveal as="div" delay={0.58}>
-          <Link className={styles.mobileCtaLink} href="/contact">
-            <span>LET’S TALK</span>
-            <span className={styles.mobileCtaArrow} aria-hidden="true">
-              →
-            </span>
-          </Link>
-        </Reveal>
+      <div className={styles.marquee} aria-hidden="true">
+        <div className={styles.marqueeTrack}>
+          <div className={styles.marqueeGroup}>{marqueeItems}</div>
+          <div className={styles.marqueeGroup}>{marqueeItems}</div>
+        </div>
       </div>
-
-      <p className={`${styles.supportCopy} ${styles.supportCopySecondary}`}>
-        <Reveal delay={0.52}>
-          Strategy.
-          <br />
-          Design.
-          <br />
-          Development.
-        </Reveal>
-      </p>
     </section>
   );
 }

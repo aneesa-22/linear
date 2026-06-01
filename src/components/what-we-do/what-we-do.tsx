@@ -1,8 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
-import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import {
+  m,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import styles from "./what-we-do.module.css";
 
 const services = [
@@ -32,6 +38,7 @@ const services = [
 
 export function WhatWeDo() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [activeStep, setActiveStep] = useState(0);
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -42,6 +49,20 @@ export function WhatWeDo() {
     [0, 0.16, 0.4, 0.56, 0.82, 1],
     ["0%", "0%", "-33.333%", "-33.333%", "-66.666%", "-66.666%"],
   );
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest < 0.34) {
+      setActiveStep(0);
+      return;
+    }
+
+    if (latest < 0.7) {
+      setActiveStep(1);
+      return;
+    }
+
+    setActiveStep(2);
+  });
 
   return (
     <section
@@ -66,6 +87,8 @@ export function WhatWeDo() {
               </article>
             ))}
           </m.div>
+
+          <ProgressIndicator activeStep={activeStep} />
         </div>
       </div>
 
@@ -77,6 +100,33 @@ export function WhatWeDo() {
         <ServiceList labelledBy="what-we-do-mobile-title" />
       </div>
     </section>
+  );
+}
+
+function ProgressIndicator({
+  activeStep,
+}: Readonly<{ activeStep: number }>) {
+  return (
+    <div
+      className={styles.progress}
+      role="progressbar"
+      aria-label="Service section progress"
+      aria-valuemin={1}
+      aria-valuemax={services.length}
+      aria-valuenow={activeStep + 1}
+    >
+      <span className={styles.progressLine} aria-hidden="true" />
+      {services.map((service, index) => (
+        <span
+          className={styles.progressMarker}
+          data-active={index === activeStep}
+          key={service.number}
+          aria-hidden="true"
+        >
+          <span className={styles.progressDot} />
+        </span>
+      ))}
+    </div>
   );
 }
 
