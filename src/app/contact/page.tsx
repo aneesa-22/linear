@@ -22,7 +22,7 @@ export default function ContactPage() {
         <div className={styles.inner}>
           <Reveal as="div" delay={0.12}>
             <h1 id="contact-title" className={styles.title}>
-              Tell us what you’re thinking.
+              GET IN TOUCH
             </h1>
           </Reveal>
 
