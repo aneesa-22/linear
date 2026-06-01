@@ -1,10 +1,11 @@
 .section {
   background: var(--color-ivory);
   color: var(--color-charcoal);
+  scroll-margin-top: clamp(4.75rem, 8vh, 5.5rem);
 }
 
 .desktopExperience {
-  height: 300vh;
+  height: 450vh;
 }
 
 .stickyViewport {
@@ -18,6 +19,7 @@
 
 .label {
   margin: 0;
+  font-family: var(--font-satoshi);
   font-size: clamp(0.75rem, 1vw, 0.9rem);
   font-weight: 700;
   line-height: 1;
@@ -42,20 +44,22 @@
   display: flex;
   flex: 0 0 100vw;
   align-items: center;
+  justify-content: center;
   padding: clamp(8rem, 15vh, 10.5rem) clamp(1.25rem, 6vw, 4.5rem)
-    clamp(3rem, 8vh, 5rem);
+    clamp(3rem, 9vh, 6rem);
 }
 
 .card {
   display: flex;
-  min-height: clamp(34rem, 74vh, 48rem);
-  width: min(86vw, 82rem);
+  min-height: clamp(28rem, 62vh, 39rem);
+  width: min(74vw, 68rem);
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid color-mix(in srgb, var(--color-charcoal) 42%, transparent);
   background: var(--color-ivory);
   color: var(--color-charcoal);
-  padding: clamp(1.4rem, 4vw, 4rem);
+  padding: clamp(1.4rem, 3.2vw, 3rem);
+  text-decoration: none;
   transition:
     border-color 360ms ease,
     color 360ms ease;
@@ -78,26 +82,28 @@
 }
 
 .number {
-  font-size: clamp(1.3rem, 2.4vw, 2.6rem);
+  font-family: var(--font-satoshi);
+  font-size: clamp(1.15rem, 2vw, 2.1rem);
   font-weight: 500;
   line-height: 1;
 }
 
 .arrow {
-  font-size: clamp(2rem, 4vw, 4rem);
+  font-size: clamp(1.75rem, 3.4vw, 3.25rem);
   line-height: 0.9;
 }
 
 .cardMain {
   display: grid;
-  gap: clamp(1.75rem, 4vh, 3rem);
-  margin-block: clamp(3rem, 8vh, 6rem);
+  gap: clamp(1.35rem, 3vh, 2.25rem);
+  margin-block: clamp(2.25rem, 5vh, 4rem);
 }
 
 .title {
   margin: 0;
   max-width: 12ch;
-  font-size: clamp(4.4rem, 9vw, 8.5rem);
+  font-family: var(--font-satoshi);
+  font-size: clamp(3.4rem, 6.9vw, 6.4rem);
   font-weight: 720;
   line-height: 0.92;
   letter-spacing: 0;
@@ -106,17 +112,48 @@
 .copy {
   margin: 0;
   max-width: 46rem;
-  font-size: clamp(1.35rem, 2.2vw, 2.15rem);
-  line-height: 1.14;
+  font-size: clamp(1.15rem, 1.75vw, 1.7rem);
+  line-height: 1.18;
   letter-spacing: 0;
 }
 
 .summary,
 .action {
   margin: 0;
+  font-family: var(--font-satoshi);
   font-size: clamp(1rem, 1.35vw, 1.25rem);
   font-weight: 600;
   line-height: 1.18;
+}
+
+.number,
+.arrow,
+.title,
+.summary,
+.action {
+  transition:
+    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .number,
+.card:hover .arrow,
+.card:hover .title,
+.card:hover .summary,
+.card:hover .action,
+.card:focus-visible .number,
+.card:focus-visible .arrow,
+.card:focus-visible .title,
+.card:focus-visible .summary,
+.card:focus-visible .action,
+.card:active .number,
+.card:active .arrow,
+.card:active .title,
+.card:active .summary,
+.card:active .action {
+  letter-spacing: 0.02em;
+  transform: translateY(-2px);
 }
 
 .summary {
@@ -139,6 +176,7 @@
 .cards {
   display: grid;
   gap: clamp(1rem, 3vw, 1.5rem);
+  justify-items: center;
   margin-top: clamp(2rem, 6vh, 4rem);
 }
 
@@ -149,6 +187,33 @@
 
   .staticExperience {
     display: block;
+  }
+
+  .number,
+  .arrow,
+  .title,
+  .summary,
+  .action {
+    transition: color 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .card:hover .number,
+  .card:hover .arrow,
+  .card:hover .title,
+  .card:hover .summary,
+  .card:hover .action,
+  .card:focus-visible .number,
+  .card:focus-visible .arrow,
+  .card:focus-visible .title,
+  .card:focus-visible .summary,
+  .card:focus-visible .action,
+  .card:active .number,
+  .card:active .arrow,
+  .card:active .title,
+  .card:active .summary,
+  .card:active .action {
+    letter-spacing: 0;
+    transform: none;
   }
 }
 
@@ -173,9 +238,9 @@
   }
 
   .card {
-    min-height: clamp(23rem, 60svh, 30rem);
+    min-height: clamp(19.5rem, 48svh, 25rem);
     width: 100%;
-    padding: clamp(1.1rem, 5vw, 1.45rem);
+    padding: clamp(1rem, 4.5vw, 1.25rem);
   }
 
   .number {
@@ -187,16 +252,16 @@
   }
 
   .cardMain {
-    gap: 1.15rem;
-    margin-block: clamp(2rem, 7vh, 3.25rem);
+    gap: 0.95rem;
+    margin-block: clamp(1.5rem, 5vh, 2.4rem);
   }
 
   .title {
-    font-size: clamp(2.35rem, 11.5vw, 3.45rem);
+    font-size: clamp(2rem, 9.8vw, 2.95rem);
   }
 
   .copy {
-    font-size: clamp(1.02rem, 4.6vw, 1.25rem);
+    font-size: clamp(0.98rem, 4.2vw, 1.12rem);
     line-height: 1.24;
   }
 

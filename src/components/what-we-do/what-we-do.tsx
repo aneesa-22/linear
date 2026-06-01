@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import styles from "./what-we-do.module.css";
@@ -10,12 +11,14 @@ const services = [
     title: "Website Launch",
     copy: "For businesses launching from scratch, replacing a DIY site, or building their first proper online presence.",
     summary: "Launch a clear, credible website from the ground up.",
+    href: "/services/website-launch",
   },
   {
     number: "02",
     title: "Website Evolution",
     copy: "For businesses that have outgrown their current website and need something stronger, clearer and easier to maintain.",
     summary: "Refine and rebuild what is already there into something sharper.",
+    href: "/services/website-evolution",
   },
   {
     number: "03",
@@ -23,6 +26,7 @@ const services = [
     copy: "For businesses that need a stronger visual foundation before the website is built.",
     summary:
       "Shape the visual foundation that makes the website feel distinct.",
+    href: "/services/brand-identity",
   },
 ] as const;
 
@@ -33,10 +37,15 @@ export function WhatWeDo() {
     target: sectionRef,
     offset: ["start start", "end end"],
   });
-  const trackX = useTransform(scrollYProgress, [0, 1], ["0%", "-66.666%"]);
+  const trackX = useTransform(
+    scrollYProgress,
+    [0, 0.16, 0.4, 0.56, 0.82, 1],
+    ["0%", "0%", "-33.333%", "-33.333%", "-66.666%", "-66.666%"],
+  );
 
   return (
     <section
+      id="what-we-do"
       ref={sectionRef}
       aria-label="What We Do"
       className={styles.section}
@@ -94,8 +103,28 @@ function ServiceList({ labelledBy }: ServiceListProps) {
 type Service = (typeof services)[number];
 
 function ServiceCard({ service }: Readonly<{ service: Service }>) {
+  if ("href" in service) {
+    return (
+      <Link
+        className={styles.card}
+        href={service.href}
+        aria-label={`View ${service.title} service`}
+      >
+        <ServiceCardContent service={service} />
+      </Link>
+    );
+  }
+
   return (
     <article className={styles.card} tabIndex={0}>
+      <ServiceCardContent service={service} />
+    </article>
+  );
+}
+
+function ServiceCardContent({ service }: Readonly<{ service: Service }>) {
+  return (
+    <>
       <div className={styles.cardTop}>
         <span className={styles.number}>{service.number}</span>
         <span className={styles.arrow} aria-hidden="true">
@@ -112,6 +141,6 @@ function ServiceCard({ service }: Readonly<{ service: Service }>) {
         <p className={styles.summary}>{service.summary}</p>
         <span className={styles.action}>View service</span>
       </div>
-    </article>
+    </>
   );
 }

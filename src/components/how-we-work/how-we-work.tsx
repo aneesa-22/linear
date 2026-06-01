@@ -267,39 +267,87 @@ function DesktopDeckSheet({
   return (
     <m.article
       aria-hidden={index !== activeStep}
-      className={styles.deckSheet}
+      className={`${styles.deckSheet} ${
+        index === activeStep ? styles.deckSheetActive : ""
+      }`}
       style={{
         y: shouldReduceMotion ? "0%" : y,
         zIndex: index + 1,
       }}
     >
-      <m.header
-        className={styles.sheetHeader}
-        style={{
-          opacity: shouldReduceMotion ? 1 : contentOpacity,
-          y: shouldReduceMotion ? "0rem" : contentY,
-        }}
-      >
-        <span className={styles.stepNumber}>{step.number}</span>
-        <h2 className={styles.sheetTitle}>{step.title}</h2>
-      </m.header>
-
       <m.div
-        className={styles.sheetBody}
+        className={styles.sheetContent}
         style={{
           opacity: shouldReduceMotion ? 1 : contentOpacity,
           y: shouldReduceMotion ? "0rem" : contentY,
         }}
       >
-        <StepContent step={step} />
+        <OpenStepContent step={step} />
       </m.div>
     </m.article>
   );
 }
 
-function StepContent({ step }: Readonly<{ step: Step }>) {
+function OpenStepContent({ step }: Readonly<{ step: Step }>) {
   return (
-    <div className={styles.contentGrid}>
+    <>
+      <span className={`${styles.stepNumber} ${styles.sheetNumber}`}>
+        {step.number}
+      </span>
+
+      <div className={styles.mainContent}>
+        <h2 className={styles.sheetTitle}>{step.title}</h2>
+        <StepCopy step={step} />
+      </div>
+
+      <StepCoverage step={step} />
+    </>
+  );
+}
+
+function StepCopy({ step }: Readonly<{ step: Step }>) {
+  return (
+    <div className={styles.copy}>
+      {step.paragraphs.map((paragraph) => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
+    </div>
+  );
+}
+
+function StepCoverage({ step }: Readonly<{ step: Step }>) {
+  return (
+    <div className={styles.coverage}>
+      <p className={styles.coverageTitle}>What we cover:</p>
+      <ul className={styles.coverageList}>
+        {step.covers.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function StaticStepContent({ step }: Readonly<{ step: Step }>) {
+  return (
+    <div className={styles.staticContent}>
+      <span className={`${styles.stepNumber} ${styles.sheetNumber}`}>
+        {step.number}
+      </span>
+
+      <div className={styles.mainContent}>
+        <h2 className={styles.stepTitle}>{step.title}</h2>
+        <StepCopy step={step} />
+      </div>
+
+      <StepCoverage step={step} />
+    </div>
+  );
+}
+
+function MobileStepContent({ step }: Readonly<{ step: Step }>) {
+  return (
+    <div className={styles.mobileContent}>
       <div className={styles.copy}>
         {step.paragraphs.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
@@ -328,13 +376,7 @@ function StaticSteps({ labelledBy }: Readonly<{ labelledBy: string }>) {
       <div className={styles.staticRows}>
         {steps.map((step) => (
           <article className={styles.staticStep} key={step.number}>
-            <header className={styles.stepHeader}>
-              <span className={styles.stepNumber}>{step.number}</span>
-              <h2 className={styles.stepTitle}>{step.title}</h2>
-            </header>
-            <div className={styles.staticBody}>
-              <StepContent step={step} />
-            </div>
+            <StaticStepContent step={step} />
           </article>
         ))}
       </div>
@@ -387,7 +429,7 @@ function MobileSteps() {
                 aria-hidden={!isOpen}
               >
                 <div className={styles.mobilePanelInner}>
-                  <StepContent step={step} />
+                  <MobileStepContent step={step} />
                 </div>
               </m.div>
             </article>

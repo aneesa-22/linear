@@ -2,7 +2,8 @@
 
 @theme inline {
   --font-sans: var(--font-satoshi);
-  --color-ivory: #f5f3f0;
+  --font-heading: var(--font-satoshi);
+  --color-ivory: #ffffff;
   --color-charcoal: #202020;
   --color-cobalt: #0c1d8c;
 }
@@ -18,7 +19,7 @@
   }
 
   :root {
-    --color-ivory: #f5f3f0;
+    --color-ivory: #ffffff;
     --color-charcoal: #202020;
     --color-cobalt: #0c1d8c;
     --font-satoshi: "Satoshi", system-ui, sans-serif;
@@ -48,16 +49,5 @@
   :focus-visible {
     outline: 2px solid var(--color-cobalt);
     outline-offset: 2px;
-  }
-}
-
-@keyframes hero-arrow-bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(0.45rem);
   }
 }

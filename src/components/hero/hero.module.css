@@ -1,31 +1,41 @@
 .hero {
-  min-height: 100vh;
-  min-height: 100svh;
-  min-height: 100dvh;
+  min-height: calc(100vh - clamp(4.75rem, 8vh, 5.5rem));
+  min-height: calc(100svh - clamp(4.75rem, 8vh, 5.5rem));
+  min-height: calc(100dvh - clamp(4.75rem, 8vh, 5.5rem));
 }
 
 .lockup {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  font-family: var(--font-satoshi);
   margin: 0;
   padding: 0;
   text-align: left;
 }
 
 .wordmarkInteraction {
-  transition: color 420ms ease;
+  letter-spacing: 0;
+  transition:
+    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .wordmarkPosition {
   position: absolute;
-  top: clamp(9.5rem, 24svh, 15.5rem);
+  top: clamp(4.75rem, 12svh, 8rem);
   left: clamp(1.25rem, 6vw, 4.5rem);
 }
 
 .wordmarkInteraction:active,
 .wordmarkInteraction[data-flashing="true"] {
   color: var(--color-cobalt);
+}
+
+.wordmarkInteraction:active {
+  letter-spacing: 0.02em;
+  transform: translateY(-2px);
 }
 
 .line {
@@ -50,8 +60,10 @@
 }
 
 .wordmark {
+  font-family: var(--font-satoshi);
   font-size: clamp(11rem, 46svh, 27rem);
-  font-weight: 720;
+  font-weight: 700;
+  font-kerning: normal;
   line-height: 0.72;
   letter-spacing: 0;
   margin-block: -0.08em;
@@ -61,7 +73,7 @@
 }
 
 .wordmarkInner {
-  /* Trim Satoshi's lowercase-l side bearing so both lines share a visual left edge. */
+  /* Trim the lowercase-l side bearing so both lines share a visual left edge. */
   text-indent: -0.052em;
 }
 
@@ -70,25 +82,32 @@
 }
 
 .studio {
+  font-family: var(--font-satoshi);
   font-size: clamp(3.25rem, 13svh, 7rem);
+  font-weight: 400;
   line-height: 1.1;
   letter-spacing: 0;
 }
 
 .supportCopy {
   position: absolute;
-  bottom: clamp(2rem, 6vh, 4rem);
+  bottom: clamp(3rem, 7vh, 5.5rem);
   max-width: 17rem;
   font-size: clamp(1.15rem, 3svh, 1.45rem);
   line-height: 1.28;
   letter-spacing: 0;
   text-align: left;
-  transition: color 420ms ease;
+  transition:
+    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .supportCopy:hover,
 .supportCopy:active {
   color: var(--color-cobalt);
+  letter-spacing: 0.02em;
+  transform: translateY(-2px);
 }
 
 .supportCopyPrimary {
@@ -100,46 +119,94 @@
   max-width: 14rem;
 }
 
-.scrollArrow {
-  position: absolute;
-  bottom: clamp(1.75rem, 5vh, 3.5rem);
-  left: 50%;
-  transform: translateX(-50%);
-  transition: color 420ms ease;
-}
-
-.scrollArrow:hover,
-.scrollArrow:active {
-  color: var(--color-cobalt);
-}
-
 .mobileCta {
   display: none;
+}
+
+.mobileCtaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  border-bottom: 1px solid currentcolor;
+  color: var(--color-charcoal);
+  font-family: var(--font-satoshi);
+  font-size: clamp(1.25rem, 5.6vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  padding-bottom: 0.3rem;
+  text-decoration: none;
+  transition:
+    border-color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobileCtaLink:hover,
+.mobileCtaLink:focus-visible,
+.mobileCtaLink:active {
+  color: var(--color-cobalt);
+  letter-spacing: 0.02em;
+  transform: translateY(-2px);
+}
+
+.mobileCtaArrow {
+  display: inline-block;
+  transition: transform 300ms ease;
+}
+
+.mobileCtaLink:hover .mobileCtaArrow,
+.mobileCtaLink:focus-visible .mobileCtaArrow,
+.mobileCtaLink:active .mobileCtaArrow {
+  transform: translateX(0.22em);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .wordmarkInteraction:hover {
     color: var(--color-cobalt);
+    letter-spacing: 0.02em;
+    transform: translateY(-2px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wordmarkInteraction {
-    transition: none;
+  .wordmarkInteraction,
+  .supportCopy,
+  .mobileCtaLink {
+    transition: color 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .wordmarkInteraction:hover,
+  .wordmarkInteraction:active,
+  .supportCopy:hover,
+  .supportCopy:active,
+  .mobileCtaLink:hover,
+  .mobileCtaLink:focus-visible,
+  .mobileCtaLink:active {
+    letter-spacing: 0;
+    transform: none;
   }
 }
 
 @media (max-width: 767px) {
   .hero {
     display: flex;
-    min-height: 100svh;
+    min-height: calc(100svh - clamp(5rem, 12svh, 6rem));
+    min-height: calc(100dvh - clamp(5rem, 12dvh, 6rem));
     flex-direction: column;
+    justify-content: center;
     overflow: hidden;
+    padding-top: clamp(1.25rem, 4svh, 2.5rem);
+    padding-bottom: max(
+      clamp(4.75rem, 10svh, 6.5rem),
+      calc(env(safe-area-inset-bottom) + 4.75rem)
+    );
   }
 
   .wordmarkPosition {
     position: static;
-    margin-top: clamp(8.5rem, 24svh, 12.5rem);
+    margin-top: 0;
   }
 
   .wordmark {
@@ -159,17 +226,16 @@
   }
 
   .supportCopyPrimary {
-    margin-top: clamp(5.25rem, 14svh, 8rem);
+    margin-top: clamp(3rem, 7svh, 4.75rem);
   }
 
-  .supportCopySecondary,
-  .scrollArrow {
+  .supportCopySecondary {
     display: none;
   }
 
   .mobileCta {
     display: block;
-    margin-top: clamp(1.75rem, 5svh, 2.75rem);
+    margin-top: clamp(1.25rem, 3svh, 2rem);
   }
 }
 

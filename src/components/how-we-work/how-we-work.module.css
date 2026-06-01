@@ -1,6 +1,9 @@
 .section {
   --process-column-gap: clamp(1rem, 3vw, 3rem);
-  --process-number-column: clamp(5.25rem, 12vw, 10.25rem);
+  --process-number-column: clamp(5.25rem, 9vw, 8.5rem);
+  --process-card-padding: clamp(1.75rem, 4vw, 3rem);
+  --process-grid-columns: var(--process-number-column) minmax(0, 1.05fr)
+    minmax(17rem, 0.9fr);
 
   background: var(--color-ivory);
   color: var(--color-charcoal);
@@ -31,6 +34,7 @@
 
 .label {
   margin: 0;
+  font-family: var(--font-satoshi);
   font-size: clamp(0.75rem, 1vw, 0.9rem);
   font-weight: 700;
   line-height: 1;
@@ -52,12 +56,11 @@
 .deckSheetStage {
   position: relative;
   flex: 1;
-  min-height: clamp(30rem, 58vh, 42rem);
+  min-height: clamp(22rem, 46vh, 32rem);
   overflow: hidden;
 }
 
 .deckHeader,
-.deckSheet,
 .staticStep,
 .mobileStep {
   border-top: 1px solid
@@ -70,7 +73,6 @@
     padding 560ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.deckSheet,
 .staticStep:last-child,
 .mobileStep:last-child {
   border-bottom: 1px solid
@@ -83,25 +85,24 @@
 .staticStep:hover,
 .staticStep:focus-within,
 .mobileStep:focus-within {
-  border-color: color-mix(in srgb, var(--color-cobalt) 42%, transparent);
+  border-color: var(--color-cobalt);
 }
 
 .deckHeader:hover,
-.deckSheet:hover .sheetHeader,
-.deckSheet:focus-within .sheetHeader,
-.staticStep:hover .stepHeader,
-.staticStep:focus-within .stepHeader {
+.deckSheet:hover .mainContent,
+.deckSheet:focus-within .mainContent,
+.staticStep:hover .mainContent,
+.staticStep:focus-within .mainContent {
   color: var(--color-cobalt);
 }
 
 .deckHeader,
-.sheetHeader,
 .stepHeader,
 .mobileTrigger {
   display: grid;
   width: 100%;
-  grid-template-columns: var(--process-number-column) minmax(0, 1fr);
-  gap: var(--process-column-gap);
+  grid-template-columns: var(--process-grid-columns);
+  gap: 0;
   align-items: center;
   padding: clamp(0.85rem, 1.9vh, 1.35rem) 0;
 }
@@ -114,11 +115,20 @@
   opacity: 0;
 }
 
+.deckHeader .stepNumber {
+  padding-inline: clamp(1.25rem, 2.5vw, 2.25rem);
+}
+
+.deckHeaderTitle {
+  padding-inline: var(--process-card-padding);
+}
+
 .stepHeader {
   min-height: clamp(3.35rem, 6vh, 4.35rem);
 }
 
 .stepNumber {
+  font-family: var(--font-satoshi);
   font-size: clamp(1rem, 2.1vw, 1.75rem);
   font-weight: 500;
   line-height: 1;
@@ -128,6 +138,7 @@
 .stepTitle,
 .mobileTitle {
   margin: 0;
+  font-family: var(--font-satoshi);
   font-size: clamp(2.35rem, 4.8vw, 4.7rem);
   font-weight: 680;
   line-height: 0.95;
@@ -143,19 +154,42 @@
   position: absolute;
   inset: 0 0 auto;
   min-height: 0;
+  overflow: hidden;
+  border-top: 1px solid
+    color-mix(in srgb, var(--color-charcoal) 26%, transparent);
   background: var(--color-ivory);
+  transition: border-color 360ms ease;
   will-change: transform;
 }
 
-.sheetHeader {
-  min-height: clamp(4rem, 8vh, 5.75rem);
+.deckSheetActive::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: color-mix(in srgb, var(--color-charcoal) 26%, transparent);
+  content: "";
+  pointer-events: none;
+  transition: background-color 360ms ease;
+}
+
+.deckSheet:hover,
+.deckSheet:focus-within {
+  border-color: var(--color-cobalt);
+}
+
+.deckSheetActive:hover::after,
+.deckSheetActive:focus-within::after {
+  background: var(--color-cobalt);
 }
 
 .sheetTitle {
   margin: 0;
-  font-size: clamp(4rem, 8vw, 7.25rem);
+  font-family: var(--font-satoshi);
+  font-size: clamp(3.45rem, 6.2vw, 6rem);
   font-weight: 700;
-  line-height: 0.92;
+  line-height: 0.95;
   letter-spacing: 0;
 }
 
@@ -163,22 +197,23 @@
   overflow: hidden;
 }
 
-.sheetBody {
-  padding: clamp(1.3rem, 3.4vh, 2.8rem) 0 clamp(1.25rem, 3vh, 2.25rem)
-    calc(var(--process-number-column) + var(--process-column-gap));
+.sheetContent,
+.staticContent {
+  display: grid;
+  min-height: clamp(20rem, 42vh, 28rem);
+  grid-template-columns: var(--process-grid-columns);
+  align-items: start;
 }
 
-.contentGrid {
-  display: grid;
-  max-width: min(76rem, 100%);
-  grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
-  gap: clamp(2rem, 5vw, 5.5rem);
+.staticContent {
+  min-height: clamp(20rem, 38vh, 27rem);
 }
 
 .copy {
-  max-width: 43rem;
-  font-size: clamp(1.05rem, 1.55vw, 1.45rem);
-  line-height: 1.25;
+  max-width: 34rem;
+  color: var(--color-charcoal);
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.32;
   letter-spacing: 0;
 }
 
@@ -189,33 +224,117 @@
 }
 
 .copy p + p {
-  margin-top: 1em;
+  margin-top: 1.35em;
+}
+
+.sheetNumber {
+  align-self: stretch;
+  padding: var(--process-card-padding) clamp(1.25rem, 2.5vw, 2.25rem);
+  border-right: 1px solid
+    color-mix(in srgb, var(--color-charcoal) 22%, transparent);
+  color: var(--color-charcoal);
+  font-size: clamp(1.75rem, 2.8vw, 2.65rem);
+  line-height: 1;
+}
+
+.mainContent,
+.coverage {
+  padding: var(--process-card-padding);
+  transition: color 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mainContent {
+  display: grid;
+  align-content: start;
+  gap: clamp(2rem, 4.5vh, 3.5rem);
 }
 
 .coverage {
+  min-width: 0;
   align-self: start;
-  padding-top: 0.25rem;
+  color: var(--color-charcoal);
 }
 
 .coverageTitle {
+  font-family: var(--font-satoshi);
   font-size: clamp(1rem, 1.25vw, 1.15rem);
   font-weight: 700;
   line-height: 1.2;
 }
 
+.deckSheet:hover .sheetNumber,
+.deckSheet:hover .coverageTitle,
+.deckSheet:focus-within .sheetNumber,
+.deckSheet:focus-within .coverageTitle,
+.staticStep:hover .sheetNumber,
+.staticStep:hover .coverageTitle,
+.staticStep:focus-within .sheetNumber,
+.staticStep:focus-within .coverageTitle {
+  color: var(--color-cobalt);
+}
+
+.stepNumber,
+.deckHeaderTitle,
+.stepTitle,
+.mobileTitle,
+.sheetTitle,
+.coverageTitle {
+  transition:
+    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.deckHeader:hover .stepNumber,
+.deckHeader:hover .deckHeaderTitle,
+.deckSheet:hover .stepNumber,
+.deckSheet:hover .sheetTitle,
+.deckSheet:hover .coverageTitle,
+.deckSheet:focus-within .stepNumber,
+.deckSheet:focus-within .sheetTitle,
+.deckSheet:focus-within .coverageTitle,
+.staticStep:hover .stepNumber,
+.staticStep:hover .stepTitle,
+.staticStep:hover .coverageTitle,
+.staticStep:focus-within .stepNumber,
+.staticStep:focus-within .stepTitle,
+.staticStep:focus-within .coverageTitle,
+.mobileTrigger:hover .stepNumber,
+.mobileTrigger:hover .mobileTitle,
+.mobileTrigger:focus-visible .stepNumber,
+.mobileTrigger:focus-visible .mobileTitle,
+.mobileTrigger:active .stepNumber,
+.mobileTrigger:active .mobileTitle {
+  letter-spacing: 0.02em;
+  transform: translateY(-2px);
+}
+
 .coverageList {
   display: grid;
-  gap: 0.55rem;
-  margin-top: 1rem;
+  gap: 0;
+  margin-top: 0.9rem;
   padding: 0;
   list-style: none;
-  font-size: clamp(1rem, 1.35vw, 1.25rem);
-  line-height: 1.18;
+  font-size: clamp(0.95rem, 1.16vw, 1.12rem);
+  line-height: 1.2;
 }
 
 .coverageList li {
-  padding-top: 0.55rem;
+  padding-block: 0.7rem;
   border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  transition: border-color 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.coverageList li:last-child {
+  border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.deckSheet:hover .coverageList li,
+.deckSheet:focus-within .coverageList li,
+.staticStep:hover .coverageList li,
+.staticStep:focus-within .coverageList li,
+.mobileStep:focus-within .coverageList li {
+  border-color: color-mix(in srgb, var(--color-cobalt) 34%, transparent);
 }
 
 .staticExperience,
@@ -232,11 +351,6 @@
   margin-top: clamp(2.25rem, 6vh, 4rem);
 }
 
-.staticBody {
-  padding: clamp(1.3rem, 3.4vh, 2.8rem) 0 clamp(3rem, 8vh, 5rem)
-    calc(var(--process-number-column) + var(--process-column-gap));
-}
-
 .mobileTrigger {
   min-height: 5.25rem;
   border: 0;
@@ -245,7 +359,10 @@
   cursor: pointer;
   font: inherit;
   text-align: left;
-  transition: color 300ms ease;
+  transition:
+    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mobileTrigger:hover,
@@ -258,6 +375,11 @@
   padding: 0 0 2rem;
 }
 
+.mobileContent {
+  display: grid;
+  gap: 1.35rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .desktopExperience {
     display: none;
@@ -265,6 +387,39 @@
 
   .staticExperience {
     display: block;
+  }
+
+  .stepNumber,
+  .deckHeaderTitle,
+  .stepTitle,
+  .mobileTitle,
+  .sheetTitle,
+  .coverageTitle {
+    transition: color 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .deckHeader:hover .stepNumber,
+  .deckHeader:hover .deckHeaderTitle,
+  .deckSheet:hover .stepNumber,
+  .deckSheet:hover .sheetTitle,
+  .deckSheet:hover .coverageTitle,
+  .deckSheet:focus-within .stepNumber,
+  .deckSheet:focus-within .sheetTitle,
+  .deckSheet:focus-within .coverageTitle,
+  .staticStep:hover .stepNumber,
+  .staticStep:hover .stepTitle,
+  .staticStep:hover .coverageTitle,
+  .staticStep:focus-within .stepNumber,
+  .staticStep:focus-within .stepTitle,
+  .staticStep:focus-within .coverageTitle,
+  .mobileTrigger:hover .stepNumber,
+  .mobileTrigger:hover .mobileTitle,
+  .mobileTrigger:focus-visible .stepNumber,
+  .mobileTrigger:focus-visible .mobileTitle,
+  .mobileTrigger:active .stepNumber,
+  .mobileTrigger:active .mobileTitle {
+    letter-spacing: 0;
+    transform: none;
   }
 }
 
@@ -311,13 +466,13 @@
     font-size: clamp(1.65rem, 8.5vw, 2.85rem);
   }
 
-  .contentGrid {
-    grid-template-columns: 1fr;
-    gap: 1.35rem;
-  }
-
   .mobilePanelInner {
     padding-left: calc(2.25rem + 0.9rem);
+  }
+
+  .mobileContent .coverage {
+    align-self: start;
+    padding: 0;
   }
 
   .copy {

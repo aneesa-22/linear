@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Reveal } from "@/components/motion/reveal";
-import { AnimatedButton } from "@/components/ui/animated-button";
+import styles from "./site-header.module.css";
 
 export function SiteHeader() {
   return (
-    <header className="text-charcoal fixed inset-x-0 top-0 z-20 px-[clamp(1.25rem,6vw,4.5rem)] py-6 text-[15px] font-semibold tracking-normal sm:py-7">
+    <header className="text-charcoal bg-ivory sticky inset-x-0 top-0 z-20 px-[clamp(1.25rem,6vw,4.5rem)] py-6 text-[15px] font-semibold tracking-normal sm:py-7">
       <Reveal as="div" delay={0.05}>
         <nav
           aria-label="Primary navigation"
@@ -12,20 +12,19 @@ export function SiteHeader() {
         >
           <Link
             href="/"
-            className="hover:text-cobalt focus-visible:text-cobalt active:text-cobalt transition-colors duration-300 ease-out"
+            className={styles.navLink}
             aria-label="Linear Studio home"
           >
-            linear studio
+            HOME
           </Link>
 
           <div className="hidden items-center gap-[clamp(1rem,3vw,3.25rem)] md:flex">
-            <a
-              href="#services"
-              className="hover:text-cobalt focus-visible:text-cobalt active:text-cobalt inline-flex transition-colors duration-300 ease-out"
-            >
-              Services
-            </a>
-            <AnimatedButton label="Let’s talk" />
+            <Link href="/#what-we-do" className={styles.navLink}>
+              SERVICES
+            </Link>
+            <Link href="/contact" className={styles.navLink}>
+              CONTACT
+            </Link>
           </div>
 
           <button

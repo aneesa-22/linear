@@ -1,0 +1,368 @@
+.section {
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+  padding-block: clamp(5.5rem, 13vh, 9rem);
+}
+
+.inner {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 6vw, 4.5rem);
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(8rem, 14rem) minmax(0, 34rem);
+  gap: clamp(2rem, 7vw, 7rem);
+  align-items: start;
+}
+
+.label,
+.calendarHeader,
+.progress {
+  margin: 0;
+  font-family: var(--font-satoshi);
+  font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.copy {
+  margin: 0;
+  max-width: 36rem;
+  font-size: clamp(1.25rem, 1.9vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.95fr) minmax(18rem, 1fr);
+  min-height: clamp(26rem, 54vh, 35rem);
+  margin-top: clamp(3rem, 8vh, 5.5rem);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-charcoal) 34%, transparent);
+  background: var(--color-ivory);
+  transition: border-color 320ms ease;
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--color-cobalt);
+}
+
+.calendarPane {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(2rem, 5vh, 4rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.calendarHeader {
+  color: var(--color-charcoal);
+}
+
+.calendarGrid {
+  display: grid;
+  gap: clamp(1.1rem, 3vh, 2rem);
+}
+
+.dotGrid,
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(1.75rem, 1fr));
+  align-items: center;
+}
+
+.dotGrid {
+  gap: clamp(0.65rem, 1.5vw, 1.1rem);
+  grid-column: 1 / -1;
+}
+
+.weekday {
+  justify-self: center;
+  color: var(--color-charcoal);
+  font-family: var(--font-satoshi);
+  font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.dotCell,
+.milestone {
+  display: grid;
+  width: clamp(1.75rem, 3vw, 2.4rem);
+  height: clamp(1.75rem, 3vw, 2.4rem);
+  place-items: center;
+  justify-self: center;
+}
+
+.dotCell::before {
+  display: block;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-charcoal) 32%, transparent);
+  content: "";
+}
+
+.milestone {
+  border: 0;
+  background: transparent;
+  color: var(--color-charcoal);
+  cursor: pointer;
+  transition:
+    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.milestoneDot {
+  display: block;
+  width: clamp(0.95rem, 1.7vw, 1.25rem);
+  height: clamp(0.95rem, 1.7vw, 1.25rem);
+  border: 1px solid currentcolor;
+  border-radius: 999px;
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.milestone:hover,
+.milestone:focus-visible,
+.milestone:active,
+.milestone[aria-pressed="true"] {
+  color: var(--color-cobalt);
+}
+
+.milestone:hover,
+.milestone:focus-visible,
+.milestone:active {
+  transform: translateY(-2px);
+}
+
+.milestone[aria-pressed="true"] .milestoneDot {
+  background: currentcolor;
+  box-shadow: 0 0 0 0.35rem var(--color-ivory) inset;
+}
+
+.detailPane {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-width: 0;
+  border-left: 1px solid
+    color-mix(in srgb, var(--color-charcoal) 26%, transparent);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  transition: border-color 320ms ease;
+}
+
+.card:hover .detailPane,
+.card:focus-within .detailPane {
+  border-color: var(--color-cobalt);
+}
+
+.controls {
+  display: grid;
+  justify-content: end;
+  gap: 0.75rem;
+}
+
+.arrowButton {
+  display: inline-grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border: 1px solid currentcolor;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-charcoal);
+  font: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 300ms ease;
+}
+
+.arrowButton:hover,
+.arrowButton:focus-visible,
+.arrowButton:active {
+  color: var(--color-cobalt);
+  transform: translateY(-2px);
+}
+
+.arrowButton:disabled {
+  cursor: default;
+  opacity: 0.34;
+}
+
+.arrowButton:disabled:hover {
+  color: var(--color-charcoal);
+  transform: none;
+}
+
+.stageContent {
+  display: grid;
+  max-width: 28rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-self: center;
+}
+
+.activeMarker {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-top: 0.35rem;
+  border-radius: 999px;
+  background: var(--color-cobalt);
+}
+
+.stageTitle {
+  margin: 0;
+  font-family: var(--font-satoshi);
+  font-size: clamp(1.5rem, 2.1vw, 2rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0;
+  transition:
+    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .stageTitle,
+.card:focus-within .stageTitle {
+  color: var(--color-cobalt);
+  letter-spacing: 0.02em;
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .milestone,
+  .arrowButton,
+  .stageTitle {
+    transition: color 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .milestone:hover,
+  .milestone:focus-visible,
+  .milestone:active,
+  .arrowButton:hover,
+  .arrowButton:focus-visible,
+  .arrowButton:active,
+  .card:hover .stageTitle,
+  .card:focus-within .stageTitle {
+    letter-spacing: 0;
+    transform: none;
+  }
+}
+
+.stageCopy {
+  margin: clamp(1.25rem, 3vh, 2rem) 0 0;
+  color: var(--color-charcoal);
+  font-size: clamp(1.05rem, 1.45vw, 1.35rem);
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.progress {
+  align-self: end;
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding-block: clamp(4.5rem, 10vh, 6rem);
+  }
+
+  .inner {
+    padding-inline: clamp(1.25rem, 6vw, 1.75rem);
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .copy {
+    font-size: clamp(1.25rem, 5.8vw, 1.55rem);
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    margin-top: clamp(2.5rem, 7vh, 3.75rem);
+  }
+
+  .calendarPane {
+    align-items: stretch;
+    padding: clamp(1.25rem, 6vw, 1.75rem);
+  }
+
+  .calendarHeader {
+    width: 100%;
+  }
+
+  .calendarGrid {
+    width: 100%;
+    gap: 1.45rem 0;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
+  .dotGrid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+
+  .dotCell,
+  .milestone {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .milestoneDot {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .detailPane {
+    min-height: 22rem;
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-charcoal) 26%, transparent);
+    border-left: 0;
+    padding: clamp(1.25rem, 6vw, 1.75rem);
+  }
+
+  .controls {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 0.85rem;
+    justify-self: stretch;
+  }
+
+  .arrowButton {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  .stageContent {
+    max-width: none;
+  }
+
+  .stageTitle {
+    font-size: clamp(1.45rem, 7vw, 1.85rem);
+  }
+
+  .stageCopy {
+    font-size: clamp(1rem, 4.5vw, 1.15rem);
+  }
+}

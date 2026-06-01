@@ -1,9 +1,11 @@
 "use client";
 
 import { m } from "framer-motion";
+import Link from "next/link";
 
 type AnimatedButtonProps = Readonly<{
   label: string;
+  href?: string;
 }>;
 
 const textVariants = {
@@ -26,10 +28,14 @@ const arrowInVariants = {
   hover: { x: 0, opacity: 1 },
 };
 
-export function AnimatedButton({ label }: AnimatedButtonProps) {
+const MotionLink = m.create(Link);
+
+export function AnimatedButton({ label, href }: AnimatedButtonProps) {
+  const Component = href ? MotionLink : m.button;
+
   return (
-    <m.button
-      type="button"
+    <Component
+      {...(href ? { href } : { type: "button" })}
       className="group border-charcoal bg-ivory text-charcoal hover:border-cobalt hover:bg-cobalt hover:text-ivory focus-visible:border-cobalt focus-visible:bg-cobalt focus-visible:text-ivory active:border-cobalt active:bg-cobalt active:text-ivory inline-flex h-11 items-center gap-2 overflow-hidden rounded-full border px-5 text-[15px] font-semibold transition-colors duration-300 ease-out"
       initial="initial"
       whileHover="hover"
@@ -73,6 +79,6 @@ export function AnimatedButton({ label }: AnimatedButtonProps) {
           →
         </m.span>
       </span>
-    </m.button>
+    </Component>
   );
 }
