@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   m,
   useMotionValueEvent,
@@ -63,6 +63,43 @@ export function WhatWeDo() {
 
     setActiveStep(2);
   });
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      // Only intercept when there's meaningful horizontal scroll intent
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+
+      const rect = section.getBoundingClientRect();
+      const sectionHeight = section.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      // Only act when the section's sticky viewport is active
+      if (rect.top > 0 || rect.bottom < viewportHeight) return;
+
+      e.preventDefault();
+
+      // How far into the section we currently are (in px)
+      const currentScrollY = window.scrollY;
+      const sectionTop = currentScrollY + rect.top;
+      const scrollableRange = sectionHeight - viewportHeight;
+
+      // Convert horizontal delta to vertical scroll
+      const newScrollY = Math.max(
+        sectionTop,
+        Math.min(sectionTop + scrollableRange, currentScrollY + e.deltaX),
+      );
+
+      window.scrollTo({ top: newScrollY, behavior: "instant" });
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    return () => window.removeEventListener("wheel", handleWheel);
+  }, [shouldReduceMotion]);
 
   return (
     <section
