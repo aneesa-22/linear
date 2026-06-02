@@ -25,6 +25,9 @@
     --font-satoshi: "Satoshi", system-ui, sans-serif;
     --font-theatre-condensed:
       "Theatre Bold Condensed", "Arial Narrow", sans-serif;
+    --cursor-x: -9999px;
+    --cursor-y: -9999px;
+    --cursor-radius: 120px;
   }
 
   html {
@@ -52,4 +55,21 @@
     outline: 2px solid var(--color-cobalt);
     outline-offset: 2px;
   }
+}
+
+/* Cursor spotlight: fixed overlay, only visible inside the cursor radius.
+   mix-blend-mode:color preserves luminance of what's beneath — white backgrounds
+   stay white, dark charcoal text picks up the blue hue. Activates after load. */
+[data-cursor]::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: radial-gradient(
+    circle var(--cursor-radius, 120px) at var(--cursor-x, -9999px) var(--cursor-y, -9999px),
+    #2563eb 0%,
+    transparent 100%
+  );
+  mix-blend-mode: color;
 }

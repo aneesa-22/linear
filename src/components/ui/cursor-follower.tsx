@@ -24,8 +24,18 @@ export function CursorFollower() {
       return;
     }
 
+    const activationTimer = window.setTimeout(() => {
+      document.body.setAttribute("data-cursor", "true");
+    }, 1500);
+
     function handlePointerMove(event: PointerEvent) {
       targetRef.current = { x: event.clientX, y: event.clientY };
+
+      const el = document.elementFromPoint(event.clientX, event.clientY);
+      const radius = el
+        ? getComputedStyle(el).getPropertyValue("--cursor-radius").trim()
+        : "";
+      document.documentElement.style.setProperty("--cursor-radius", radius || "120px");
 
       if (!hasMovedRef.current) {
         hasMovedRef.current = true;
@@ -45,6 +55,10 @@ export function CursorFollower() {
         dotRef.current.style.transform = `translate3d(${current.x}px, ${current.y}px, 0) translate(-50%, -50%)`;
       }
 
+      const root = document.documentElement;
+      root.style.setProperty("--cursor-x", `${current.x}px`);
+      root.style.setProperty("--cursor-y", `${current.y}px`);
+
       frameRef.current = window.requestAnimationFrame(tick);
     }
 
@@ -54,6 +68,7 @@ export function CursorFollower() {
     frameRef.current = window.requestAnimationFrame(tick);
 
     return () => {
+      window.clearTimeout(activationTimer);
       window.removeEventListener("pointermove", handlePointerMove);
 
       if (frameRef.current !== null) {
