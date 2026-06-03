@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const ease = 0.16;
@@ -9,14 +10,21 @@ function supportsFinePointer() {
 }
 
 export function CursorFollower() {
+  const pathname = usePathname();
   const dotRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
   const targetRef = useRef({ x: 0, y: 0 });
   const currentRef = useRef({ x: 0, y: 0 });
   const hasMovedRef = useRef(false);
   const [hasMoved, setHasMoved] = useState(false);
+  const isContactPage = pathname === "/contact";
 
   useEffect(() => {
+    if (isContactPage) {
+      document.body.removeAttribute("data-cursor");
+      return;
+    }
+
     if (
       !supportsFinePointer() ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -35,7 +43,10 @@ export function CursorFollower() {
       const radius = el
         ? getComputedStyle(el).getPropertyValue("--cursor-radius").trim()
         : "";
-      document.documentElement.style.setProperty("--cursor-radius", radius || "120px");
+      document.documentElement.style.setProperty(
+        "--cursor-radius",
+        radius || "120px",
+      );
 
       if (!hasMovedRef.current) {
         hasMovedRef.current = true;
@@ -70,12 +81,17 @@ export function CursorFollower() {
     return () => {
       window.clearTimeout(activationTimer);
       window.removeEventListener("pointermove", handlePointerMove);
+      document.body.removeAttribute("data-cursor");
 
       if (frameRef.current !== null) {
         window.cancelAnimationFrame(frameRef.current);
       }
     };
-  }, []);
+  }, [isContactPage]);
+
+  if (isContactPage) {
+    return null;
+  }
 
   return (
     <div

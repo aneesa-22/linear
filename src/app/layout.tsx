@@ -6,9 +6,9 @@ import { MotionProvider } from "@/components/motion/motion-provider";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
-const theatreBoldCondensed = localFont({
-  src: "../styles/theater.bold-condensed.otf",
-  variable: "--font-theatre-condensed",
+const avaleighBold = localFont({
+  src: "../styles/Avaleigh Bold.otf",
+  variable: "--font-display",
   display: "swap",
   weight: "700",
 });
@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={theatreBoldCondensed.variable}>
+      <body className={avaleighBold.variable}>
         <MotionProvider>
           <AppShell>{children}</AppShell>
         </MotionProvider>

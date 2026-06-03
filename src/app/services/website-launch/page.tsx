@@ -57,43 +57,6 @@ const includedItems = [
   },
 ] as const;
 
-const perfectForItems = [
-  "Businesses with no website yet.",
-  "Businesses stuck on Wix, Squarespace or WordPress templates.",
-  "Businesses that have grown beyond their current site.",
-  "Founders who want something custom, credible and professional.",
-] as const;
-
-const processItems = [
-  {
-    number: "01",
-    title: "Discover",
-    description: "We learn about your business, audience and goals.",
-  },
-  {
-    number: "02",
-    title: "Plan",
-    description: "We map the structure, content and user experience.",
-  },
-  {
-    number: "03",
-    title: "Design",
-    description:
-      "We create a visual direction that feels clear, distinctive and on-brand.",
-  },
-  {
-    number: "04",
-    title: "Build",
-    description:
-      "We develop your website with clean code and performance in mind.",
-  },
-  {
-    number: "05",
-    title: "Launch",
-    description: "We test, deploy and hand over everything properly.",
-  },
-] as const;
-
 const optionalAdditions = [
   {
     title: "Brand & Identity",
@@ -170,7 +133,7 @@ export default function WebsitesPage() {
               id="service-title"
               className={`${styles.heroTitle} ${styles.websitesHeroTitle}`}
             >
-              Websites
+              WEBSITES
             </h1>
           </Reveal>
 
@@ -180,10 +143,7 @@ export default function WebsitesPage() {
                 Custom websites designed and built for businesses that have
                 outgrown where they started.
               </p>
-              <p>
-                Whether you’re starting from scratch, replacing a template, or
-                rebuilding a site that no longer reflects where you’re going.
-              </p>
+              <p></p>
             </div>
           </Reveal>
 
@@ -220,43 +180,6 @@ export default function WebsitesPage() {
                   <p>{item.description}</p>
                 </article>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className={`${styles.section} ${styles.websitesSplitSection}`}
-        aria-label="Who the service is for and how the process works"
-      >
-        <div className={`${styles.inner} ${styles.websitesInner}`}>
-          <div className={styles.websitesSplitGrid}>
-            <div className={styles.websitesPanel}>
-              <SectionLabel id="perfect-for-title">PERFECT FOR</SectionLabel>
-              <ul
-                className={styles.websitesRows}
-                aria-labelledby="perfect-for-title"
-              >
-                {perfectForItems.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className={styles.websitesPanel}>
-              <SectionLabel id="process-title">THE PROCESS</SectionLabel>
-              <ol
-                className={styles.websitesProcess}
-                aria-labelledby="process-title"
-              >
-                {processItems.map((item) => (
-                  <li key={item.number}>
-                    <span>{item.number}</span>
-                    <h2>{item.title}</h2>
-                    <p>{item.description}</p>
-                  </li>
-                ))}
-              </ol>
             </div>
           </div>
         </div>
@@ -310,16 +233,23 @@ export default function WebsitesPage() {
       </section>
 
       <section
-        className={`${styles.section} ${styles.websitesSupportSection}`}
+        id="ongoing-support"
+        className={`${styles.section} ${styles.websitesSplitSection} ${styles.websitesSupportSection}`}
         aria-labelledby="support-title"
       >
         <div className={`${styles.inner} ${styles.websitesInner}`}>
-          <div className={styles.websitesSupportLayout}>
-            <div className={styles.websitesSupportLabel}>
+          <div
+            className={`${styles.websitesSplitGrid} ${styles.websitesSupportLayout}`}
+          >
+            <div
+              className={`${styles.websitesPanel} ${styles.websitesSupportLabel}`}
+            >
               <SectionLabel id="support-title">ONGOING SUPPORT</SectionLabel>
             </div>
 
-            <div className={styles.websitesSupportContent}>
+            <div
+              className={`${styles.websitesPanel} ${styles.websitesSupportContent}`}
+            >
               <div className={styles.websitesSupportIntro}>
                 <h2>Your website shouldn’t be left on its own after launch.</h2>
                 <p>
@@ -330,16 +260,21 @@ export default function WebsitesPage() {
 
               <div className={styles.websitesSupportRows}>
                 {supportItems.map((item) => (
-                  <article key={item.title}>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
+                  <article
+                    className={`${styles.includedRow} ${styles.websitesSupportRow}`}
+                    key={item.title}
+                  >
+                    <h3 className={styles.includedTitle}>{item.title}</h3>
+                    <p className={styles.includedDescription}>
+                      {item.description}
+                    </p>
                   </article>
                 ))}
               </div>
 
               <div className={styles.websitesSupportPrice}>
                 <p>From</p>
-                <strong>
+                <strong className={styles.investmentAmount}>
                   £70<span>/month</span>
                 </strong>
                 <p>Available after launch. Cancel anytime.</p>

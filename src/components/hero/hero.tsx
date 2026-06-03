@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Reveal } from "@/components/motion/reveal";
 import styles from "./hero.module.css";
 
@@ -13,14 +14,33 @@ export function Hero() {
       aria-labelledby="hero-title"
       className={`${styles.hero} relative overflow-hidden px-[clamp(1.25rem,6vw,4.5rem)]`}
     >
-      <p id="hero-title" className={styles.intro}>
+      <div className={styles.content}>
         <Reveal delay={0.18}>
-          Hi, we’re Linear Studio.
-          <br />
-          We design websites, brands and digital experiences for businesses that
-          have outgrown where they started.
+          <div className={styles.copy}>
+            <p id="hero-title" className={styles.kicker}>
+              Hi, we’re Linear Studio.
+            </p>
+            <p className={styles.intro}>
+              We design websites, brands and
+              <br />
+              digital experiences for businesses
+              <br />
+              that have outgrown where they
+              <br />
+              started.
+            </p>
+          </div>
         </Reveal>
-      </p>
+
+        <Reveal delay={0.28}>
+          <Link className={styles.cta} href="/contact">
+            <span>LET’S TALK</span>
+            <span className={styles.ctaArrow} aria-hidden="true">
+              ↗
+            </span>
+          </Link>
+        </Reveal>
+      </div>
 
       <div className={styles.marquee} aria-hidden="true">
         <div className={styles.marqueeTrack}>

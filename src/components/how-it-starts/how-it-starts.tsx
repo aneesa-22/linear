@@ -52,8 +52,9 @@ export function HowItStarts() {
             HOW IT STARTS
           </p>
           <p className={styles.copy}>
-            A simple first step into working together. Tell us what you’re
-            thinking, and we’ll help shape the next move.
+            From first message to launch,
+we keep the process simple,
+collaborative and easy to follow.
           </p>
         </div>
 

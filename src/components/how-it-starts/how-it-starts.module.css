@@ -229,7 +229,7 @@
 .stageTitle {
   margin: 0;
   color: var(--color-cobalt);
-  font-family: var(--font-theatre-condensed);
+  font-family: var(--font-display);
   font-size: clamp(2.45rem, 4.25vw, 4.15rem);
   font-weight: 360;
   line-height: 0.5;

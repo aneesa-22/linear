@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { Reveal } from "@/components/motion/reveal";
+import desktopIcon from "@/styles/icons/desktop-light.svg";
+import fileIcon from "@/styles/icons/file-light.svg";
+import pdfIcon from "@/styles/icons/file-pdf-light.svg";
+import hexagonIcon from "@/styles/icons/hexagon-light.svg";
+import instagramIcon from "@/styles/icons/instagram-logo-light.svg";
+import intersectSquareIcon from "@/styles/icons/intersect-square-light.svg";
+import intersectThreeIcon from "@/styles/icons/intersect-three-light.svg";
+import nutIcon from "@/styles/icons/nut-light.svg";
+import printerIcon from "@/styles/icons/printer-light.svg";
+import textAaIcon from "@/styles/icons/text-aa-light.svg";
 import styles from "../website-launch/website-launch.module.css";
 import { BrandIdentityFaq } from "./brand-identity-faq";
 
@@ -57,53 +68,47 @@ const includedItems = [
   },
 ] as const;
 
-const perfectForItems = [
-  "New businesses that need a professional identity.",
-  "Businesses that have outgrown their current branding.",
-  "Businesses preparing for a new website.",
-  "Founders who want consistency across everything they publish.",
-] as const;
-
-const processItems = [
-  {
-    number: "01",
-    title: "Discover",
-    description: "We learn about the business and where it needs to go.",
-  },
-  {
-    number: "02",
-    title: "Explore",
-    description: "We create visual directions and creative concepts.",
-  },
-  {
-    number: "03",
-    title: "Refine",
-    description: "We develop the strongest route into a complete identity.",
-  },
-  {
-    number: "04",
-    title: "Deliver",
-    description: "We prepare assets, guidelines and final files.",
-  },
-  {
-    number: "05",
-    title: "Launch",
-    description:
-      "You leave with everything needed to use the brand confidently.",
-  },
-] as const;
-
 const receivedItems = [
-  "Primary Logo",
-  "Secondary Logo",
-  "Submarks",
-  "Colour Palette",
-  "Typography System",
-  "Brand Guidelines",
-  "Social Profile Assets",
-  "Website-ready Assets",
-  "Print-ready Files",
-  "SVG, PNG, PDF & Vector Exports",
+  {
+    title: "Primary Logo",
+    icon: hexagonIcon,
+  },
+  {
+    title: "Secondary Logo",
+    icon: nutIcon,
+  },
+  {
+    title: "Submarks",
+    icon: intersectSquareIcon,
+  },
+  {
+    title: "Colour Palette",
+    icon: intersectThreeIcon,
+  },
+  {
+    title: "Typography System",
+    icon: textAaIcon,
+  },
+  {
+    title: "Brand Guidelines",
+    icon: fileIcon,
+  },
+  {
+    title: "Social Profile Assets",
+    icon: instagramIcon,
+  },
+  {
+    title: "Website-ready Assets",
+    icon: desktopIcon,
+  },
+  {
+    title: "Print-ready Files",
+    icon: printerIcon,
+  },
+  {
+    title: "SVG, PNG, PDF & Vector Exports",
+    icon: pdfIcon,
+  },
 ] as const;
 
 const optionalAdditions = [
@@ -157,11 +162,9 @@ export default function BrandIdentityPage() {
           <Reveal as="div" delay={0.12}>
             <h1
               id="service-title"
-              className={`${styles.heroTitle} ${styles.websitesHeroTitle}`}
+              className={`${styles.heroTitle} ${styles.websitesHeroTitle} ${styles.websitesHeroTitleCompact}`}
             >
-              Brand &
-              <br />
-              Identity
+              BRAND & IDENTITY
             </h1>
           </Reveal>
 
@@ -214,43 +217,6 @@ export default function BrandIdentityPage() {
       </section>
 
       <section
-        className={`${styles.section} ${styles.websitesSplitSection}`}
-        aria-label="Who the service is for and how the process works"
-      >
-        <div className={`${styles.inner} ${styles.websitesInner}`}>
-          <div className={styles.websitesSplitGrid}>
-            <div className={styles.websitesPanel}>
-              <SectionLabel id="perfect-for-title">PERFECT FOR</SectionLabel>
-              <ul
-                className={styles.websitesRows}
-                aria-labelledby="perfect-for-title"
-              >
-                {perfectForItems.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className={styles.websitesPanel}>
-              <SectionLabel id="process-title">THE PROCESS</SectionLabel>
-              <ol
-                className={styles.websitesProcess}
-                aria-labelledby="process-title"
-              >
-                {processItems.map((item) => (
-                  <li key={item.number}>
-                    <span>{item.number}</span>
-                    <h2>{item.title}</h2>
-                    <p>{item.description}</p>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
         className={`${styles.section} ${styles.websitesReceiveSection}`}
         aria-labelledby="receive-title"
       >
@@ -259,12 +225,17 @@ export default function BrandIdentityPage() {
 
           <div className={styles.websitesReceiveGrid}>
             {receivedItems.map((item) => (
-              <article className={styles.websitesReceiveItem} key={item}>
+              <article className={styles.websitesReceiveItem} key={item.title}>
                 <span
                   className={styles.websitesIconPlaceholder}
+                  style={
+                    {
+                      "--receive-icon": `url(${item.icon.src})`,
+                    } as CSSProperties
+                  }
                   aria-hidden="true"
                 />
-                <h2>{item}</h2>
+                <h2>{item.title}</h2>
               </article>
             ))}
           </div>

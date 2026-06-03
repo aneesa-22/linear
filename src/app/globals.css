@@ -21,10 +21,9 @@
   :root {
     --color-ivory: #ffffff;
     --color-charcoal: #202020;
-    --color-cobalt: #202020;
+    --color-cobalt: #0f0c44;
     --font-satoshi: "Satoshi", system-ui, sans-serif;
-    --font-theatre-condensed:
-      "Theatre Bold Condensed", "Arial Narrow", sans-serif;
+    --font-display: "Avaleigh Bold", "Arial Narrow", sans-serif;
     --cursor-x: -9999px;
     --cursor-y: -9999px;
     --cursor-radius: 120px;
@@ -67,9 +66,14 @@
   z-index: 9999;
   pointer-events: none;
   background: radial-gradient(
-    circle var(--cursor-radius, 120px) at var(--cursor-x, -9999px) var(--cursor-y, -9999px),
+    circle var(--cursor-radius, 120px) at var(--cursor-x, -9999px)
+      var(--cursor-y, -9999px),
     #2563eb 0%,
     transparent 100%
   );
   mix-blend-mode: color;
+}
+
+body[data-menu-open="true"]::after {
+  display: none;
 }

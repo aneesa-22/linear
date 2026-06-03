@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Reveal } from "@/components/motion/reveal";
 import styles from "./contact.module.css";
 
 export const metadata: Metadata = {
@@ -8,35 +7,42 @@ export const metadata: Metadata = {
     "Start a conversation with Linear Studio about a website, brand, or digital project.",
 };
 
-const projectTypes = [
-  "Website Launch",
-  "Website Evolution",
-  "Brand & Identity",
-  "Not sure yet",
-] as const;
+const projectTypes = ["Website", "Brand & Identity", "Not sure yet"] as const;
 
 export default function ContactPage() {
   return (
     <main className={styles.page} aria-labelledby="contact-title">
-      <section className={styles.hero} aria-describedby="contact-intro">
-        <div className={styles.inner}>
-          <Reveal as="div" delay={0.12}>
+      <section
+        className={styles.contactSection}
+        aria-describedby="contact-intro"
+      >
+        <div className={`${styles.inner} ${styles.contactLayout}`}>
+          <aside className={styles.contactIntro}>
             <h1 id="contact-title" className={styles.title}>
-              GET IN TOUCH
+              LET’S
+              <br />
+              TALK
             </h1>
-          </Reveal>
 
-          <Reveal as="div" delay={0.22}>
             <p id="contact-intro" className={styles.intro}>
-              Not sure where to start?
-              <br />
-              That’s normal.
-              <br />
-              We’ll figure it out together.
+              Tell us a little about your project. Whether you need a website, a
+              brand identity, or you’re not sure yet — we’ll help shape the next
+              step.
             </p>
-          </Reveal>
 
-          <Reveal as="div" delay={0.34} className={styles.formReveal}>
+            <dl className={styles.introDetails}>
+              <div>
+                <dt>TYPICAL REPLY</dt>
+                <dd>1–2 working days.</dd>
+              </div>
+              <div>
+                <dt>PROJECTS</dt>
+                <dd>From £1,100+</dd>
+              </div>
+            </dl>
+          </aside>
+
+          <div className={styles.formReveal}>
             <form className={styles.form} aria-label="Contact Linear Studio">
               <div className={styles.twoColumn}>
                 <FormField id="name" label="Name" autoComplete="name" />
@@ -56,21 +62,21 @@ export default function ContactPage() {
 
               <FormField
                 id="website"
-                label="Current website (optional)"
+                label="Website (optional)"
                 type="url"
                 autoComplete="url"
               />
 
-              <fieldset className={styles.radioGroup}>
+              <fieldset className={styles.projectGroup}>
                 <legend className={styles.legend}>
-                  What are you looking for?
+                  What are you looking for?<br></br>
                 </legend>
 
-                <div className={styles.radioOptions}>
+                <div className={styles.projectOptions}>
                   {projectTypes.map((projectType) => (
-                    <label className={styles.radioOption} key={projectType}>
+                    <label className={styles.projectOption} key={projectType}>
                       <input
-                        className={styles.radio}
+                        className={styles.projectRadio}
                         type="radio"
                         name="projectType"
                         value={projectType}
@@ -87,12 +93,20 @@ export default function ContactPage() {
                   id="project"
                   name="project"
                   className={styles.textarea}
-                  rows={6}
+                  rows={8}
                 />
               </label>
 
+              <div className={styles.submitArea}>
+                <button className={styles.submitButton} type="submit">
+                  <span>Send message</span>
+                  <span className={styles.submitArrow} aria-hidden="true">
+                    ↗
+                  </span>
+                </button>
+              </div>
             </form>
-          </Reveal>
+          </div>
         </div>
       </section>
     </main>

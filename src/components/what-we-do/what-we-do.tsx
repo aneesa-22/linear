@@ -14,7 +14,7 @@ import styles from "./what-we-do.module.css";
 const services = [
   {
     number: "01",
-    title: "Websites",
+    title: "WEBSITES",
     copy: "Custom websites designed and built for businesses that have outgrown where they started.",
     summary:
       "Build a clear, credible website around where your business is going.",
@@ -22,7 +22,7 @@ const services = [
   },
   {
     number: "02",
-    title: "Brand & Identity",
+    title: "BRAND & IDENTITY",
     copy: "For businesses that need a stronger visual foundation before the website is built.",
     summary:
       "Shape the visual foundation that makes the website feel distinct.",

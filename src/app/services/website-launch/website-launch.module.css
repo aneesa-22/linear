@@ -21,7 +21,7 @@
   padding-top: 0.08em;
   padding-bottom: 0.06em;
   color: var(--color-cobalt);
-  font-family: var(--font-theatre-condensed);
+  font-family: var(--font-display);
   font-size: clamp(5.1rem, 10.4vw, 9.25rem);
   font-weight: 500;
   line-height: 0.94;
@@ -76,7 +76,7 @@
 .label {
   margin: 0;
   font-family: var(--font-satoshi);
-  font-size: clamp(0.78rem, 0.9vw, 0.95rem);
+  font-size: clamp(1.05rem, 1.25vw, 1.35rem);
   font-weight: 620;
   line-height: 1.1;
   letter-spacing: 0;
@@ -418,11 +418,11 @@
 }
 
 .websitesInner {
-  max-width: 77rem;
+  max-width: 92rem;
 }
 
 .websitesHero {
-  padding-block: clamp(7.25rem, 14vh, 9.75rem) clamp(3.5rem, 7vh, 5rem);
+  padding-block: clamp(5.5rem, 11vh, 8rem) clamp(3.5rem, 7vh, 5rem);
 }
 
 .websitesHeroInner {
@@ -431,19 +431,25 @@
 }
 
 .websitesHeroInner > * {
-  width: min(100%, 58rem);
+  width: min(100%, 84rem);
 }
 
 .websitesHeroTitle {
   max-width: none;
   overflow: visible;
-  padding-top: 0.12em;
-  padding-bottom: 0.04em;
+  padding-top: 0.16em;
+  padding-bottom: 0.08em;
   color: var(--color-cobalt);
-  font-size: clamp(8rem, 18vw, 15rem);
-  line-height: 0.88;
+  font-family: var(--font-display);
+  font-size: clamp(7.25rem, 14.6vw, 12.75rem);
+  line-height: 0.94;
   letter-spacing: -0.045em;
   text-transform: uppercase;
+}
+
+.websitesHeroTitleCompact {
+  font-size: clamp(6.4rem, 12vw, 10.4rem);
+  letter-spacing: -0.04em;
 }
 
 .websitesHeroCopy {
@@ -486,7 +492,7 @@
 .websitesPage .label {
   margin: 0;
   color: var(--color-cobalt);
-  font-size: clamp(0.72rem, 0.78vw, 0.82rem);
+  font-size: clamp(1.05rem, 1.25vw, 1.35rem);
   font-weight: 720;
   line-height: 1;
   text-transform: uppercase;
@@ -506,9 +512,10 @@
 
 .websitesSectionGrid {
   display: grid;
-  grid-template-columns: minmax(8rem, 14rem) minmax(0, 1fr);
-  gap: clamp(2.5rem, 7vw, 6rem);
-  padding-block: clamp(2.5rem, 6vh, 4rem);
+  grid-template-columns: minmax(9rem, 15rem) minmax(0, 1fr);
+  gap: clamp(3rem, 7vw, 6.5rem);
+  min-height: clamp(34rem, 68svh, 46rem);
+  padding-block: clamp(3.75rem, 8vh, 6rem);
 }
 
 .websitesIncludedGrid {
@@ -517,10 +524,10 @@
 }
 
 .websitesIncludedItem {
-  min-height: clamp(8.75rem, 17vh, 11rem);
+  min-height: clamp(11.5rem, 22vh, 14.5rem);
   border-top: 1px solid
     color-mix(in srgb, var(--color-charcoal) 16%, transparent);
-  padding: clamp(1.35rem, 2.8vw, 2rem);
+  padding: clamp(1.75rem, 3vw, 2.35rem);
   color: var(--color-charcoal);
   transition:
     border-color 300ms ease,
@@ -547,7 +554,7 @@
 .websitesOptionalGrid h2 {
   margin: 0;
   color: var(--color-charcoal);
-  font-size: clamp(0.98rem, 1.05vw, 1.08rem);
+  font-size: clamp(1.06rem, 1.2vw, 1.28rem);
   font-weight: 680;
   line-height: 1.15;
   transition:
@@ -564,13 +571,13 @@
 .websitesInvestmentCopy {
   margin: 0;
   color: var(--color-charcoal);
-  font-size: clamp(0.86rem, 0.92vw, 0.95rem);
+  font-size: clamp(0.96rem, 1.05vw, 1.08rem);
   line-height: 1.42;
 }
 
 .websitesIncludedItem p {
-  max-width: 13rem;
-  margin-top: 1rem;
+  max-width: 17rem;
+  margin-top: clamp(1rem, 2.5vh, 1.35rem);
 }
 
 .websitesIncludedItem:hover h2,
@@ -587,10 +594,11 @@
 .websitesSplitGrid {
   display: grid;
   grid-template-columns: minmax(17rem, 0.78fr) minmax(0, 1.55fr);
+  min-height: clamp(32rem, 62svh, 42rem);
 }
 
 .websitesPanel {
-  padding-block: clamp(2.5rem, 6vh, 4rem);
+  padding-block: clamp(3.75rem, 8vh, 6rem);
 }
 
 .websitesPanel:first-child {
@@ -617,9 +625,9 @@
 .websitesRows li {
   border-top: 1px solid
     color-mix(in srgb, var(--color-charcoal) 18%, transparent);
-  padding-block: 1rem;
+  padding-block: clamp(1.05rem, 2.4vh, 1.4rem);
   color: var(--color-charcoal);
-  font-size: clamp(0.9rem, 0.98vw, 1rem);
+  font-size: clamp(0.98rem, 1.05vw, 1.1rem);
   line-height: 1.35;
   transition:
     border-color 300ms ease,
@@ -647,14 +655,14 @@
 
 .websitesProcess li {
   display: grid;
-  gap: 0.75rem;
+  gap: clamp(0.75rem, 1.8vh, 1rem);
   align-content: start;
   color: var(--color-charcoal);
 }
 
 .websitesProcess span {
   color: var(--color-charcoal);
-  font-size: clamp(0.86rem, 0.95vw, 0.96rem);
+  font-size: clamp(0.96rem, 1.05vw, 1.08rem);
   line-height: 1;
   transition: color 250ms ease;
 }
@@ -700,13 +708,16 @@
 }
 
 .websitesIconPlaceholder {
+  display: block;
   width: clamp(2.1rem, 3vw, 2.6rem);
   height: clamp(2.1rem, 3vw, 2.6rem);
-  border: 1px solid currentcolor;
+  background-color: currentcolor;
   color: currentcolor;
-  opacity: 0.72;
+  opacity: 0.78;
+  mask: var(--receive-icon) center / contain no-repeat;
+  -webkit-mask: var(--receive-icon) center / contain no-repeat;
   transition:
-    border-color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 250ms cubic-bezier(0.22, 1, 0.36, 1),
     color 250ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 250ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -737,14 +748,14 @@
 
 .websitesInvestment .websitesInvestmentPrefix {
   margin-bottom: 0.45rem;
-  font-size: clamp(0.9rem, 0.98vw, 1rem);
+  font-size: clamp(0.96rem, 1.05vw, 1.08rem);
   font-weight: 430;
   line-height: 1;
 }
 
 .websitesInvestment .websitesInvestmentAmount {
   margin-bottom: clamp(1rem, 2.5vh, 1.4rem);
-  font-size: clamp(3rem, 5.4vw, 4.45rem);
+  font-size: clamp(3.35rem, 5.4vw, 4.7rem);
   font-weight: 430;
   line-height: 0.95;
   letter-spacing: -0.02em;
@@ -778,8 +789,8 @@
 .websitesInvestment
   > div[aria-labelledby]
   p:not(.websitesInvestmentPrefix):not(.websitesInvestmentAmount) {
-  font-size: clamp(0.78rem, 0.86vw, 0.88rem);
-  line-height: 1.36;
+  font-size: clamp(0.96rem, 1.05vw, 1.08rem);
+  line-height: 1.42;
 }
 
 .websitesOptionalIntro {
@@ -796,7 +807,7 @@
 .websitesOptionalGrid article {
   border-top: 1px solid
     color-mix(in srgb, var(--color-charcoal) 18%, transparent);
-  padding-block: 1rem;
+  padding-block: clamp(1.05rem, 2.4vh, 1.4rem);
   transition: border-color 300ms ease;
 }
 
@@ -816,109 +827,108 @@
 }
 
 .websitesSupportSection {
-  border-top: 0;
+  border-color: color-mix(in srgb, var(--color-charcoal) 22%, transparent);
 }
 
 .websitesSupportLayout {
-  display: grid;
-  grid-template-columns: minmax(14rem, 18.5rem) minmax(0, 1fr);
-  border-top: 1px solid
-    color-mix(in srgb, var(--color-charcoal) 22%, transparent);
+  min-height: auto;
   border-bottom: 1px solid
     color-mix(in srgb, var(--color-charcoal) 22%, transparent);
 }
 
 .websitesSupportLabel {
-  padding: clamp(2.75rem, 6vh, 4rem) clamp(2rem, 4vw, 3rem) 0;
+  padding-top: clamp(2.75rem, 6vh, 4rem);
 }
 
 .websitesSupportContent {
   display: grid;
-  gap: clamp(2.25rem, 5vh, 3.4rem);
-  max-width: 57rem;
-  border-left: 1px solid
-    color-mix(in srgb, var(--color-charcoal) 18%, transparent);
-  padding: clamp(2.75rem, 6vh, 4rem) 0 clamp(2.75rem, 6vh, 4rem)
-    clamp(3rem, 7vw, 5.5rem);
+  gap: clamp(1.65rem, 3.4vh, 2.25rem);
+  max-width: 62rem;
+  padding-block: clamp(2.75rem, 6vh, 4rem);
 }
 
 .websitesSupportIntro {
   display: grid;
-  gap: clamp(1rem, 2.5vh, 1.35rem);
-  max-width: 37rem;
+  gap: clamp(0.9rem, 2vh, 1.2rem);
+  max-width: 36rem;
 }
 
 .websitesSupportIntro h2 {
   margin: 0;
   color: var(--color-charcoal);
-  font-size: clamp(2rem, 3.4vw, 3.2rem);
-  font-weight: 640;
-  line-height: 1.02;
-  letter-spacing: -0.015em;
+  font-size: clamp(1.85rem, 2.7vw, 2.65rem);
+  font-weight: 620;
+  line-height: 1.06;
+  letter-spacing: 0;
 }
 
 .websitesSupportIntro p {
   max-width: 34rem;
   margin: 0;
   color: var(--color-charcoal);
-  font-size: clamp(1rem, 1.28vw, 1.18rem);
-  line-height: 1.36;
+  font-size: clamp(0.96rem, 1.05vw, 1.08rem);
+  line-height: 1.42;
 }
 
 .websitesSupportRows {
   display: grid;
 }
 
-.websitesSupportRows article {
-  display: grid;
+.websitesSupportRows .websitesSupportRow {
   grid-template-columns: minmax(11rem, 0.78fr) minmax(0, 1fr);
   gap: clamp(2rem, 5vw, 5.25rem);
+  border-top: 0;
   border-bottom: 1px solid
     color-mix(in srgb, var(--color-charcoal) 18%, transparent);
-  padding-block: clamp(1.05rem, 2.6vh, 1.3rem);
+  padding-block: clamp(0.8rem, 1.7vh, 1rem);
   transition: border-color 300ms ease;
 }
 
-.websitesSupportRows article:hover,
-.websitesSupportRows article:focus-within {
+.websitesSupportRows .websitesSupportRow:first-child {
+  padding-top: 0;
+}
+
+.websitesSupportRows .websitesSupportRow:hover,
+.websitesSupportRows .websitesSupportRow:focus-within {
   border-color: var(--color-cobalt);
 }
 
-.websitesSupportRows h3,
-.websitesSupportRows p {
+.websitesSupportRows .includedTitle,
+.websitesSupportRows .includedDescription {
   margin: 0;
   color: var(--color-charcoal);
-  font-size: clamp(0.92rem, 1vw, 1rem);
-  line-height: 1.35;
+  font-size: clamp(0.96rem, 1.05vw, 1.08rem);
+  line-height: 1.42;
 }
 
-.websitesSupportRows h3 {
+.websitesSupportRows .includedTitle {
   font-weight: 700;
 }
 
-.websitesSupportRows p {
+.websitesSupportRows .includedDescription {
   max-width: 27rem;
 }
 
 .websitesSupportPrice {
   display: grid;
   justify-items: start;
-  gap: 0.55rem;
+  gap: 0.45rem;
   color: var(--color-charcoal);
 }
 
 .websitesSupportPrice p {
   margin: 0;
-  font-size: clamp(0.92rem, 1vw, 1rem);
-  line-height: 1.35;
+  font-size: clamp(0.96rem, 1.05vw, 1.08rem);
+  line-height: 1.42;
 }
 
 .websitesSupportPrice strong {
+  margin: 0;
   color: var(--color-charcoal);
-  font-size: clamp(3.55rem, 6.2vw, 4.9rem);
+  font-size: clamp(2.8rem, 4.4vw, 3.8rem);
   font-weight: 430;
-  line-height: 0.9;
-  letter-spacing: -0.025em;
+  line-height: 0.95;
+  letter-spacing: 0;
 }
 
 .websitesSupportPrice span {
@@ -948,7 +958,7 @@
 .websitesFinalCta h2 {
   margin: 0;
   color: var(--color-cobalt);
-  font-family: var(--font-theatre-condensed);
+  font-family: var(--font-display);
   font-size: clamp(4.5rem, 8.6vw, 7.75rem);
   font-weight: 500;
   line-height: 0.78;
@@ -1136,7 +1146,7 @@
   }
 
   .websitesHero {
-    padding-block: clamp(7rem, 15vh, 9rem) clamp(3rem, 7vh, 4rem);
+    padding-block: clamp(5.5rem, 12vh, 7rem) clamp(3rem, 7vh, 4rem);
   }
 
   .websitesHeroInner > * {
@@ -1144,8 +1154,12 @@
   }
 
   .websitesHeroTitle {
-    font-size: clamp(5.9rem, 27vw, 10rem);
-    line-height: 0.9;
+    font-size: clamp(5.15rem, 23vw, 8rem);
+    line-height: 0.96;
+  }
+
+  .websitesHeroTitleCompact {
+    font-size: clamp(4.2rem, 17vw, 6rem);
   }
 
   .websitesHeroCopy {
@@ -1163,6 +1177,7 @@
   .websitesSectionGrid {
     grid-template-columns: 1fr;
     gap: clamp(1.8rem, 6vh, 2.6rem);
+    min-height: auto;
     padding-block: clamp(2.5rem, 7vh, 3.5rem);
   }
 
@@ -1172,6 +1187,10 @@
   .websitesOptionalGrid,
   .websitesReceiveGrid {
     grid-template-columns: 1fr;
+  }
+
+  .websitesSplitGrid {
+    min-height: auto;
   }
 
   .websitesIncludedItem {
@@ -1269,7 +1288,6 @@
   .websitesSupportContent {
     gap: clamp(2rem, 6vh, 3rem);
     max-width: none;
-    border-left: 0;
     padding: 0;
   }
 
@@ -1277,17 +1295,17 @@
     font-size: clamp(1.9rem, 8vw, 2.65rem);
   }
 
-  .websitesSupportRows article {
+  .websitesSupportRows .websitesSupportRow {
     grid-template-columns: 1fr;
     gap: 0.55rem;
   }
 
-  .websitesSupportRows p {
+  .websitesSupportRows .includedDescription {
     max-width: none;
   }
 
   .websitesSupportPrice strong {
-    font-size: clamp(3.65rem, 17vw, 5rem);
+    font-size: clamp(2.9rem, 13vw, 3.8rem);
   }
 
   .websitesFinalCta {

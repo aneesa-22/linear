@@ -100,11 +100,12 @@
   margin: 0;
   max-width: 12ch;
   color: var(--color-cobalt);
-  font-family: var(--font-theatre-condensed);
+  font-family: var(--font-display);
   font-size: clamp(4rem, 8vw, 7.3rem);
   font-weight: 500;
   line-height: 0.86;
   letter-spacing: -0.025em;
+  text-transform: uppercase;
 }
 
 .copy {

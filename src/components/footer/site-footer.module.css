@@ -1,0 +1,83 @@
+.footer {
+  width: 100%;
+  background: var(--color-cobalt);
+  color: var(--color-ivory);
+}
+
+.inner {
+  padding: clamp(1.6rem, 3vw, 2.4rem) clamp(1.5rem, 5vw, 5rem);
+}
+
+.bottomRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.25rem, 4vw, 4rem);
+  color: currentcolor;
+  font-size: 0.875rem;
+  font-weight: 620;
+  line-height: 1.2;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+.bottomRow a,
+.bottomRow p {
+  margin: 0;
+  color: currentcolor;
+}
+
+.bottomRow a {
+  width: fit-content;
+  text-decoration: none;
+  transition:
+    opacity 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    text-decoration-color 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bottomRow p {
+  justify-self: end;
+}
+
+.bottomRow a:hover,
+.bottomRow a:focus-visible {
+  opacity: 0.72;
+}
+
+.bottomRow a:hover,
+.bottomRow a:focus-visible {
+  text-decoration: underline;
+}
+
+.bottomRow a:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 0.25rem;
+}
+
+@media (max-width: 767px) {
+  .inner {
+    padding: 1.35rem 1.25rem;
+  }
+
+  .bottomRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .links {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.75rem 1rem;
+  }
+
+  .bottomRow p {
+    justify-self: start;
+  }
+}
