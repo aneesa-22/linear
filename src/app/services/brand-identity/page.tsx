@@ -7,46 +7,157 @@ import { BrandIdentityFaq } from "./brand-identity-faq";
 export const metadata: Metadata = {
   title: "Brand & Identity",
   description:
-    "A visual identity designed to help your business feel clearer, more memorable and more consistent wherever it appears.",
+    "A visual identity that gives your business consistency, confidence and something people remember.",
 };
 
 const includedItems = [
   {
-    title: "Discovery & Positioning",
+    title: "Brand Discovery",
     description:
-      "We explore your business, audience and goals to define the foundations of the brand.",
+      "We learn about your business, audience, goals and competitors before making creative decisions.",
+  },
+  {
+    title: "Creative Direction",
+    description:
+      "Moodboards, references and visual routes that define where the brand should go.",
+  },
+  {
+    title: "Logo System",
+    description:
+      "Primary logo, secondary marks and practical variations for different uses.",
+  },
+  {
+    title: "Colour Palette",
+    description:
+      "A flexible colour system built for digital, social and print.",
+  },
+  {
+    title: "Typography",
+    description:
+      "Type pairings and hierarchy rules that keep everything feeling consistent.",
   },
   {
     title: "Visual Identity",
     description:
-      "We create a distinctive visual direction that reflects who you are and how you want to be perceived.",
-  },
-  {
-    title: "Typography & Colour",
-    description:
-      "We build a flexible visual system using typography, colour and supporting design elements.",
+      "Graphic elements, image direction and supporting assets that make the brand feel distinct.",
   },
   {
     title: "Brand Guidelines",
-    description:
-      "We document the system so it can be used consistently across future touchpoints.",
+    description: "A simple guide showing how everything works together.",
   },
   {
-    title: "Launch Support",
+    title: "Launch Assets",
     description:
-      "We help apply the identity and support the transition into the new brand.",
+      "Exported files and ready-to-use formats for web, social and print.",
+  },
+  {
+    title: "Support",
+    description:
+      "Two weeks of support after delivery for adjustments and questions.",
+  },
+] as const;
+
+const perfectForItems = [
+  "New businesses that need a professional identity.",
+  "Businesses that have outgrown their current branding.",
+  "Businesses preparing for a new website.",
+  "Founders who want consistency across everything they publish.",
+] as const;
+
+const processItems = [
+  {
+    number: "01",
+    title: "Discover",
+    description: "We learn about the business and where it needs to go.",
+  },
+  {
+    number: "02",
+    title: "Explore",
+    description: "We create visual directions and creative concepts.",
+  },
+  {
+    number: "03",
+    title: "Refine",
+    description: "We develop the strongest route into a complete identity.",
+  },
+  {
+    number: "04",
+    title: "Deliver",
+    description: "We prepare assets, guidelines and final files.",
+  },
+  {
+    number: "05",
+    title: "Launch",
+    description:
+      "You leave with everything needed to use the brand confidently.",
+  },
+] as const;
+
+const receivedItems = [
+  "Primary Logo",
+  "Secondary Logo",
+  "Submarks",
+  "Colour Palette",
+  "Typography System",
+  "Brand Guidelines",
+  "Social Profile Assets",
+  "Website-ready Assets",
+  "Print-ready Files",
+  "SVG, PNG, PDF & Vector Exports",
+] as const;
+
+const optionalAdditions = [
+  {
+    title: "Website Design",
+    description: "Pair the identity with custom website designs.",
+  },
+  {
+    title: "Website Development",
+    description: "Turn the designs into a live responsive website.",
+  },
+  {
+    title: "Business Cards",
+    description: "Printed collateral and stationery for your brand.",
+  },
+  {
+    title: "Social Templates",
+    description: "Branded layouts for Instagram and marketing.",
+  },
+  {
+    title: "Copywriting",
+    description: "Support writing and structuring your content.",
+  },
+  {
+    title: "Photography Direction",
+    description: "Guidance for imagery, styling and art direction.",
+  },
+  {
+    title: "Illustration",
+    description: "Custom visual elements and supporting graphics.",
+  },
+  {
+    title: "Motion Design",
+    description: "Simple animated assets and brand movement.",
   },
 ] as const;
 
 export default function BrandIdentityPage() {
   return (
-    <main className={styles.page} aria-labelledby="service-title">
-      <section className={styles.hero} aria-describedby="service-intro">
-        <div className={styles.inner}>
+    <main
+      className={`${styles.page} ${styles.websitesPage}`}
+      aria-labelledby="service-title"
+    >
+      <section
+        className={`${styles.hero} ${styles.websitesHero}`}
+        aria-describedby="service-intro service-details"
+      >
+        <div
+          className={`${styles.inner} ${styles.websitesInner} ${styles.websitesHeroInner}`}
+        >
           <Reveal as="div" delay={0.12}>
             <h1
               id="service-title"
-              className={`${styles.heroTitle} ${styles.heroTitleCompact}`}
+              className={`${styles.heroTitle} ${styles.websitesHeroTitle}`}
             >
               Brand &
               <br />
@@ -54,27 +165,47 @@ export default function BrandIdentityPage() {
             </h1>
           </Reveal>
 
-          <Reveal as="div" delay={0.24}>
-            <p id="service-intro" className={styles.heroCopy}>
-              A visual identity designed to help your business feel clearer,
-              more memorable and more consistent wherever it appears.
-            </p>
+          <Reveal as="div" delay={0.2}>
+            <div className={styles.websitesHeroCopy}>
+              <p id="service-intro">
+                A visual identity that gives your business consistency,
+                confidence and something people remember.
+              </p>
+              <p></p>
+            </div>
+          </Reveal>
+
+          <Reveal as="div" delay={0.28}>
+            <dl id="service-details" className={styles.websitesMeta}>
+              <div>
+                <dt>FROM</dt>
+                <dd>£900+</dd>
+              </div>
+              <div>
+                <dt>TIMELINE</dt>
+                <dd>2–4 WEEKS</dd>
+              </div>
+            </dl>
           </Reveal>
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="included-title">
-        <div className={styles.inner}>
-          <div className={styles.sectionGrid}>
+      <section
+        className={`${styles.section} ${styles.websitesSection}`}
+        aria-labelledby="included-title"
+      >
+        <div className={`${styles.inner} ${styles.websitesInner}`}>
+          <div className={styles.websitesSectionGrid}>
             <SectionLabel id="included-title">WHAT’S INCLUDED</SectionLabel>
 
-            <div className={styles.includedList}>
+            <div className={styles.websitesIncludedGrid}>
               {includedItems.map((item) => (
-                <article className={styles.includedRow} key={item.title}>
-                  <h2 className={styles.includedTitle}>{item.title}</h2>
-                  <p className={styles.includedDescription}>
-                    {item.description}
-                  </p>
+                <article
+                  className={styles.websitesIncludedItem}
+                  key={item.title}
+                >
+                  <h2>{item.title}</h2>
+                  <p>{item.description}</p>
                 </article>
               ))}
             </div>
@@ -82,68 +213,117 @@ export default function BrandIdentityPage() {
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="perfect-for-title">
-        <div className={styles.inner}>
-          <div className={styles.sectionGrid}>
-            <SectionLabel id="perfect-for-title">PERFECT FOR</SectionLabel>
+      <section
+        className={`${styles.section} ${styles.websitesSplitSection}`}
+        aria-label="Who the service is for and how the process works"
+      >
+        <div className={`${styles.inner} ${styles.websitesInner}`}>
+          <div className={styles.websitesSplitGrid}>
+            <div className={styles.websitesPanel}>
+              <SectionLabel id="perfect-for-title">PERFECT FOR</SectionLabel>
+              <ul
+                className={styles.websitesRows}
+                aria-labelledby="perfect-for-title"
+              >
+                {perfectForItems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
 
-            <p className={styles.bodyLarge}>
-              New businesses building a brand from scratch.
-              <br />
-              Businesses that have outgrown their current identity.
-              <br />
-              Companies that feel inconsistent across their website, social
-              channels and marketing.
-              <br />
-              Businesses preparing for a website redesign or relaunch.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.section} aria-labelledby="timeline-title">
-        <div className={styles.inner}>
-          <div className={styles.sectionGrid}>
-            <SectionLabel id="timeline-title">TIMELINE</SectionLabel>
-
-            <div className={styles.metricBlock}>
-              <p className={styles.metric}>2–4 weeks</p>
-              <p className={styles.bodySmall}>
-                Depending on scope, deliverables and feedback rounds.
-              </p>
+            <div className={styles.websitesPanel}>
+              <SectionLabel id="process-title">THE PROCESS</SectionLabel>
+              <ol
+                className={styles.websitesProcess}
+                aria-labelledby="process-title"
+              >
+                {processItems.map((item) => (
+                  <li key={item.number}>
+                    <span>{item.number}</span>
+                    <h2>{item.title}</h2>
+                    <p>{item.description}</p>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="investment-title">
-        <div className={styles.inner}>
-          <div className={styles.sectionGrid}>
-            <SectionLabel id="investment-title">INVESTMENT</SectionLabel>
+      <section
+        className={`${styles.section} ${styles.websitesReceiveSection}`}
+        aria-labelledby="receive-title"
+      >
+        <div className={`${styles.inner} ${styles.websitesInner}`}>
+          <SectionLabel id="receive-title">WHAT YOU RECEIVE</SectionLabel>
 
-            <div className={styles.investmentGrid}>
-              <div className={styles.investmentMain}>
-                <p className={styles.investmentPrefix}>From</p>
-                <p className={styles.investmentAmount}>£1,000+</p>
-                <p className={styles.bodySmall}>
-                  Every identity project is scoped individually.
-                </p>
+          <div className={styles.websitesReceiveGrid}>
+            {receivedItems.map((item) => (
+              <article className={styles.websitesReceiveItem} key={item}>
+                <span
+                  className={styles.websitesIconPlaceholder}
+                  aria-hidden="true"
+                />
+                <h2>{item}</h2>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className={`${styles.section} ${styles.websitesSplitSection}`}
+        aria-label="Investment and optional additions"
+      >
+        <div className={`${styles.inner} ${styles.websitesInner}`}>
+          <div className={styles.websitesSplitGrid}>
+            <div
+              className={`${styles.websitesPanel} ${styles.websitesInvestment}`}
+            >
+              <SectionLabel id="investment-title">INVESTMENT</SectionLabel>
+              <div aria-labelledby="investment-title">
+                <p className={styles.websitesInvestmentPrefix}>From</p>
+                <p className={styles.websitesInvestmentAmount}>£900+</p>
+                <p>Every project is scoped individually.</p>
               </div>
-
-              <div className={styles.investmentCopy}>
+              <div className={styles.websitesInvestmentCopy}>
                 <p>
-                  Final investment depends on the depth of strategy, number of
-                  deliverables and rollout requirements.
+                  Most brand identity projects sit between £900–£2,500 depending
+                  on scope and deliverables.
                 </p>
+              </div>
+            </div>
+
+            <div className={styles.websitesPanel}>
+              <SectionLabel id="optional-title">
+                OPTIONAL ADDITIONS
+              </SectionLabel>
+              <p className={styles.websitesOptionalIntro}>
+                Add what your project needs. These are scoped separately so your
+                quote reflects the work involved.
+              </p>
+              <div
+                className={styles.websitesOptionalGrid}
+                aria-labelledby="optional-title"
+              >
+                {optionalAdditions.map((item) => (
+                  <article key={item.title}>
+                    <h2>{item.title}</h2>
+                    <p>{item.description}</p>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="faq-title">
-        <div className={styles.inner}>
-          <div className={styles.sectionGrid}>
+      <section
+        className={`${styles.section} ${styles.websitesSection}`}
+        aria-labelledby="faq-title"
+      >
+        <div className={`${styles.inner} ${styles.websitesInner}`}>
+          <div className={styles.websitesSectionGrid}>
             <SectionLabel id="faq-title">FAQ</SectionLabel>
 
             <div className={styles.faqColumn}>
@@ -154,21 +334,6 @@ export default function BrandIdentityPage() {
 
               <BrandIdentityFaq />
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.section} aria-labelledby="talk-title">
-        <div className={styles.inner}>
-          <div className={styles.sectionGrid}>
-            <SectionLabel id="talk-title">LET’S TALK</SectionLabel>
-
-            <Link className={styles.largeCta} href="/contact">
-              <span>Start your brand project</span>
-              <span className={styles.ctaArrow} aria-hidden="true">
-                →
-              </span>
-            </Link>
           </div>
         </div>
       </section>

@@ -14,20 +14,14 @@ import styles from "./what-we-do.module.css";
 const services = [
   {
     number: "01",
-    title: "Website Launch",
-    copy: "For businesses launching from scratch, replacing a DIY site, or building their first proper online presence.",
-    summary: "Launch a clear, credible website from the ground up.",
+    title: "Websites",
+    copy: "Custom websites designed and built for businesses that have outgrown where they started.",
+    summary:
+      "Build a clear, credible website around where your business is going.",
     href: "/services/website-launch",
   },
   {
     number: "02",
-    title: "Website Evolution",
-    copy: "For businesses that have outgrown their current website and need something stronger, clearer and easier to maintain.",
-    summary: "Refine and rebuild what is already there into something sharper.",
-    href: "/services/website-evolution",
-  },
-  {
-    number: "03",
     title: "Brand & Identity",
     copy: "For businesses that need a stronger visual foundation before the website is built.",
     summary:
@@ -46,22 +40,17 @@ export function WhatWeDo() {
   });
   const trackX = useTransform(
     scrollYProgress,
-    [0, 0.16, 0.4, 0.56, 0.82, 1],
-    ["0%", "0%", "-33.333%", "-33.333%", "-66.666%", "-66.666%"],
+    [0, 0.24, 0.74, 1],
+    ["0%", "0%", "-50%", "-50%"],
   );
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest < 0.34) {
+    if (latest < 0.5) {
       setActiveStep(0);
       return;
     }
 
-    if (latest < 0.7) {
-      setActiveStep(1);
-      return;
-    }
-
-    setActiveStep(2);
+    setActiveStep(1);
   });
 
   useEffect(() => {
@@ -140,9 +129,7 @@ export function WhatWeDo() {
   );
 }
 
-function ProgressIndicator({
-  activeStep,
-}: Readonly<{ activeStep: number }>) {
+function ProgressIndicator({ activeStep }: Readonly<{ activeStep: number }>) {
   return (
     <div
       className={styles.progress}
@@ -152,17 +139,21 @@ function ProgressIndicator({
       aria-valuemax={services.length}
       aria-valuenow={activeStep + 1}
     >
+      <span
+        className={styles.progressNumber}
+        data-active={activeStep === 0}
+        aria-hidden="true"
+      >
+        01
+      </span>
       <span className={styles.progressLine} aria-hidden="true" />
-      {services.map((service, index) => (
-        <span
-          className={styles.progressMarker}
-          data-active={index === activeStep}
-          key={service.number}
-          aria-hidden="true"
-        >
-          <span className={styles.progressDot} />
-        </span>
-      ))}
+      <span
+        className={styles.progressNumber}
+        data-active={activeStep === 1}
+        aria-hidden="true"
+      >
+        02
+      </span>
     </div>
   );
 }

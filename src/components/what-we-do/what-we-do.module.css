@@ -36,7 +36,7 @@
 .track {
   display: flex;
   height: 100%;
-  width: 300vw;
+  width: 200vw;
   will-change: transform;
 }
 
@@ -69,7 +69,6 @@
   border-color: var(--color-cobalt);
   outline: none;
 }
-
 
 .cardTop,
 .cardBottom {
@@ -125,7 +124,6 @@
   line-height: 1.18;
 }
 
-
 .number,
 .arrow,
 .title,
@@ -170,59 +168,34 @@
   left: clamp(1.25rem, 6vw, 4.5rem);
   z-index: 2;
   display: flex;
-  width: min(26rem, calc(100vw - clamp(2.5rem, 12vw, 9rem)));
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
   justify-self: center;
   margin-inline: auto;
+  color: var(--color-charcoal);
+  font-family: var(--font-satoshi);
+  font-size: clamp(0.82rem, 0.95vw, 0.92rem);
+  font-weight: 620;
+  line-height: 1;
+  letter-spacing: 0.04em;
   pointer-events: none;
 }
 
 .progressLine {
-  position: absolute;
-  top: 50%;
-  right: 0.34rem;
-  left: 0.34rem;
+  width: clamp(8rem, 22vw, 22rem);
   height: 1px;
-  background: color-mix(in srgb, var(--color-charcoal) 46%, transparent);
-  transform: translateY(-50%);
+  background: var(--color-charcoal);
+  opacity: 0.45;
 }
 
-.progressMarker {
-  position: relative;
-  z-index: 1;
-  display: inline-grid;
-  width: 1.15rem;
-  height: 1.15rem;
-  place-items: center;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  background: var(--color-ivory);
+.progressNumber {
   color: var(--color-charcoal);
-  transition:
-    border-color 320ms cubic-bezier(0.22, 1, 0.36, 1),
-    color 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: color 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.progressDot {
-  width: 0.38rem;
-  height: 0.38rem;
-  border-radius: 999px;
-  background: currentcolor;
-  transition:
-    width 320ms cubic-bezier(0.22, 1, 0.36, 1),
-    height 320ms cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 320ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.progressMarker[data-active="true"] {
-  border-color: var(--color-cobalt);
+.progressNumber[data-active="true"] {
   color: var(--color-cobalt);
-}
-
-.progressMarker[data-active="true"] .progressDot {
-  width: 0.42rem;
-  height: 0.42rem;
 }
 
 .staticExperience,

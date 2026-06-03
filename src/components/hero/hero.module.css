@@ -34,7 +34,7 @@
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: hero-marquee 96s linear infinite;
+  animation: hero-marquee 124s linear infinite;
 }
 
 .marqueeGroup {
@@ -92,7 +92,7 @@
   }
 
   .marqueeTrack {
-    animation-duration: 78s;
+    animation-duration: 104s;
   }
 
   .marqueeText {

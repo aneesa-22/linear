@@ -334,11 +334,12 @@
   }
 
   .detailPane {
-    min-height: 22rem;
+    min-height: 23.5rem;
     border-top: 1px solid
       color-mix(in srgb, var(--color-charcoal) 26%, transparent);
     border-left: 0;
-    padding: clamp(1.25rem, 6vw, 1.75rem);
+    padding: clamp(1.5rem, 7vw, 2rem) clamp(1.25rem, 6vw, 1.75rem)
+      clamp(1.25rem, 6vw, 1.75rem);
   }
 
   .controls {
@@ -347,6 +348,7 @@
     justify-content: flex-end;
     gap: 0.85rem;
     justify-self: stretch;
+    margin-bottom: clamp(1.5rem, 6vh, 2.5rem);
   }
 
   .arrowButton {
@@ -356,13 +358,18 @@
 
   .stageContent {
     max-width: none;
+    align-self: start;
+    gap: 0.85rem;
   }
 
   .stageTitle {
-    font-size: clamp(2.75rem, 13.5vw, 4.35rem);
+    padding-top: 0.08em;
+    font-size: clamp(2.65rem, 11.5vw, 3.85rem);
+    line-height: 0.82;
   }
 
   .stageCopy {
+    margin-top: clamp(1.15rem, 4vh, 1.75rem);
     font-size: clamp(1rem, 4.5vw, 1.15rem);
   }
 }

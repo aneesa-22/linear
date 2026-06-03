@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className={`${styles.hero} bg-ivory text-charcoal relative overflow-hidden px-[clamp(1.25rem,6vw,4.5rem)]`}
+      className={`${styles.hero} relative overflow-hidden px-[clamp(1.25rem,6vw,4.5rem)]`}
     >
       <p id="hero-title" className={styles.intro}>
         <Reveal delay={0.18}>

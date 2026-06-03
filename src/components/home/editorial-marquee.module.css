@@ -12,7 +12,7 @@
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: editorial-marquee 46s linear infinite;
+  animation: editorial-marquee 68s linear infinite;
 }
 
 .group {
@@ -68,7 +68,7 @@
   }
 
   .track {
-    animation-duration: 40s;
+    animation-duration: 60s;
   }
 
   .item {

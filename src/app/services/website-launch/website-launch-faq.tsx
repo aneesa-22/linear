@@ -7,32 +7,42 @@ const faqItems = [
   {
     question: "What if I don’t have a website yet?",
     answer:
-      "That is exactly what Website Launch is for. We help shape the structure, content direction, design and build from the ground up.",
+      "That is fine. We can help shape the structure, content direction, design and build from the ground up.",
   },
   {
-    question: "What if I already have a Wix, Squarespace or template site?",
+    question: "What if I already have a Wix, Squarespace or WordPress site?",
     answer:
       "We can use what exists as context, then rebuild the experience into something clearer, faster and more aligned with your business.",
   },
   {
-    question: "Can you help me choose a domain?",
-    answer:
-      "Yes. We can advise on domain options, setup and launch basics so the technical side feels straightforward.",
-  },
-  {
     question: "Will I be able to update the website myself?",
     answer:
-      "Yes. We set up a manageable CMS and hand it over with the essentials you need to keep the site current.",
+      "Yes. If your project needs editable content, we can set up a CMS and hand over the essentials so you can manage updates yourself.",
   },
   {
-    question: "What if I need bookings, APIs or custom functionality?",
+    question: "Do you provide hosting?",
     answer:
-      "We can scope that during the strategy stage and recommend the simplest reliable approach for launch.",
+      "We can recommend a reliable hosting setup and handle deployment. Hosting costs are usually paid directly by you to the provider.",
   },
   {
-    question: "What happens after launch?",
+    question: "Can you redesign my existing website?",
     answer:
-      "We stay close through handover, testing and launch support. If you need ongoing improvements, we can continue from there.",
+      "Yes. We can rebuild an existing website into something clearer, more credible and better suited to where your business is now.",
+  },
+  {
+    question: "Can you help with branding too?",
+    answer:
+      "Yes. Brand and identity work can be scoped separately or handled before the website if your visual foundation needs work.",
+  },
+  {
+    question: "How long does a website project take?",
+    answer:
+      "Most website projects take 4–8 weeks depending on scope, content, feedback and functionality.",
+  },
+  {
+    question: "What if I need bookings, ecommerce or custom functionality?",
+    answer:
+      "Those features can be scoped as optional additions so the project reflects the work involved without forcing every website into the same package.",
   },
 ] as const;
 

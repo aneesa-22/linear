@@ -91,15 +91,6 @@ export default function ContactPage() {
                 />
               </label>
 
-              <div className={styles.submitBlock}>
-                <p className={styles.submitPrompt}>Ready when you are.</p>
-                <button className={styles.submit} type="submit">
-                  <span>Send enquiry</span>
-                  <span className={styles.submitArrow} aria-hidden="true">
-                    →
-                  </span>
-                </button>
-              </div>
             </form>
           </Reveal>
         </div>

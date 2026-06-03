@@ -5,9 +5,9 @@ import styles from "../website-launch/website-launch.module.css";
 
 const faqItems = [
   {
-    question: "What is included in a brand identity?",
+    question: "Can you redesign an existing brand?",
     answer:
-      "A complete visual system including identity direction, typography, colour and supporting assets.",
+      "Yes. We can refine and evolve an existing brand while keeping the parts that still work.",
   },
   {
     question: "Do I need a logo already?",
@@ -15,29 +15,34 @@ const faqItems = [
       "No. We can create a new identity from scratch or evolve an existing one.",
   },
   {
-    question: "Will I receive brand guidelines?",
+    question: "How many concepts are included?",
     answer:
-      "Yes. Every project includes guidance on how the identity should be used consistently.",
+      "We explore a focused set of creative directions, then develop the strongest route into a complete identity system.",
   },
   {
-    question: "Can you redesign an existing identity?",
+    question: "Will I own all the files?",
     answer:
-      "Yes. We can refine and evolve an existing brand while keeping the parts that still work.",
+      "Yes. Once the project is complete and paid for, you receive the final approved brand files for your business to use.",
   },
   {
-    question: "Can this be combined with a website project?",
+    question: "Can you build my website afterwards?",
     answer:
-      "Absolutely. Many website projects begin with a brand identity phase first.",
+      "Yes. Brand identity and website work can sit together, or the website can begin once the identity foundation is ready.",
   },
   {
-    question: "What files will I receive?",
+    question: "Can I use the branding on social media and print?",
     answer:
-      "You will receive all final logo files, colour specifications, typography recommendations and supporting brand assets.",
+      "Yes. The identity is built to work across digital, social and print, with files and guidance for common uses.",
   },
   {
-    question: "What happens after launch?",
+    question: "What happens if I need changes later?",
     answer:
-      "We remain available to support implementation and help the identity grow alongside the business.",
+      "We include two weeks of support after delivery, and further changes or rollout support can be scoped separately.",
+  },
+  {
+    question: "Can we start with branding and add the website later?",
+    answer:
+      "Yes. Starting with the brand first is often the clearest route, especially if the website needs to feel more consistent and confident.",
   },
 ] as const;
 
