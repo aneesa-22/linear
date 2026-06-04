@@ -41,7 +41,11 @@ const includedItems = [
 export default function WebsiteEvolutionPage() {
   return (
     <main className={styles.page} aria-labelledby="service-title">
-      <section className={styles.hero} aria-describedby="service-intro">
+      <section
+        className={styles.hero}
+        data-floating-badge-hero
+        aria-describedby="service-intro"
+      >
         <div className={styles.inner}>
           <Reveal as="div" delay={0.12}>
             <h1
@@ -63,7 +67,11 @@ export default function WebsiteEvolutionPage() {
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="included-title">
+      <section
+        className={styles.section}
+        data-floating-badge-start
+        aria-labelledby="included-title"
+      >
         <div className={styles.inner}>
           <div className={styles.sectionGrid}>
             <SectionLabel id="included-title">WHAT’S INCLUDED</SectionLabel>

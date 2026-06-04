@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { CookieConsent } from "@/components/cookie-consent";
+import { FloatingTalkBadge } from "@/components/floating-talk-badge/floating-talk-badge";
 import { SiteFooter } from "@/components/footer";
 import { SiteHeader } from "@/components/header/site-header";
 import { CursorFollower } from "@/components/ui/cursor-follower";
@@ -13,7 +15,9 @@ export function AppShell({ children }: AppShellProps) {
       <SiteHeader />
       {children}
       <SiteFooter />
+      <CookieConsent />
       <CursorFollower />
+      <FloatingTalkBadge />
     </>
   );
 }

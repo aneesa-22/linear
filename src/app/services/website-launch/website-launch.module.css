@@ -1278,6 +1278,7 @@
 
   .websitesSupportLayout {
     grid-template-columns: 1fr;
+    border-top: 0;
     padding-block: clamp(2.75rem, 7vh, 4rem);
   }
 
@@ -1286,6 +1287,7 @@
   }
 
   .websitesSupportContent {
+    border-top: 0 !important;
     gap: clamp(2rem, 6vh, 3rem);
     max-width: none;
     padding: 0;
@@ -1298,6 +1300,13 @@
   .websitesSupportRows .websitesSupportRow {
     grid-template-columns: 1fr;
     gap: 0.55rem;
+  }
+
+  .websitesSupportRows .websitesSupportRow:first-child {
+    border-top: 0;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-charcoal) 18%, transparent);
+    padding-top: 0;
   }
 
   .websitesSupportRows .includedDescription {

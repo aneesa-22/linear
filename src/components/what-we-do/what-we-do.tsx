@@ -96,6 +96,7 @@ export function WhatWeDo() {
       ref={sectionRef}
       aria-label="What We Do"
       className={styles.section}
+      data-floating-badge-start
     >
       <div className={styles.desktopExperience}>
         <div className={styles.stickyViewport}>

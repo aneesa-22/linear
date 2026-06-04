@@ -1,0 +1,150 @@
+.banner {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  left: clamp(1rem, 3vw, 2rem);
+  z-index: 80;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  max-width: 62rem;
+  margin-inline: auto;
+  border: 1px solid color-mix(in srgb, var(--color-charcoal) 18%, transparent);
+  border-radius: 1rem;
+  background: var(--color-ivory);
+  box-shadow: 0 1.5rem 4rem
+    color-mix(in srgb, var(--color-charcoal) 16%, transparent);
+  color: var(--color-cobalt);
+  padding: clamp(1.25rem, 2.4vw, 1.65rem) clamp(1.25rem, 3vw, 2rem);
+}
+
+.icon {
+  display: block;
+  width: clamp(2.4rem, 4vw, 3rem);
+  height: clamp(2.4rem, 4vw, 3rem);
+  background-color: var(--color-cobalt);
+  mask: var(--cookie-icon) center / contain no-repeat;
+  -webkit-mask: var(--cookie-icon) center / contain no-repeat;
+}
+
+.copy {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.copy h2,
+.copy p {
+  margin: 0;
+}
+
+.copy h2 {
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  font-weight: 760;
+  line-height: 1.15;
+}
+
+.copy p {
+  max-width: 34rem;
+  color: var(--color-charcoal);
+  font-size: clamp(0.92rem, 1vw, 1rem);
+  line-height: 1.35;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.acceptButton,
+.declineButton,
+.closeButton {
+  appearance: none;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.declineButton {
+  border-bottom: 1px solid currentcolor;
+  background: transparent;
+  color: var(--color-cobalt);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.acceptButton {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border-radius: 0.35rem;
+  background: var(--color-cobalt);
+  color: var(--color-ivory);
+  padding-inline: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 720;
+  line-height: 1;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.9rem;
+  display: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-cobalt);
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.acceptButton,
+.declineButton,
+.closeButton {
+  transition: opacity 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.acceptButton:hover,
+.acceptButton:focus-visible,
+.declineButton:hover,
+.declineButton:focus-visible,
+.closeButton:hover,
+.closeButton:focus-visible {
+  opacity: 0.72;
+}
+
+@media (max-width: 767px) {
+  .banner {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 1rem;
+    border-radius: 0.8rem;
+    padding: 1.25rem;
+    padding-top: 3.4rem;
+  }
+
+  .icon {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .closeButton {
+    display: flex;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .acceptButton {
+    flex: 1;
+    min-height: 3rem;
+  }
+}

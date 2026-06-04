@@ -18,7 +18,15 @@
   align-items: start;
 }
 
-.label,
+.label {
+  margin: 0;
+  font-family: var(--font-satoshi);
+  font-size: clamp(1rem, 1.25vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
 .calendarHeader,
 .progress {
   margin: 0;
@@ -294,6 +302,10 @@
 
   .copy {
     font-size: clamp(1.25rem, 5.8vw, 1.55rem);
+  }
+
+  .label {
+    font-size: clamp(1.05rem, 5vw, 1.35rem);
   }
 
   .card {

@@ -13,6 +13,7 @@ export function Hero() {
     <section
       aria-labelledby="hero-title"
       className={`${styles.hero} relative overflow-hidden px-[clamp(1.25rem,6vw,4.5rem)]`}
+      data-floating-badge-hero
     >
       <div className={styles.content}>
         <Reveal delay={0.18}>

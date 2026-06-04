@@ -1,7 +1,46 @@
 .footer {
   width: 100%;
-  background: var(--color-cobalt);
-  color: var(--color-ivory);
+  background: var(--token-cobalt, var(--color-cobalt));
+  color: var(--token-ivory, var(--color-ivory));
+}
+
+.ctaStrip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 48px clamp(1.5rem, 5vw, 5rem);
+  color: currentcolor;
+}
+
+.ctaStrip p {
+  margin: 0;
+  color: currentcolor;
+  font-size: 1.125rem;
+  font-weight: 560;
+  line-height: 1.25;
+}
+
+.ctaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  border-bottom: 1px solid currentcolor;
+  padding-bottom: 0.22rem;
+  color: currentcolor;
+  font-weight: 760;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ctaLink:hover,
+.ctaLink:focus-visible {
+  opacity: 0.72;
 }
 
 .inner {
@@ -62,6 +101,17 @@
 @media (max-width: 767px) {
   .inner {
     padding: 1.35rem 1.25rem;
+  }
+
+  .ctaStrip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 32px 1.25rem;
+  }
+
+  .ctaStrip p {
+    font-size: 1rem;
   }
 
   .bottomRow {

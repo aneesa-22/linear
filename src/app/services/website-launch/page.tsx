@@ -123,6 +123,7 @@ export default function WebsitesPage() {
     >
       <section
         className={`${styles.hero} ${styles.websitesHero}`}
+        data-floating-badge-hero
         aria-describedby="service-intro service-details"
       >
         <div
@@ -164,6 +165,7 @@ export default function WebsitesPage() {
 
       <section
         className={`${styles.section} ${styles.websitesSection}`}
+        data-floating-badge-start
         aria-labelledby="included-title"
       >
         <div className={`${styles.inner} ${styles.websitesInner}`}>

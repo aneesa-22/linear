@@ -201,7 +201,7 @@
 }
 
 .projectGroup .legend {
-  margin-bottom: 0;
+  margin-bottom: clamp(0.45rem, 1.4vh, 0.8rem);
 }
 
 .projectOptions {
@@ -329,6 +329,24 @@
 .submitButton:focus-visible .submitArrow,
 .submitButton:active .submitArrow {
   transform: translateX(0.18em);
+}
+
+.submitButton:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.statusMessage {
+  min-height: 1.2em;
+  margin: calc(clamp(2rem, 4.1vh, 2.65rem) * -0.45) 0 0;
+  color: var(--color-cobalt);
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  font-weight: 520;
+  line-height: 1.25;
+}
+
+.statusError {
+  color: var(--color-charcoal);
 }
 
 @media (prefers-reduced-motion: reduce) {
