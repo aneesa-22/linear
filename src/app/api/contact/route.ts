@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const enquiryEmail = "hello@linearstudio.co.uk";
 const fromEmail = "Linear Studio <hello@linearstudio.co.uk>";
 const validProjectTypes = new Set([
   "Website",
@@ -55,8 +54,9 @@ function isValidUrl(value: string) {
 
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
+  const contactEmail = process.env.CONTACT_EMAIL;
 
-  if (!apiKey) {
+  if (!apiKey || !contactEmail) {
     return NextResponse.json(
       { message: "Email is not configured yet." },
       { status: 500 },
@@ -133,7 +133,7 @@ export async function POST(request: Request) {
     const [enquiry, acknowledgement] = await Promise.all([
       resend.emails.send({
         from: fromEmail,
-        to: enquiryEmail,
+        to: contactEmail,
         replyTo: email,
         subject: `New Linear Studio enquiry from ${fullName}`,
         text: [
@@ -161,7 +161,7 @@ export async function POST(request: Request) {
       resend.emails.send({
         from: fromEmail,
         to: email,
-        replyTo: enquiryEmail,
+        replyTo: contactEmail,
         subject: "Thanks for getting in touch",
         text: [
           `Hi ${firstName},`,
