@@ -22,7 +22,7 @@ export function Hero() {
               Hi, we’re Linear Studio.
             </p>
             <p className={styles.intro}>
-              We design websites, brands and
+              We design and develop websites, brands and
               <br />
               digital experiences for businesses
               <br />
