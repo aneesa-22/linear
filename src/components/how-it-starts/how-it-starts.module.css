@@ -41,7 +41,7 @@
   margin: 0;
   max-width: 36rem;
   font-size: clamp(1.25rem, 1.9vw, 1.75rem);
-  font-weight: 400;
+  font-weight: var(--font-body-weight);
   line-height: 1.2;
   letter-spacing: 0;
 }

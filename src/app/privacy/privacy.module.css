@@ -45,7 +45,7 @@
   color: var(--color-charcoal);
   font-family: var(--font-satoshi);
   font-size: clamp(0.95rem, 1.02vw, 1.05rem);
-  font-weight: 400;
+  font-weight: var(--font-body-weight);
   line-height: 1.48;
   letter-spacing: 0;
 }
