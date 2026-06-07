@@ -59,7 +59,7 @@
   font-size: clamp(1.25rem, 1.55vw, 1.55rem);
   font-weight: var(--font-body-weight);
   line-height: 1.28;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .introDetails {
@@ -126,7 +126,7 @@
   font-size: clamp(1rem, 1.08vw, 1.1rem);
   font-weight: 620;
   line-height: 1.1;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
   transition:
     color 250ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -304,7 +304,7 @@
   font-size: clamp(1.15rem, 1.35vw, 1.35rem);
   font-weight: 620;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
   padding: 0 0 0.35rem;
   text-transform: none;
   transition:
@@ -377,7 +377,7 @@
   .submitButton:hover .submitArrow,
   .submitButton:focus-visible .submitArrow,
   .submitButton:active .submitArrow {
-    letter-spacing: 0;
+    letter-spacing: var(--font-body-letter-spacing);
     transform: none;
   }
 }

@@ -19,20 +19,36 @@
   }
 
   @font-face {
-    font-family: "Archivo";
-    src: url("../styles/Archivo/Archivo-VariableFont_wdth,wght.ttf")
-      format("truetype");
+    font-family: "Linear Helvetica";
+    src: url("../styles/Helvetica-Light.woff2") format("woff2");
     font-display: swap;
     font-style: normal;
-    font-weight: 100 900;
+    font-weight: 200;
+  }
+
+  @font-face {
+    font-family: "Linear Helvetica";
+    src: url("../styles/Helvetica-Regular.woff2") format("woff2");
+    font-display: swap;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: "Linear Helvetica";
+    src: url("../styles/Helvetica-Bold.woff2") format("woff2");
+    font-display: swap;
+    font-style: normal;
+    font-weight: 700;
   }
 
   :root {
     --color-ivory: #ffffff;
     --color-charcoal: #202020;
     --color-cobalt: #1f1f1f;
-    --font-body: "Archivo", system-ui, sans-serif;
+    --font-body: "Linear Helvetica", Helvetica, Arial, system-ui, sans-serif;
     --font-body-weight: 200;
+    --font-body-letter-spacing: -0.05em;
     --font-satoshi: var(--font-body);
     --font-display: "Theatre Condensed", "Arial Narrow", sans-serif;
     --cursor-x: -9999px;
@@ -52,6 +68,7 @@
     color: var(--color-charcoal);
     font-family: var(--font-body);
     font-weight: var(--font-body-weight);
+    letter-spacing: var(--font-body-letter-spacing);
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }

@@ -23,7 +23,7 @@
   font-size: clamp(1rem, 1.25vw, 1.3rem);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .stickyViewport > .label {
@@ -113,7 +113,7 @@
   max-width: 46rem;
   font-size: clamp(1.15rem, 1.75vw, 1.7rem);
   line-height: 1.18;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .summary,
@@ -121,7 +121,7 @@
   margin: 0;
   font-family: var(--font-satoshi);
   font-size: clamp(1rem, 1.35vw, 1.25rem);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.18;
 }
 
@@ -247,7 +247,7 @@
   .card:active .title,
   .card:active .summary,
   .card:active .action {
-    letter-spacing: 0;
+    letter-spacing: var(--font-body-letter-spacing);
     transform: none;
   }
 }

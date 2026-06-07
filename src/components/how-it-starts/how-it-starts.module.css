@@ -24,7 +24,7 @@
   font-size: clamp(1rem, 1.25vw, 1.3rem);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .calendarHeader,
@@ -34,7 +34,7 @@
   font-size: clamp(0.75rem, 0.9vw, 0.9rem);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .copy {
@@ -43,7 +43,7 @@
   font-size: clamp(1.25rem, 1.9vw, 1.75rem);
   font-weight: var(--font-body-weight);
   line-height: 1.2;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .card {
@@ -98,7 +98,7 @@
   font-size: clamp(0.75rem, 0.9vw, 0.9rem);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .dotCell,
@@ -250,7 +250,7 @@
 
 .card:hover .stageTitle,
 .card:focus-within .stageTitle {
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
   transform: translateY(-2px);
 }
 
@@ -269,7 +269,7 @@
   .arrowButton:active,
   .card:hover .stageTitle,
   .card:focus-within .stageTitle {
-    letter-spacing: 0;
+    letter-spacing: var(--font-body-letter-spacing);
     transform: none;
   }
 }
@@ -279,7 +279,7 @@
   color: var(--color-charcoal);
   font-size: clamp(1.05rem, 1.45vw, 1.35rem);
   line-height: 1.35;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .progress {

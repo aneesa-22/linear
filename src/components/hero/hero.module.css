@@ -27,7 +27,7 @@
   color: var(--color-charcoal);
   font-family: var(--font-satoshi);
   font-weight: var(--font-body-weight);
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .kicker {
@@ -50,7 +50,7 @@
   color: var(--color-cobalt);
   font-family: var(--font-satoshi);
   font-size: clamp(1rem, 1.35vw, 1.25rem);
-  font-weight: 720;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: 0.04em;
   padding-bottom: 0.4rem;

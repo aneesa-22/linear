@@ -38,7 +38,7 @@
   font-size: clamp(0.75rem, 1vw, 0.9rem);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .desktopDeck {
@@ -216,7 +216,7 @@
   color: var(--color-charcoal);
   font-size: clamp(1rem, 1.25vw, 1.2rem);
   line-height: 1.32;
-  letter-spacing: 0;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .copy p,
@@ -420,7 +420,7 @@
   .mobileTrigger:focus-visible .mobileTitle,
   .mobileTrigger:active .stepNumber,
   .mobileTrigger:active .mobileTitle {
-    letter-spacing: 0;
+    letter-spacing: var(--font-body-letter-spacing);
     transform: none;
   }
 }
