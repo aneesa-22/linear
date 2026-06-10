@@ -125,7 +125,12 @@
   }
 
   .copyMask {
-    width: calc(100% + 0.18em);
+    box-sizing: border-box;
+    width: 92%;
+    margin-right: 0;
+    padding-right: 0;
+    padding-left: 0;
+    justify-self: center;
   }
 
   .cta {
