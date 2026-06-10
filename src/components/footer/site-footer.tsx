@@ -5,14 +5,6 @@ import styles from "./site-footer.module.css";
 export function SiteFooter() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.ctaStrip}>
-        <p>You don&apos;t need all the answers.</p>
-        <Link className={styles.ctaLink} href="/contact">
-          <span>LET&apos;S TALK</span>
-          <span aria-hidden="true">↗</span>
-        </Link>
-      </div>
-
       <div className={styles.inner}>
         <div className={styles.bottomRow}>
           <a href="mailto:hello@linearstudio.co.uk">hello@linearstudio.co.uk</a>

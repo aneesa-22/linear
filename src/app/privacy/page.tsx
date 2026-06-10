@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import styles from "./privacy.module.css";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "Privacy and cookie information for Linear Studio.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "privacy policy",
+  description:
+    "Privacy, cookie and data handling information for Linear Studio.",
+  path: "/privacy",
+});
 
 const policySections = [
   {
     number: "01",
-    title: "Information We Collect",
+    title: "information we collect",
     content: [
       'This Privacy Policy applies between you, the User of this Website, and Linear Studio ("Linear", "we", "us", "our"), the owner and provider of this Website. Linear Studio takes the privacy of your information seriously. This Privacy Policy applies to our use of any and all personal information collected by us or provided by you in connection with your use of this Website.',
       '"Data" means collectively all information that you submit to Linear Studio through this Website or that we collect in connection with your use of the Website. "Data Protection Laws" means any applicable law relating to the processing of personal data including UK GDPR, the Data Protection Act 2018 and related legislation. "UK GDPR" means the UK General Data Protection Regulation. "User" or "you" means any individual accessing this Website. "Website" means the website operated by Linear Studio and any related pages or subdomains.',
@@ -20,7 +23,7 @@ const policySections = [
   },
   {
     number: "02",
-    title: "How We Use It",
+    title: "how we use it",
     content: [
       "We may use your information to respond to enquiries, discuss potential projects, provide services, keep internal records, improve our Website, protect against misuse or fraudulent activity, and comply with legal obligations.",
       "We always have a lawful basis for using your information. In plain terms:",
@@ -33,7 +36,7 @@ const policySections = [
   },
   {
     number: "03",
-    title: "Cookies",
+    title: "cookies",
     content: [
       "This Website may use cookies and similar technologies. Some are essential — the Website needs them to work properly. Others are performance or analytics cookies that help us understand how visitors use the site so we can improve it.",
       "We only set non-essential cookies, such as analytics, with your consent, which we ask for through our cookie banner the first time you visit. You can change or withdraw your consent at any time via the Cookie Settings link in the footer, and you can also control cookies through your browser settings. Blocking some cookies may affect how the Website works.",
@@ -41,7 +44,7 @@ const policySections = [
   },
   {
     number: "04",
-    title: "Third Parties",
+    title: "third parties",
     content: [
       "We may use trusted third-party providers including website hosting providers, analytics providers, email delivery services, form handling providers and operational software tools. These providers process information only where reasonably necessary.",
       "This Website may contain links to external websites including social platforms. We are not responsible for their content or privacy practices. If Linear Studio expands, transfers or restructures its business, information may be transferred as part of that process where legally permitted.",
@@ -49,7 +52,7 @@ const policySections = [
   },
   {
     number: "05",
-    title: "Your Rights",
+    title: "your rights",
     content: [
       "You may have rights including access, correction, deletion, restriction, portability and objection. To exercise these rights please contact hello@linearstudio.co.uk.",
       "If you are dissatisfied with how we process your information, you may contact the UK Information Commissioner's Office.",
@@ -57,7 +60,7 @@ const policySections = [
   },
   {
     number: "06",
-    title: "Data Retention",
+    title: "data retention",
     content: [
       "We retain information only for as long as reasonably necessary for responding to enquiries, project work, legal obligations and operational purposes.",
       "We use reasonable technical and organisational measures to safeguard your information. However, transmission over the internet cannot be guaranteed to be completely secure.",
@@ -65,7 +68,7 @@ const policySections = [
   },
   {
     number: "07",
-    title: "Contact",
+    title: "contact",
     content: [
       "We reserve the right to update this Privacy Policy at any time. Updates will be posted on this Website.",
       "Questions regarding this Privacy Policy may be sent to hello@linearstudio.co.uk.",
@@ -78,11 +81,7 @@ export default function PrivacyPage() {
     <main className={styles.page} aria-labelledby="privacy-title">
       <section className={styles.hero} data-floating-badge-hero>
         <div className={styles.heroContent}>
-          <h1 id="privacy-title">
-            PRIVACY
-            <br />
-            POLICY
-          </h1>
+          <h1 id="privacy-title">privacy policy</h1>
           <div className={styles.heroCopy}>
             <p>The boring but important stuff.</p>
             <p>
@@ -111,14 +110,6 @@ export default function PrivacyPage() {
           </section>
         ))}
       </div>
-
-      <section className={styles.questions} aria-label="Privacy questions">
-        <p>Questions?</p>
-        <a href="mailto:hello@linearstudio.co.uk">
-          <span>hello@linearstudio.co.uk</span>
-          <span aria-hidden="true">↗</span>
-        </a>
-      </section>
     </main>
   );
 }

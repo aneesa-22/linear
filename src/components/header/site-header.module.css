@@ -1,19 +1,68 @@
 .siteHeader {
+  background: var(--color-bg);
+  color: var(--color-text);
   will-change: transform;
-  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    background-color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .siteHeaderHidden {
   transform: translateY(-100%);
 }
 
+.siteHeaderDark {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.siteHeader.siteHeaderMenuOpen {
+  z-index: 90;
+  background: transparent;
+  pointer-events: none;
+}
+
+.siteHeaderMenuOpen .navLink {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.siteHeaderMenuOpen .headerNavLayer {
+  position: relative;
+  z-index: 90;
+}
+
+.siteHeaderMenuOpen .menuButton {
+  position: relative;
+  z-index: 90;
+  pointer-events: auto;
+}
+
+.siteHeaderDark .navLink,
+.siteHeaderDark .menuButton {
+  color: var(--color-bg);
+}
+
+.siteHeaderDark .navLink:hover,
+.siteHeaderDark .navLink:focus-visible,
+.siteHeaderDark .navLink:active,
+.siteHeaderDark .menuButton:hover,
+.siteHeaderDark .menuButton:focus-visible,
+.siteHeaderDark .menuButton:active {
+  color: var(--color-bg);
+}
+
 .navLink {
   position: relative;
   display: inline-flex;
-  color: var(--color-charcoal);
-  font-weight: 500;
-  letter-spacing: var(--font-body-letter-spacing);
+  color: var(--color-text);
+  font-family: var(--font-nav);
+  font-size: clamp(1.05rem, 1.35vw, 1.35rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
   text-decoration: none;
+  text-transform: lowercase;
   transition:
     color 250ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -36,8 +85,8 @@
 .navLink:hover,
 .navLink:focus-visible,
 .navLink:active {
-  color: var(--color-cobalt);
-  letter-spacing: 0.02em;
+  color: var(--color-text);
+  letter-spacing: -0.015em;
   transform: translateY(-2px);
 }
 
@@ -45,6 +94,13 @@
 .navLink:focus-visible::after,
 .navLink:active::after {
   transform: scaleX(1);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.2rem, 2.6vw, 3.25rem);
+  margin-left: auto;
 }
 
 .menuButton {
@@ -55,7 +111,7 @@
   justify-content: center;
   border: 0;
   background: transparent;
-  color: var(--color-charcoal);
+  color: var(--color-text);
   cursor: pointer;
   padding: 0;
   transition:
@@ -66,8 +122,43 @@
 .menuButton:hover,
 .menuButton:focus-visible,
 .menuButton:active {
-  color: var(--color-cobalt);
+  color: var(--color-text);
   transform: translateY(-2px);
+}
+
+.menuIcon {
+  position: relative;
+  display: block;
+  width: clamp(1.55rem, 2.35vw, 2rem);
+  height: 1rem;
+}
+
+.menuIcon span {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: currentcolor;
+  transform-origin: center;
+  transition: transform 280ms ease;
+}
+
+.menuIcon span:first-child {
+  transform: translateY(-0.28rem);
+}
+
+.menuIcon span:last-child {
+  transform: translateY(0.28rem);
+}
+
+.menuButtonOpen .menuIcon span:first-child {
+  transform: translateY(0) rotate(45deg);
+}
+
+.menuButtonOpen .menuIcon span:last-child {
+  transform: translateY(0) rotate(-45deg);
 }
 
 .backdrop {
@@ -78,6 +169,7 @@
   background: rgb(32 32 32 / 18%);
   cursor: pointer;
   padding: 0;
+  pointer-events: auto;
 }
 
 .menuPanel {
@@ -86,58 +178,17 @@
   right: 0;
   z-index: 80;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
   width: min(45vw, 42rem);
   min-width: min(100vw, 34rem);
   min-height: 100dvh;
   overflow-y: auto;
   border-left: 1px solid
     color-mix(in srgb, var(--color-charcoal) 18%, transparent);
-  background: var(--color-ivory);
+  background: var(--color-bg);
   padding: clamp(1.5rem, 4vw, 3.75rem);
-  color: var(--color-charcoal);
-}
-
-.closeButton {
-  position: relative;
-  justify-self: end;
-  width: 44px;
-  height: 44px;
-  border: 0;
-  background: transparent;
-  color: var(--color-charcoal);
-  cursor: pointer;
-  padding: 0;
-  transition:
-    color 250ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.closeButton::before,
-.closeButton::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 2rem;
-  height: 2px;
-  background: currentcolor;
-  content: "";
-  transform-origin: center;
-}
-
-.closeButton::before {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.closeButton::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
-}
-
-.closeButton:hover,
-.closeButton:focus-visible,
-.closeButton:active {
-  color: var(--color-cobalt);
-  transform: translateY(-2px);
+  color: var(--color-text);
+  pointer-events: auto;
 }
 
 .menuNav {
@@ -152,14 +203,14 @@
   position: relative;
   display: inline-flex;
   width: fit-content;
-  color: var(--color-charcoal);
-  font-family: var(--font-satoshi);
+  color: var(--color-text);
+  font-family: var(--font-nav);
   font-size: clamp(1.7rem, 3.1vw, 2.85rem);
-  font-weight: 620;
+  font-weight: 400;
   line-height: 0.95;
-  letter-spacing: var(--font-body-letter-spacing);
+  letter-spacing: -0.035em;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: lowercase;
   transition:
     color 250ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -169,8 +220,8 @@
 .menuLink:hover,
 .menuLink:focus-visible,
 .menuLink:active {
-  color: var(--color-cobalt);
-  letter-spacing: 0.01em;
+  color: var(--color-text);
+  letter-spacing: -0.015em;
   transform: translateX(0.12em);
 }
 
@@ -185,7 +236,7 @@
 .menuFooter p {
   max-width: 18rem;
   margin: 0;
-  color: var(--color-charcoal);
+  color: var(--color-text);
   font-size: clamp(0.88rem, 1.1vw, 1rem);
   font-weight: 600;
   line-height: 1.45;
@@ -216,6 +267,20 @@
   }
 }
 
+@media (max-width: 520px) {
+  .navLink {
+    font-size: clamp(0.95rem, 4.6vw, 1.12rem);
+  }
+
+  .headerActions {
+    gap: clamp(0.8rem, 4vw, 1.2rem);
+  }
+
+  .menuIcon {
+    width: clamp(1.35rem, 6vw, 1.65rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .siteHeader {
     transition: none;
@@ -223,24 +288,27 @@
 
   .navLink,
   .menuButton,
-  .closeButton,
   .menuLink {
     transition: color 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .menuIcon span {
+    transition: none;
   }
 
   .navLink:hover,
   .navLink:focus-visible,
   .navLink:active,
-  .menuButton:hover,
-  .menuButton:focus-visible,
-  .menuButton:active,
-  .closeButton:hover,
-  .closeButton:focus-visible,
-  .closeButton:active,
   .menuLink:hover,
   .menuLink:focus-visible,
   .menuLink:active {
-    letter-spacing: var(--font-body-letter-spacing);
+    letter-spacing: -0.035em;
+    transform: none;
+  }
+
+  .menuButton:hover,
+  .menuButton:focus-visible,
+  .menuButton:active {
     transform: none;
   }
 }

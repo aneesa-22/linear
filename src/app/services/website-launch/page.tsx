@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/motion/reveal";
+import { createPageMetadata } from "@/lib/seo";
 import { WebsiteLaunchFaq } from "./website-launch-faq";
 import styles from "./website-launch.module.css";
 
-export const metadata: Metadata = {
-  title: "Websites",
+export const metadata: Metadata = createPageMetadata({
+  title: "website design & development",
   description:
-    "Custom websites designed and built for businesses that have outgrown where they started.",
-};
+    "Custom website design and development for businesses that need a clearer, more intentional online presence.",
+  path: "/services/website-launch",
+});
 
 const includedItems = [
   {
@@ -134,29 +136,32 @@ export default function WebsitesPage() {
               id="service-title"
               className={`${styles.heroTitle} ${styles.websitesHeroTitle}`}
             >
-              WEBSITES
+              website design &amp;
+              <br />
+              development
             </h1>
           </Reveal>
 
           <Reveal as="div" delay={0.2}>
             <div className={styles.websitesHeroCopy}>
               <p id="service-intro">
-                Custom websites designed and built for businesses that have
-                outgrown where they started.
+                A website should feel like an extension of your brand, not a
+                separate thing. The best websites don&apos;t just look good.
+                They help people understand who you are, what you do and why
+                they should care.
               </p>
-              <p></p>
             </div>
           </Reveal>
 
           <Reveal as="div" delay={0.28}>
             <dl id="service-details" className={styles.websitesMeta}>
               <div>
-                <dt>FROM</dt>
-                <dd>£1,100+</dd>
+                <dt>from</dt>
+                <dd>£1,100</dd>
               </div>
               <div>
-                <dt>TIMELINE</dt>
-                <dd>4–8 WEEKS</dd>
+                <dt>timeline</dt>
+                <dd>4-6 weeks</dd>
               </div>
             </dl>
           </Reveal>
@@ -170,7 +175,7 @@ export default function WebsitesPage() {
       >
         <div className={`${styles.inner} ${styles.websitesInner}`}>
           <div className={styles.websitesSectionGrid}>
-            <SectionLabel id="included-title">WHAT’S INCLUDED</SectionLabel>
+            <SectionLabel id="included-title">what&apos;s included</SectionLabel>
 
             <div className={styles.websitesIncludedGrid}>
               {includedItems.map((item) => (
@@ -196,7 +201,7 @@ export default function WebsitesPage() {
             <div
               className={`${styles.websitesPanel} ${styles.websitesInvestment}`}
             >
-              <SectionLabel id="investment-title">INVESTMENT</SectionLabel>
+              <SectionLabel id="investment-title">investment</SectionLabel>
               <div aria-labelledby="investment-title">
                 <p className={styles.websitesInvestmentPrefix}>From</p>
                 <p className={styles.websitesInvestmentAmount}>£1,100+</p>
@@ -212,7 +217,7 @@ export default function WebsitesPage() {
 
             <div className={styles.websitesPanel}>
               <SectionLabel id="optional-title">
-                OPTIONAL ADDITIONS
+                optional additions
               </SectionLabel>
               <p className={styles.websitesOptionalIntro}>
                 Add what your project needs. These are scoped separately so your
@@ -246,7 +251,7 @@ export default function WebsitesPage() {
             <div
               className={`${styles.websitesPanel} ${styles.websitesSupportLabel}`}
             >
-              <SectionLabel id="support-title">ONGOING SUPPORT</SectionLabel>
+              <SectionLabel id="support-title">ongoing support</SectionLabel>
             </div>
 
             <div
@@ -292,7 +297,7 @@ export default function WebsitesPage() {
       >
         <div className={`${styles.inner} ${styles.websitesInner}`}>
           <div className={styles.websitesSectionGrid}>
-            <SectionLabel id="faq-title">FAQ</SectionLabel>
+            <SectionLabel id="faq-title">faq</SectionLabel>
 
             <div className={styles.faqColumn}>
               <Link className={styles.inlineCta} href="/contact">

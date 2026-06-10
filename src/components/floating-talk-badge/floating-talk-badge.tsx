@@ -7,7 +7,7 @@ import { useReducedMotion } from "framer-motion";
 import { CircularText } from "./circular-text";
 import styles from "./floating-talk-badge.module.css";
 
-const BADGE_TEXT = "LET'S TALK • LET'S TALK • LET'S TALK • ";
+const BADGE_TEXT = "let’s talk • let’s talk • let’s talk • ";
 const VISIBLE_ROUTES = ["/", "/privacy"];
 
 function shouldRenderForPath(pathname: string) {

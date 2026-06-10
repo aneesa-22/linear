@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Reveal } from "@/components/motion/reveal";
+import { createPageMetadata } from "@/lib/seo";
 import desktopIcon from "@/styles/icons/desktop-light.svg";
 import fileIcon from "@/styles/icons/file-light.svg";
 import pdfIcon from "@/styles/icons/file-pdf-light.svg";
@@ -15,11 +16,12 @@ import textAaIcon from "@/styles/icons/text-aa-light.svg";
 import styles from "../website-launch/website-launch.module.css";
 import { BrandIdentityFaq } from "./brand-identity-faq";
 
-export const metadata: Metadata = {
-  title: "Brand & Identity",
+export const metadata: Metadata = createPageMetadata({
+  title: "brand & identity",
   description:
-    "A visual identity that gives your business consistency, confidence and something people remember.",
-};
+    "Brand identity design for businesses that need consistency, confidence and something people remember.",
+  path: "/services/brand-identity",
+});
 
 const includedItems = [
   {

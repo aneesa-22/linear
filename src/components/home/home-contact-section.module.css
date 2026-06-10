@@ -1,0 +1,117 @@
+.section {
+  background: #f7f5f0;
+  color: #1f1f1f;
+  padding: clamp(7.5rem, 15vh, 11rem) clamp(2rem, 5vw, 6rem)
+    clamp(3.5rem, 6vh, 5rem);
+}
+
+.inner {
+  width: 100%;
+  max-width: 92rem;
+  margin-inline: auto;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(20rem, 0.38fr) 1px minmax(0, 0.62fr);
+  column-gap: clamp(2.25rem, 4.5vw, 5rem);
+  align-items: start;
+}
+
+.intro {
+  position: sticky;
+  top: clamp(7.5rem, 20vh, 12rem);
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  padding-right: 0;
+}
+
+.divider {
+  position: sticky;
+  top: clamp(7.5rem, 20vh, 12rem);
+  width: 1px;
+  height: min(36rem, calc(100svh - clamp(15rem, 40vh, 24rem)));
+  min-height: 24rem;
+  background: rgba(31, 31, 31, 0.28);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 5.2vw, 6.5rem);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+  text-transform: lowercase;
+}
+
+.title span {
+  display: block;
+  white-space: nowrap;
+}
+
+.supportingCopy {
+  width: min(100%, 23rem);
+  font-family: var(--font-body);
+  font-size: clamp(1.25rem, 1.65vw, 1.65rem);
+  font-weight: var(--font-body-weight);
+  line-height: 1.16;
+  letter-spacing: var(--font-body-letter-spacing);
+}
+
+.supportingCopy p {
+  margin: 0;
+  text-align: justify;
+  text-align-last: left;
+}
+
+.supportingCopy p + p {
+  margin-top: 1.25em;
+}
+
+.formColumn {
+  min-width: 0;
+  padding-left: 0;
+}
+
+@media (max-width: 767px) {
+  .section {
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+    padding: clamp(4.5rem, 12svh, 5.75rem) clamp(1.25rem, 6vw, 1.75rem)
+      clamp(2.75rem, 8svh, 4rem);
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    gap: clamp(2.25rem, 8vw, 3.25rem);
+  }
+
+  .intro {
+    position: static;
+    gap: clamp(1.75rem, 6vw, 2.5rem);
+    padding-right: 0;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .title {
+    font-size: clamp(2.8rem, 12vw, 4rem);
+    line-height: 0.92;
+  }
+
+  .supportingCopy {
+    width: 100%;
+    max-width: 21rem;
+    font-size: clamp(1.05rem, 4.8vw, 1.25rem);
+    line-height: 1.15;
+  }
+
+  .formColumn {
+    border-left: 0;
+    padding-left: 0;
+  }
+}

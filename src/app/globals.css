@@ -2,58 +2,65 @@
 
 @theme inline {
   --font-sans: var(--font-body);
-  --font-heading: var(--font-body);
-  --color-ivory: #ffffff;
-  --color-charcoal: #202020;
-  --color-cobalt: #050d4a;
+  --font-heading: "Alte Haas Grotesk", Helvetica, Arial, system-ui, sans-serif;
+  --color-ivory: #f7f5f0;
+  --color-charcoal: #1f1f1f;
+  --color-cobalt: #1f1f1f;
 }
 
 @layer base {
   @font-face {
-    font-family: "Satoshi";
-    src: url("../styles/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2")
-      format("woff2");
+    font-family: "Helvetica Light";
+    src: url("../styles/fonts/helvetica-255/helvetica-light-587ebe5a59211.ttf")
+      format("truetype");
     font-display: swap;
     font-style: normal;
-    font-weight: 300 900;
+    font-weight: 300;
   }
 
   @font-face {
-    font-family: "Linear Helvetica";
-    src: url("../styles/Helvetica-Light.woff2") format("woff2");
-    font-display: swap;
-    font-style: normal;
-    font-weight: 200;
-  }
-
-  @font-face {
-    font-family: "Linear Helvetica";
-    src: url("../styles/Helvetica-Regular.woff2") format("woff2");
+    font-family: "Helvetica Regular";
+    src: url("../styles/fonts/helvetica-255/Helvetica.ttf") format("truetype");
     font-display: swap;
     font-style: normal;
     font-weight: 400;
   }
 
   @font-face {
-    font-family: "Linear Helvetica";
-    src: url("../styles/Helvetica-Bold.woff2") format("woff2");
+    font-family: "Alte Haas Grotesk";
+    src: url("../styles/fonts/alte-haas-grotesk/AlteHaasGroteskRegular.ttf")
+      format("truetype");
+    font-display: swap;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: "Alte Haas Grotesk Bold";
+    src: url("../styles/fonts/alte-haas-grotesk/AlteHaasGroteskBold.ttf")
+      format("truetype");
     font-display: swap;
     font-style: normal;
     font-weight: 700;
   }
 
   :root {
-    --color-ivory: #ffffff;
-    --color-charcoal: #202020;
-    --color-cobalt: #1f1f1f;
-    --font-body: "Linear Helvetica", Helvetica, Arial, system-ui, sans-serif;
-    --font-body-weight: 200;
-    --font-body-letter-spacing: -0.05em;
+    --color-bg: #f7f5f0;
+    --color-text: #1f1f1f;
+    --color-ivory: var(--color-bg);
+    --color-charcoal: var(--color-text);
+    --color-cobalt: var(--color-text);
+    --font-body: "Helvetica Light", Helvetica, Arial, system-ui, sans-serif;
+    --font-nav: "Helvetica Regular", Helvetica, Arial, system-ui, sans-serif;
+    --font-heading:
+      "Alte Haas Grotesk", Helvetica, Arial, system-ui, sans-serif;
+    --font-heading-bold:
+      "Alte Haas Grotesk Bold", "Alte Haas Grotesk", Helvetica, Arial,
+      system-ui, sans-serif;
+    --font-body-weight: 300;
+    --font-body-letter-spacing: -0.02em;
     --font-satoshi: var(--font-body);
-    --font-display: "Theatre Condensed", "Arial Narrow", sans-serif;
-    --cursor-x: -9999px;
-    --cursor-y: -9999px;
-    --cursor-radius: 120px;
+    --font-display: var(--font-heading);
   }
 
   html {
@@ -83,26 +90,4 @@
     outline: 2px solid var(--color-cobalt);
     outline-offset: 2px;
   }
-}
-
-/* Cursor spotlight: fixed overlay, only visible inside the cursor radius.
-   mix-blend-mode:color preserves luminance of what's beneath — white backgrounds
-   stay white, dark charcoal text picks up the blue hue. Activates after load. */
-[data-cursor]::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  background: radial-gradient(
-    circle var(--cursor-radius, 120px) at var(--cursor-x, -9999px)
-      var(--cursor-y, -9999px),
-    #2563eb 0%,
-    transparent 100%
-  );
-  mix-blend-mode: color;
-}
-
-body[data-menu-open="true"]::after {
-  display: none;
 }

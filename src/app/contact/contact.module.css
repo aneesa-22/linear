@@ -388,17 +388,20 @@
   }
 
   .contactSection {
-    padding-block: clamp(3rem, 7vh, 4.5rem) clamp(3.5rem, 8vh, 5rem);
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+    padding-block: clamp(4rem, 10svh, 5.25rem) clamp(2.75rem, 7svh, 4rem);
   }
 
   .contactLayout {
     grid-template-columns: 1fr;
-    gap: clamp(2.75rem, 7vh, 4rem);
+    gap: clamp(2.25rem, 7vw, 3.25rem);
   }
 
   .contactIntro {
     position: static;
-    gap: clamp(1.75rem, 5vh, 2.5rem);
+    gap: clamp(1.5rem, 5vw, 2.25rem);
   }
 
   .formReveal {
@@ -408,34 +411,36 @@
 
   .title {
     max-width: 5.2ch;
-    font-size: clamp(5.4rem, 27vw, 7.6rem);
-    line-height: 0.8;
+    font-size: clamp(3.9rem, 18vw, 5.8rem);
+    line-height: 0.84;
   }
 
   .intro {
-    font-size: clamp(1.28rem, 5.6vw, 1.65rem);
+    max-width: 21rem;
+    font-size: clamp(1.05rem, 4.8vw, 1.28rem);
+    line-height: 1.18;
   }
 
   .form {
-    gap: 1.9rem;
+    gap: clamp(1.45rem, 5.5vw, 1.9rem);
   }
 
   .twoColumn {
     grid-template-columns: 1fr;
-    gap: 2.1rem;
+    gap: clamp(1.45rem, 5.5vw, 1.9rem);
   }
 
   .label,
   .legend {
-    font-size: 0.98rem;
+    font-size: clamp(0.9rem, 4vw, 1rem);
   }
 
   .input {
-    min-height: 2.45rem;
+    min-height: 2.25rem;
   }
 
   .textarea {
-    min-height: 9.5rem;
+    min-height: clamp(7.25rem, 24svh, 9rem);
   }
 
   .projectOptions {
@@ -445,13 +450,13 @@
 
   .projectOption {
     width: fit-content;
-    min-height: 1.8rem;
+    min-height: 1.65rem;
     justify-content: flex-start;
-    font-size: 1.05rem;
+    font-size: clamp(0.98rem, 4.5vw, 1.08rem);
   }
 
   .submitButton {
-    min-height: 2.9rem;
-    font-size: clamp(1.35rem, 6vw, 1.75rem);
+    min-height: 2.6rem;
+    font-size: clamp(1.15rem, 5.2vw, 1.45rem);
   }
 }

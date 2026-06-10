@@ -11,7 +11,11 @@ type SubmitState =
   | { status: "idle"; message: "" }
   | { status: "success" | "error"; message: string };
 
-export function ContactForm() {
+type ContactFormProps = Readonly<{
+  lowercase?: boolean;
+}>;
+
+export function ContactForm({ lowercase = false }: ContactFormProps) {
   const [submitState, setSubmitState] = useState<SubmitState>({
     status: "idle",
     message: "",
@@ -99,14 +103,14 @@ export function ContactForm() {
       <div className={styles.twoColumn}>
         <FormField
           id="firstName"
-          label="First name"
+          label={lowercase ? "first name" : "First name"}
           autoComplete="given-name"
           pattern="[^0-9]*"
           required
         />
         <FormField
           id="lastName"
-          label="Last name"
+          label={lowercase ? "last name" : "Last name"}
           autoComplete="family-name"
           pattern="[^0-9]*"
           required
@@ -115,7 +119,7 @@ export function ContactForm() {
 
       <FormField
         id="email"
-        label="Email"
+        label={lowercase ? "email" : "Email"}
         type="email"
         autoComplete="email"
         required
@@ -123,20 +127,24 @@ export function ContactForm() {
 
       <FormField
         id="business"
-        label="Business"
+        label={lowercase ? "business" : "Business"}
         autoComplete="organization"
         required
       />
 
       <FormField
         id="website"
-        label="Website (optional)"
+        label={lowercase ? "website (optional)" : "Website (optional)"}
         type="url"
         autoComplete="url"
       />
 
       <fieldset className={styles.projectGroup}>
-        <legend className={styles.legend}>What are you looking for?</legend>
+        <legend className={styles.legend}>
+          {lowercase
+            ? "what are you looking for?"
+            : "What are you looking for?"}
+        </legend>
 
         <div className={styles.projectOptions}>
           {projectTypes.map((projectType) => (
@@ -148,14 +156,18 @@ export function ContactForm() {
                 value={projectType}
                 required
               />
-              <span>{projectType}</span>
+              <span>{lowercase ? projectType.toLowerCase() : projectType}</span>
             </label>
           ))}
         </div>
       </fieldset>
 
       <label className={styles.textareaField} htmlFor="project">
-        <span className={styles.label}>Tell us about your project</span>
+        <span className={styles.label}>
+          {lowercase
+            ? "tell us about your project"
+            : "Tell us about your project"}
+        </span>
         <textarea
           id="project"
           name="project"
@@ -171,7 +183,15 @@ export function ContactForm() {
           type="submit"
           disabled={isSubmitting}
         >
-          <span>{isSubmitting ? "Sending" : "Send message"}</span>
+          <span>
+            {isSubmitting
+              ? lowercase
+                ? "sending"
+                : "Sending"
+              : lowercase
+                ? "send message"
+                : "Send message"}
+          </span>
           <span className={styles.submitArrow} aria-hidden="true">
             ↗
           </span>

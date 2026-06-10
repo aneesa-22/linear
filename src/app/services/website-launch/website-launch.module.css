@@ -75,11 +75,12 @@
 
 .label {
   margin: 0;
-  font-family: var(--font-satoshi);
-  font-size: clamp(1.05rem, 1.25vw, 1.35rem);
-  font-weight: 620;
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 1.65vw, 1.85rem);
+  font-weight: 400;
   line-height: 1.1;
-  letter-spacing: var(--font-body-letter-spacing);
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
 }
 
 .includedList {
@@ -112,11 +113,11 @@
 .includedTitle {
   margin: 0;
   color: currentcolor;
-  font-family: var(--font-satoshi);
+  font-family: var(--font-nav);
   font-size: clamp(1rem, 1.25vw, 1.18rem);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.15;
-  letter-spacing: var(--font-body-letter-spacing);
+  letter-spacing: -0.035em;
   transition:
     color 250ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -134,6 +135,7 @@
   margin: 0;
   max-width: 24rem;
   color: var(--color-charcoal);
+  font-family: var(--font-body);
   font-size: clamp(0.9rem, 0.98vw, 1rem);
   font-weight: var(--font-body-weight);
   line-height: 1.4;
@@ -143,13 +145,16 @@
 .bodyLarge {
   max-width: 33rem;
   margin: 0;
+  font-family: var(--font-body);
   font-size: clamp(1.08rem, 1.45vw, 1.32rem);
+  font-weight: var(--font-body-weight);
   line-height: 1.42;
   letter-spacing: var(--font-body-letter-spacing);
 }
 
 .bodySmall {
   margin: 0;
+  font-family: var(--font-body);
   font-size: clamp(0.9rem, 1vw, 1rem);
   font-weight: var(--font-body-weight);
   line-height: 1.4;
@@ -172,7 +177,7 @@
 .metric {
   margin: 0 0 0.85rem;
   color: currentcolor;
-  font-family: var(--font-satoshi);
+  font-family: var(--font-body);
   font-size: clamp(1.75rem, 2.7vw, 2.45rem);
   font-weight: 430;
   line-height: 1;
@@ -194,15 +199,17 @@
 .investmentPrefix {
   margin: 0 0 0.45rem;
   color: currentcolor;
-  font-family: var(--font-satoshi);
+  font-family: var(--font-heading);
   font-size: clamp(1rem, 1.3vw, 1.2rem);
   line-height: 1.1;
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
 }
 
 .investmentAmount {
   margin: 0 0 1rem;
   color: currentcolor;
-  font-family: var(--font-satoshi);
+  font-family: var(--font-body);
   font-size: clamp(3.35rem, 5.8vw, 5.1rem);
   font-weight: 430;
   line-height: 0.95;
@@ -260,12 +267,24 @@
     letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.inlineCta span:last-child {
+  display: inline-block;
+  line-height: 1;
+  transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .inlineCta:hover,
 .inlineCta:focus-visible,
 .inlineCta:active {
   color: var(--color-cobalt);
   letter-spacing: 0.02em;
   transform: translateY(-2px);
+}
+
+.inlineCta:hover span:last-child,
+.inlineCta:focus-visible span:last-child,
+.inlineCta:active span:last-child {
+  transform: translate(0.12em, -0.18em);
 }
 
 .faqList {
@@ -300,8 +319,9 @@
   color: var(--color-charcoal);
   padding: 0.85rem 0;
   font: inherit;
-  font-family: var(--font-satoshi);
+  font-family: var(--font-nav);
   font-size: clamp(0.9rem, 1vw, 1rem);
+  font-weight: 400;
   line-height: 1.2;
   text-align: left;
   cursor: pointer;
@@ -371,7 +391,9 @@
   max-width: 42rem;
   margin: 0;
   overflow: hidden;
+  font-family: var(--font-body);
   font-size: clamp(0.9rem, 0.98vw, 1rem);
+  font-weight: var(--font-body-weight);
   line-height: 1.45;
 }
 
@@ -387,7 +409,7 @@
   border-bottom: 1px solid var(--color-charcoal);
   color: var(--color-charcoal);
   padding-bottom: 0.35rem;
-  font-family: var(--font-satoshi);
+  font-family: var(--font-heading);
   font-size: clamp(1.55rem, 2.65vw, 2.35rem);
   font-weight: 430;
   line-height: 1.05;
@@ -424,7 +446,10 @@
 }
 
 .websitesHero {
-  padding-block: clamp(5.5rem, 11vh, 8rem) clamp(3.5rem, 7vh, 5rem);
+  min-height: calc(100svh - 5.5rem);
+  display: grid;
+  align-items: center;
+  padding-block: clamp(6rem, 13vh, 9rem) clamp(4rem, 8vh, 6rem);
 }
 
 .websitesHeroInner {
@@ -433,78 +458,87 @@
 }
 
 .websitesHeroInner > * {
-  width: min(100%, 84rem);
+  width: min(100%, 46rem);
 }
 
 .websitesHeroTitle {
-  max-width: none;
+  max-width: 10.5ch;
   overflow: visible;
-  padding-top: 0.16em;
-  padding-bottom: 0.08em;
-  color: var(--color-cobalt);
-  font-family: var(--font-display);
-  font-size: clamp(7.25rem, 14.6vw, 12.75rem);
-  line-height: 0.94;
-  letter-spacing: -0.045em;
-  text-transform: uppercase;
+  padding: 0 0 0.04em;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: clamp(4.6rem, 7.4vw, 7.4rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
 }
 
 .websitesHeroTitleCompact {
-  font-size: clamp(6.4rem, 12vw, 10.4rem);
-  letter-spacing: -0.04em;
+  font-size: clamp(4.35rem, 6.8vw, 6.9rem);
+  letter-spacing: -0.05em;
 }
 
 .websitesHeroCopy {
-  display: grid;
-  gap: clamp(0.8rem, 2vh, 1.1rem);
-  max-width: 26rem;
-  margin-top: clamp(2rem, 4.8vh, 3rem);
-  color: var(--color-charcoal);
+  max-width: min(100%, 42rem);
+  margin-top: clamp(2rem, 4.8vh, 3.25rem);
+  color: var(--color-text);
 }
 
 .websitesHeroCopy p {
   margin: 0;
-}
-
-.websitesHeroCopy p:first-child {
-  font-size: clamp(1.35rem, 2.1vw, 1.85rem);
-  line-height: 1.18;
-}
-
-.websitesHeroCopy p:last-child {
-  max-width: 22rem;
-  font-size: clamp(0.92rem, 1.05vw, 1rem);
-  line-height: 1.38;
+  font-family: var(--font-body);
+  font-size: clamp(1.55rem, 2vw, 2.1rem);
+  font-weight: var(--font-body-weight);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  text-align: justify;
+  text-align-last: left;
+  word-spacing: 0.22em;
 }
 
 .websitesMeta {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(3.25rem, 10vw, 8rem);
-  margin: clamp(3.2rem, 7vh, 5rem) 0 0;
-  color: var(--color-charcoal);
+  gap: clamp(4rem, 9vw, 7.5rem);
+  margin: clamp(4rem, 8vh, 5.5rem) 0 0;
+  color: var(--color-text);
 }
 
 .websitesMeta div {
   display: grid;
-  gap: 0.75rem;
+  gap: clamp(0.8rem, 1.6vh, 1.1rem);
 }
 
-.websitesMeta dt,
-.websitesPage .label {
+.websitesMeta dt {
   margin: 0;
-  color: var(--color-cobalt);
-  font-size: clamp(1.05rem, 1.25vw, 1.35rem);
-  font-weight: 720;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+  font-weight: 400;
   line-height: 1;
-  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
 }
 
 .websitesMeta dd {
   margin: 0;
-  font-size: clamp(1rem, 1.18vw, 1.12rem);
-  font-weight: 650;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+  font-weight: var(--font-body-weight);
   line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.websitesPage .label {
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 1.65vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
 }
 
 .websitesSection,
@@ -556,9 +590,11 @@
 .websitesOptionalGrid h2 {
   margin: 0;
   color: var(--color-charcoal);
+  font-family: var(--font-nav);
   font-size: clamp(1.06rem, 1.2vw, 1.28rem);
-  font-weight: 680;
+  font-weight: 400;
   line-height: 1.15;
+  letter-spacing: -0.035em;
   transition:
     color 250ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -573,9 +609,11 @@
 .websitesInvestmentCopy {
   margin: 0;
   color: var(--color-charcoal);
+  font-family: var(--font-body);
   font-size: clamp(0.96rem, 1.05vw, 1.08rem);
   font-weight: var(--font-body-weight);
   line-height: 1.42;
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .websitesIncludedItem p {
@@ -701,8 +739,9 @@
   max-width: 9rem;
   margin: 0;
   color: currentcolor;
+  font-family: var(--font-nav);
   font-size: clamp(0.92rem, 1vw, 1rem);
-  font-weight: 680;
+  font-weight: 400;
   line-height: 1.16;
   transition:
     color 250ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -751,9 +790,12 @@
 
 .websitesInvestment .websitesInvestmentPrefix {
   margin-bottom: 0.45rem;
+  font-family: var(--font-heading);
   font-size: clamp(0.96rem, 1.05vw, 1.08rem);
-  font-weight: 430;
+  font-weight: 400;
   line-height: 1;
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
 }
 
 .websitesInvestment .websitesInvestmentAmount {
@@ -860,10 +902,11 @@
 .websitesSupportIntro h2 {
   margin: 0;
   color: var(--color-charcoal);
+  font-family: var(--font-heading);
   font-size: clamp(1.85rem, 2.7vw, 2.65rem);
-  font-weight: 620;
+  font-weight: 400;
   line-height: 1.06;
-  letter-spacing: var(--font-body-letter-spacing);
+  letter-spacing: -0.05em;
 }
 
 .websitesSupportIntro p {
@@ -908,7 +951,8 @@
 }
 
 .websitesSupportRows .includedTitle {
-  font-weight: 700;
+  font-family: var(--font-nav);
+  font-weight: 400;
 }
 
 .websitesSupportRows .includedDescription {
@@ -1039,6 +1083,7 @@
   .websitesCtaLink,
   .websitesReceiveItem h2,
   .websitesIconPlaceholder,
+  .inlineCta span:last-child,
   .websitesSupportRows article {
     transition: color 250ms cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -1082,6 +1127,12 @@
   .websitesReceiveItem:hover .websitesIconPlaceholder,
   .websitesReceiveItem:focus-within .websitesIconPlaceholder {
     letter-spacing: var(--font-body-letter-spacing);
+    transform: none;
+  }
+
+  .inlineCta:hover span:last-child,
+  .inlineCta:focus-visible span:last-child,
+  .inlineCta:active span:last-child {
     transform: none;
   }
 }
@@ -1153,32 +1204,37 @@
   }
 
   .websitesHero {
+    min-height: calc(100svh - 4.75rem);
     padding-block: clamp(5.5rem, 12vh, 7rem) clamp(3rem, 7vh, 4rem);
   }
 
   .websitesHeroInner > * {
-    width: min(100%, 32rem);
+    width: min(100%, 31rem);
   }
 
   .websitesHeroTitle {
-    font-size: clamp(5.15rem, 23vw, 8rem);
-    line-height: 0.96;
+    max-width: 100%;
+    font-size: clamp(3.15rem, 13.4vw, 4.75rem);
+    line-height: 0.92;
   }
 
   .websitesHeroTitleCompact {
-    font-size: clamp(4.2rem, 17vw, 6rem);
+    font-size: clamp(3.65rem, 13.8vw, 5.35rem);
   }
 
   .websitesHeroCopy {
-    max-width: 21rem;
+    max-width: min(100%, 24rem);
   }
 
-  .websitesHeroCopy p:first-child {
-    font-size: clamp(1.22rem, 5.6vw, 1.55rem);
+  .websitesHeroCopy p {
+    font-size: clamp(1.38rem, 5.7vw, 1.75rem);
+    line-height: 1.08;
+    word-spacing: 0.18em;
   }
 
   .websitesMeta {
     gap: clamp(2.5rem, 12vw, 4rem);
+    margin-top: clamp(3.25rem, 7vh, 4.5rem);
   }
 
   .websitesSectionGrid {
@@ -1332,4 +1388,5 @@
   .websitesFinalCta h2 {
     font-size: clamp(4.5rem, 20vw, 6.4rem);
   }
+
 }

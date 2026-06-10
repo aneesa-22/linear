@@ -1,0 +1,128 @@
+.page {
+  position: relative;
+  isolation: isolate;
+  background: var(--color-bg);
+}
+
+.heroTrack,
+.manifestoTrack {
+  position: relative;
+  min-height: 300vh;
+  min-height: 300svh;
+  min-height: 300dvh;
+}
+
+.heroTrack {
+  z-index: 0;
+  background: var(--color-bg);
+}
+
+.stickyPanel {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.whatWeDoSheet,
+.manifestoTrack,
+.contactTrack {
+  margin-top: -100vh;
+  margin-top: -100svh;
+  margin-top: -100dvh;
+}
+
+.whatWeDoSheet {
+  position: relative;
+  z-index: 1;
+}
+
+.manifestoTrack {
+  z-index: 2;
+  background: #1f1f1f;
+}
+
+.contactTrack {
+  position: relative;
+  z-index: 4;
+  min-height: 220vh;
+  min-height: 220svh;
+  min-height: 220dvh;
+  background: var(--color-bg);
+}
+
+.contactSheet {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  padding-top: 0;
+}
+
+@media (max-width: 767px) {
+  .heroTrack,
+  .manifestoTrack {
+    min-height: 220vh;
+    min-height: 220svh;
+    min-height: 220dvh;
+  }
+
+  .stickyPanel {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .whatWeDoSheet,
+  .manifestoTrack,
+  .contactTrack {
+    margin-top: -100vh;
+    margin-top: -100svh;
+    margin-top: -100dvh;
+  }
+
+  .contactTrack {
+    min-height: auto;
+  }
+
+  .contactSheet {
+    position: relative;
+    min-height: auto;
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroTrack,
+  .manifestoTrack {
+    min-height: auto;
+  }
+
+  .stickyPanel {
+    position: relative;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .whatWeDoSheet,
+  .manifestoTrack,
+  .contactTrack {
+    margin-top: 0;
+  }
+
+  .contactTrack {
+    min-height: auto;
+  }
+
+  .contactSheet {
+    position: relative;
+    min-height: auto;
+    padding-top: 0;
+  }
+}

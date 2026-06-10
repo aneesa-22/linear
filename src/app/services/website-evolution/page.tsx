@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/motion/reveal";
+import { createPageMetadata } from "@/lib/seo";
 import styles from "../website-launch/website-launch.module.css";
 import { WebsiteEvolutionFaq } from "./website-evolution-faq";
 
-export const metadata: Metadata = {
-  title: "Website Evolution",
+export const metadata: Metadata = createPageMetadata({
+  title: "website evolution",
   description:
-    "For businesses that have outgrown their current website and need something clearer, stronger and easier to maintain.",
-};
+    "Website evolution for businesses that have outgrown their current website and need something clearer, stronger and easier to maintain.",
+  path: "/services/website-evolution",
+});
 
 const includedItems = [
   {

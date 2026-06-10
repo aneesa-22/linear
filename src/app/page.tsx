@@ -1,15 +1,42 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/hero/hero";
-import { EditorialMarquee } from "@/components/home/editorial-marquee";
-import { HeroSheetTransition } from "@/components/home/hero-sheet-transition";
-import { HowItStarts } from "@/components/how-it-starts";
+import { HomeContactSection } from "@/components/home/home-contact-section";
+import { ManifestoSection } from "@/components/home/manifesto-section";
 import { WhatWeDo } from "@/components/what-we-do/what-we-do";
+import { createPageMetadata } from "@/lib/seo";
+import styles from "./page.module.css";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Brand identities and custom websites",
+  description:
+    "Linear Studio creates brand identities and custom websites for people with something to say.",
+  path: "/",
+});
 
 export default function Home() {
   return (
-    <main aria-label="Linear Studio homepage">
-      <HeroSheetTransition hero={<Hero />} sheet={<WhatWeDo />} />
-      <EditorialMarquee />
-      <HowItStarts />
+    <main className={styles.page} aria-label="Linear Studio homepage">
+      <div className={styles.heroTrack}>
+        <div className={styles.stickyPanel}>
+          <Hero />
+        </div>
+      </div>
+
+      <div className={styles.whatWeDoSheet}>
+        <WhatWeDo />
+      </div>
+
+      <div className={styles.manifestoTrack}>
+        <div className={styles.stickyPanel}>
+          <ManifestoSection />
+        </div>
+      </div>
+
+      <div className={styles.contactTrack} data-header-theme="light">
+        <div className={styles.contactSheet}>
+          <HomeContactSection />
+        </div>
+      </div>
     </main>
   );
 }

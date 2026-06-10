@@ -1,21 +1,23 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import type { MouseEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/motion/reveal";
 import styles from "./site-header.module.css";
 
 const menuLinks = [
-  { label: "HOME", href: "/" },
-  { label: "SERVICES", href: "/#what-we-do" },
-  { label: "WEBSITES", href: "/services/website-launch" },
-  { label: "BRAND & IDENTITY", href: "/services/brand-identity" },
+  { label: "home", href: "/" },
+  { label: "services", href: "/#what-we-do" },
+  { label: "websites", href: "/services/website-launch" },
+  { label: "brand & identity", href: "/services/brand-identity" },
   {
-    label: "ONGOING SUPPORT",
+    label: "ongoing support",
     href: "/services/website-launch#ongoing-support",
   },
-  { label: "CONTACT", href: "/contact" },
+  { label: "contact", href: "/contact" },
 ] as const;
 
 const menuTransition = {
@@ -24,15 +26,31 @@ const menuTransition = {
 } as const;
 
 export function SiteHeader() {
+  const pathname = usePathname();
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
+  const [isHeaderDark, setIsHeaderDark] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const panelRef = useRef<HTMLDivElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const lastScrollYRef = useRef(0);
 
   function closeMenu() {
     setIsMenuOpen(false);
+    window.requestAnimationFrame(() => {
+      menuButtonRef.current?.focus();
+    });
+  }
+
+  function handleMenuLinkClick(
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) {
+    event.preventDefault();
+    setIsMenuOpen(false);
+    router.push(href);
   }
 
   useEffect(() => {
@@ -43,12 +61,12 @@ export function SiteHeader() {
     document.body.setAttribute("data-menu-open", "true");
 
     const focusTimer = window.setTimeout(() => {
-      closeButtonRef.current?.focus();
+      firstMenuLinkRef.current?.focus();
     }, 50);
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setIsMenuOpen(false);
+        closeMenu();
         return;
       }
 
@@ -56,11 +74,14 @@ export function SiteHeader() {
         return;
       }
 
-      const focusable = Array.from(
+      const panelFocusable = Array.from(
         panelRef.current.querySelectorAll<HTMLElement>(
           'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
         ),
       );
+      const focusable = menuButtonRef.current
+        ? [menuButtonRef.current, ...panelFocusable]
+        : panelFocusable;
 
       if (!focusable.length) {
         return;
@@ -119,15 +140,55 @@ export function SiteHeader() {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    function updateHeaderTheme() {
+      const checkY = Math.min(window.innerHeight * 0.12, 96);
+      const lightSections = Array.from(
+        document.querySelectorAll<HTMLElement>('[data-header-theme="light"]'),
+      );
+      const darkSections = Array.from(
+        document.querySelectorAll<HTMLElement>('[data-header-theme="dark"]'),
+      );
+
+      const lightSheetIsEntering = lightSections.some((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= window.innerHeight * 0.76 && rect.bottom >= checkY;
+      });
+
+      const darkSectionIsActive = darkSections.some((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= checkY && rect.bottom >= checkY;
+      });
+
+      setIsHeaderDark(darkSectionIsActive && !lightSheetIsEntering);
+    }
+
+    const frame = window.requestAnimationFrame(updateHeaderTheme);
+
+    window.addEventListener("scroll", updateHeaderTheme, { passive: true });
+    window.addEventListener("resize", updateHeaderTheme);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateHeaderTheme);
+      window.removeEventListener("resize", updateHeaderTheme);
+    };
+  }, [pathname]);
+
   const shouldHideHeader = isHeaderHidden && !isMenuOpen;
+  const headerClassName = [
+    styles.siteHeader,
+    shouldHideHeader ? styles.siteHeaderHidden : "",
+    isHeaderDark && !isMenuOpen ? styles.siteHeaderDark : "",
+    isMenuOpen ? styles.siteHeaderMenuOpen : "",
+    "sticky inset-x-0 top-0 z-20 px-[clamp(1.25rem,6vw,4.5rem)] py-6 text-[15px] sm:py-7",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <header
-      className={`${styles.siteHeader} ${
-        shouldHideHeader ? styles.siteHeaderHidden : ""
-      } text-charcoal bg-ivory sticky inset-x-0 top-0 z-20 px-[clamp(1.25rem,6vw,4.5rem)] py-6 text-[15px] font-semibold tracking-normal sm:py-7`}
-    >
-      <Reveal as="div" delay={0.05}>
+    <header className={headerClassName}>
+      <Reveal as="div" className={styles.headerNavLayer} delay={0.05}>
         <nav
           aria-label="Primary navigation"
           className="flex items-center justify-between gap-6"
@@ -137,32 +198,30 @@ export function SiteHeader() {
             className={styles.navLink}
             aria-label="Linear Studio home"
           >
-            HOME
+            home
           </Link>
 
-          <div className="hidden items-center gap-[clamp(1rem,3vw,3.25rem)] md:flex">
-            <Link href="/#what-we-do" className={styles.navLink}>
-              SERVICES
-            </Link>
-            <Link href="/contact" className={styles.navLink}>
-              CONTACT
-            </Link>
+          <div className={styles.headerActions}>
+            <button
+              ref={menuButtonRef}
+              type="button"
+              className={[
+                styles.menuButton,
+                isMenuOpen ? styles.menuButtonOpen : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="site-menu"
+              onClick={() => setIsMenuOpen((open) => !open)}
+            >
+              <span className={styles.menuIcon} aria-hidden="true">
+                <span />
+                <span />
+              </span>
+            </button>
           </div>
-
-          <button
-            type="button"
-            className={styles.menuButton}
-            aria-label="Open menu"
-            aria-expanded={isMenuOpen}
-            aria-controls="site-menu"
-            onClick={() => setIsMenuOpen(true)}
-          >
-            <span className="flex w-7 flex-col gap-1.5" aria-hidden="true">
-              <span className="h-0.5 w-full bg-current" />
-              <span className="h-0.5 w-full bg-current" />
-              <span className="h-0.5 w-full bg-current" />
-            </span>
-          </button>
         </nav>
       </Reveal>
 
@@ -172,7 +231,7 @@ export function SiteHeader() {
             <m.button
               className={styles.backdrop}
               type="button"
-              aria-label="Close menu"
+              aria-label="Dismiss menu"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -199,23 +258,14 @@ export function SiteHeader() {
                   : menuTransition
               }
             >
-              <button
-                ref={closeButtonRef}
-                className={styles.closeButton}
-                type="button"
-                aria-label="Close menu"
-                onClick={closeMenu}
-              >
-                <span aria-hidden="true" />
-              </button>
-
               <nav className={styles.menuNav} aria-label="Mobile navigation">
-                {menuLinks.map((link) => (
+                {menuLinks.map((link, index) => (
                   <Link
+                    ref={index === 0 ? firstMenuLinkRef : undefined}
                     className={styles.menuLink}
                     href={link.href}
                     key={link.href}
-                    onClick={closeMenu}
+                    onClick={(event) => handleMenuLinkClick(event, link.href)}
                   >
                     {link.label}
                   </Link>
