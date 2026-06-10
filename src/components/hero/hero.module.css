@@ -112,7 +112,7 @@
   }
 
   .wordmark {
-    font-size: clamp(6rem, 25.5vw, 8rem);
+    font-size: clamp(7.5rem, 35vw, 9rem);
     letter-spacing: -0.075em;
   }
 
