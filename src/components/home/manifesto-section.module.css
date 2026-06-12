@@ -5,7 +5,7 @@
   display: grid;
   place-items: center;
   background: #1f1f1f;
-  color: #f7f5f0;
+  color: #f6f5f2;
   padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4.5rem);
 }
 
