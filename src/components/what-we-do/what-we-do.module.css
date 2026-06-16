@@ -85,6 +85,14 @@
   text-transform: lowercase;
 }
 
+.titleDesktop {
+  display: inline;
+}
+
+.titleMobile {
+  display: none;
+}
+
 .cta {
   display: inline-flex;
   align-items: center;
@@ -213,9 +221,9 @@
   }
 
   .panelTrack {
-    min-height: 220vh;
-    min-height: 220svh;
-    min-height: 220dvh;
+    min-height: 300vh;
+    min-height: 300svh;
+    min-height: 300dvh;
   }
 
   .panelTrack + .panelTrack {
@@ -239,6 +247,14 @@
     max-width: 9ch;
     font-size: clamp(3.35rem, 15vw, 5.2rem);
     line-height: 0.9;
+  }
+
+  .titleDesktop {
+    display: none;
+  }
+
+  .titleMobile {
+    display: inline;
   }
 
   .cta {

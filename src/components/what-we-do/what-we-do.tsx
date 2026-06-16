@@ -4,11 +4,21 @@ import styles from "./what-we-do.module.css";
 const services = [
   {
     number: "01",
+    titleLabel: "website design & development",
     title: (
       <>
-        website design
-        <br />
-        &amp; development
+        <span className={styles.titleDesktop} aria-hidden="true">
+          website design
+          <br />
+          &amp; development
+        </span>
+        <span className={styles.titleMobile} aria-hidden="true">
+          website
+          <br />
+          design&nbsp;&amp;
+          <br />
+          development
+        </span>
       </>
     ),
     href: "/services/website-launch",
@@ -25,6 +35,7 @@ const services = [
   },
   {
     number: "02",
+    titleLabel: "brand identity",
     title: "brand identity",
     href: "/services/brand-identity",
     description:
@@ -62,7 +73,9 @@ export function WhatWeDo() {
             <article className={styles.layout}>
               <div className={styles.service}>
                 <p className={styles.number}>{service.number}</p>
-                <h2 className={styles.title}>{service.title}</h2>
+                <h2 className={styles.title} aria-label={service.titleLabel}>
+                  {service.title}
+                </h2>
                 <Link className={styles.cta} href={service.href}>
                   <span>see what&apos;s included</span>
                   <span className={styles.ctaArrow} aria-hidden="true">
