@@ -38,6 +38,7 @@
 }
 
 .copyMask {
+  position: relative;
   width: calc(72% + 0.18em);
   margin-right: -0.18em;
   padding-right: 0.18em;
@@ -58,14 +59,29 @@
   word-spacing: 0.3em;
 }
 
+.copyWord {
+  display: inline-block;
+  will-change: opacity, transform;
+}
+
+.copyWaiting {
+  opacity: 0;
+}
+
+.copyOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
 .cta {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.45em;
   width: fit-content;
   margin-top: clamp(2rem, 4vw, 3rem);
   padding-bottom: 0.08em;
-  border-bottom: 1px solid transparent;
   color: var(--color-text);
   font-family: var(--font-heading);
   font-size: clamp(1.35rem, 1.75vw, 1.7rem);
@@ -80,6 +96,19 @@
     letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.cta::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -0.08em;
+  left: 0;
+  height: 1px;
+  background: currentcolor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .ctaArrow {
   display: inline-block;
   line-height: 1;
@@ -89,9 +118,14 @@
 .cta:hover,
 .cta:focus-visible,
 .cta:active {
-  border-bottom-color: currentcolor;
   letter-spacing: -0.025em;
   transform: translateY(-2px);
+}
+
+.cta:hover::after,
+.cta:focus-visible::after,
+.cta:active::after {
+  transform: scaleX(1);
 }
 
 .cta:hover .ctaArrow,
@@ -107,55 +141,67 @@
   }
 
   .content {
-    --hero-optical-inset: clamp(0.4rem, 1.8vw, 0.5rem);
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: var(--hero-lockup-width, fit-content);
+    width: fit-content;
     max-width: calc(100vw - 3rem);
     margin-inline: auto;
     transform: translateY(clamp(-0.75rem, -2vh, -0.25rem));
   }
 
   .wordmarkMask {
-    width: max-content;
-    max-width: 100%;
+    width: fit-content;
+    max-width: calc(100vw - 3rem);
     margin: 0;
+    padding-top: 0.12em;
     padding-right: 0;
+    overflow: visible;
   }
 
   .wordmark {
     display: inline-block;
-    width: max-content;
-    max-width: 100%;
-    padding-right: 0.035em;
-    font-size: clamp(7.5rem, 35vw, 9rem);
+    width: auto;
+    max-width: none;
+    padding-right: 0;
+    font-size: clamp(5.25rem, 24vw, 8.75rem);
     letter-spacing: -0.075em;
+    text-indent: 0;
     white-space: nowrap;
   }
 
   .copy {
     width: 100%;
-    font-size: clamp(1.12rem, 4.8vw, 1.45rem);
+    font-size: clamp(1.02rem, 4.35vw, 1.34rem);
     line-height: 1.1;
     letter-spacing: -0.075em;
-    text-align: left;
-    word-spacing: normal;
+    text-align: justify;
+    text-align-last: left;
+    word-spacing: 0.22em;
   }
 
   .copyMask {
     box-sizing: border-box;
-    width: calc(100% - var(--hero-optical-inset));
+    width: var(--hero-measured-wordmark-width, min(78vw, 32rem));
+    max-width: calc(100vw - 3rem);
     min-width: 0;
-    margin: 0 0 0 var(--hero-optical-inset);
+    margin: 0;
     padding-right: 0;
     padding-left: 0;
   }
 
+  .copyWaiting {
+    opacity: 1;
+  }
+
+  .copyOverlay {
+    display: none;
+  }
+
   .ctaMask {
-    width: calc(100% - var(--hero-optical-inset));
-    margin: 0 0 0 var(--hero-optical-inset);
+    width: var(--hero-measured-wordmark-width, min(78vw, 32rem));
+    max-width: calc(100vw - 3rem);
+    margin: 0;
     padding: 0;
   }
 
@@ -168,8 +214,17 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .copyWord {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
   .cta {
     transition: color 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cta::after {
+    transition: none;
   }
 
   .ctaArrow {

@@ -474,6 +474,11 @@
   text-transform: lowercase;
 }
 
+.heroTitleLine {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .websitesHeroTitleCompact {
   font-size: clamp(4.35rem, 6.8vw, 6.9rem);
   letter-spacing: -0.05em;
@@ -1214,7 +1219,7 @@
 
   .websitesHeroTitle {
     max-width: 100%;
-    font-size: clamp(3.15rem, 13.4vw, 4.75rem);
+    font-size: clamp(3.05rem, 12.4vw, 4.4rem);
     line-height: 0.92;
   }
 

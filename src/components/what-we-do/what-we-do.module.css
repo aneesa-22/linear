@@ -94,13 +94,13 @@
 }
 
 .cta {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.45em;
   width: fit-content;
   margin-top: clamp(4.75rem, 8vh, 6.5rem);
   padding-bottom: 0.08em;
-  border-bottom: 1px solid transparent;
   color: var(--color-text);
   font-family: var(--font-nav);
   font-size: clamp(1.18rem, 1.38vw, 1.5rem);
@@ -114,6 +114,19 @@
     letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.cta::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -0.08em;
+  left: 0;
+  height: 1px;
+  background: currentcolor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .ctaArrow {
   display: inline-block;
   line-height: 1;
@@ -123,9 +136,14 @@
 .cta:hover,
 .cta:focus-visible,
 .cta:active {
-  border-bottom-color: currentcolor;
   letter-spacing: -0.025em;
   transform: translateY(-2px);
+}
+
+.cta:hover::after,
+.cta:focus-visible::after,
+.cta:active::after {
+  transform: scaleX(1);
 }
 
 .cta:hover .ctaArrow,
@@ -138,6 +156,8 @@
   align-self: stretch;
   width: 1px;
   background: rgb(31 31 31 / 55%);
+  transform-origin: top;
+  will-change: transform;
 }
 
 .rightGroup {
@@ -162,6 +182,11 @@
   text-align: justify;
   text-align-last: left;
   word-spacing: 0.28em;
+}
+
+.copyWord {
+  display: inline-block;
+  will-change: opacity, transform;
 }
 
 .includes {
@@ -331,6 +356,10 @@
   }
 
   .cta {
+    transition: none;
+  }
+
+  .cta::after {
     transition: none;
   }
 

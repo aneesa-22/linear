@@ -136,9 +136,9 @@ export default function WebsitesPage() {
               id="service-title"
               className={`${styles.heroTitle} ${styles.websitesHeroTitle}`}
             >
-              website design &amp;
+              <span className={styles.heroTitleLine}>website design</span>
               <br />
-              development
+              <span className={styles.heroTitleLine}>&amp; development</span>
             </h1>
           </Reveal>
 
