@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import type { CSSProperties } from "react";
-import { useEffect, useMemo, useState } from "react";
-import { m, useReducedMotion } from "framer-motion";
+import type { CSSProperties, RefObject } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Reveal } from "@/components/motion/reveal";
 import styles from "./hero.module.css";
 
@@ -43,10 +43,21 @@ const wordmarkFonts: CSSProperties[] = [
   },
 ];
 
-export function Hero() {
+type HeroProps = Readonly<{
+  sheetRef?: RefObject<HTMLElement | null>;
+}>;
+
+export function Hero({ sheetRef }: HeroProps = {}) {
   const shouldReduceMotion = useReducedMotion();
   const [fontStep, setFontStep] = useState<number | null>(0);
   const [copyAnimationFinished, setCopyAnimationFinished] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const wordmarkRef = useRef<HTMLHeadingElement>(null);
+
+  const { scrollYProgress } = useScroll(
+    sheetRef ? { target: sheetRef, offset: ["start end", "start start"] } : {}
+  );
+  const pushY = useTransform(scrollYProgress, [0, 1], ["0vh", "-22vh"]);
   const copyWords = useMemo(() => HERO_COPY.split(" "), []);
   const activeFontStep = shouldReduceMotion ? null : fontStep;
   const copySettled = Boolean(shouldReduceMotion) || copyAnimationFinished;
@@ -86,15 +97,35 @@ export function Hero() {
     return () => window.clearTimeout(timeout);
   }, [shouldReduceMotion]);
 
+  useEffect(() => {
+    const wordmark = wordmarkRef.current;
+    const content = contentRef.current;
+    if (!wordmark || !content) return;
+
+    const observer = new ResizeObserver((entries) => {
+      const width =
+        entries[0]?.borderBoxSize?.[0]?.inlineSize ?? wordmark.offsetWidth;
+      content.style.setProperty(
+        "--hero-measured-wordmark-width",
+        `${width}px`
+      );
+    });
+
+    observer.observe(wordmark);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section
+    <m.section
       aria-labelledby="hero-title"
       className={`${styles.hero} px-[clamp(1.25rem,6vw,4.5rem)]`}
       data-floating-badge-hero
+      {...(!shouldReduceMotion && sheetRef ? { style: { y: pushY } } : {})}
     >
-      <div className={styles.content}>
+      <div ref={contentRef} className={styles.content}>
         <div className={styles.wordmarkMask}>
           <h1
+            ref={wordmarkRef}
             id="hero-title"
             className={styles.wordmark}
             style={
@@ -153,6 +184,6 @@ export function Hero() {
           </Link>
         </Reveal>
       </div>
-    </section>
+    </m.section>
   );
 }

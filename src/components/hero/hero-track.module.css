@@ -1,0 +1,37 @@
+.track {
+  position: relative;
+  z-index: 0;
+  min-height: 300vh;
+  min-height: 300svh;
+  min-height: 300dvh;
+  background: var(--color-bg);
+}
+
+.stickyPanel {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .track {
+    min-height: 220vh;
+    min-height: 220svh;
+    min-height: 220dvh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    min-height: auto;
+  }
+
+  .stickyPanel {
+    position: relative;
+    min-height: auto;
+    overflow: visible;
+  }
+}

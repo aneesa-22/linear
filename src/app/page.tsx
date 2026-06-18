@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Hero } from "@/components/hero/hero";
+import { HeroSection } from "@/components/home/hero-section";
 import { HomeContactSection } from "@/components/home/home-contact-section";
 import { ManifestoSection } from "@/components/home/manifesto-section";
-import { WhatWeDo } from "@/components/what-we-do/what-we-do";
 import { createPageMetadata } from "@/lib/seo";
 import styles from "./page.module.css";
 
@@ -16,15 +15,7 @@ export const metadata: Metadata = createPageMetadata({
 export default function Home() {
   return (
     <main className={styles.page} aria-label="Linear Studio homepage">
-      <div className={styles.heroTrack}>
-        <div className={styles.stickyPanel}>
-          <Hero />
-        </div>
-      </div>
-
-      <div className={styles.whatWeDoSheet}>
-        <WhatWeDo />
-      </div>
+      <HeroSection />
 
       <div className={styles.manifestoTrack}>
         <div className={styles.stickyPanel}>
